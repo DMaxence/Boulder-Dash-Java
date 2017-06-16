@@ -1,6 +1,9 @@
-package model.element;
+package model;
 
 import java.awt.Image;
+
+import model.element.Permeability;
+import model.element.Sprite;
 
 //public interface IElement extends ISquare {
 public interface IElement {

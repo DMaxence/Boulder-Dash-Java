@@ -1,12 +1,8 @@
 package model;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import model.dao.MapDAO;
-import model.element.IElement;
-
-import contract.model.IModel;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>

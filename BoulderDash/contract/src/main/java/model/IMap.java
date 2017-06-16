@@ -2,8 +2,6 @@ package model;
 
 import java.util.Observable;
 
-import model.element.IElement;
-
 /*
  * @author Paul Combaldieu
  */

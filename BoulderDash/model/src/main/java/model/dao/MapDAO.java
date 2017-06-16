@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.element.IElement;
+import model.IElement;
 
 /**
  * <h1>The Class MapDAO.</h1>

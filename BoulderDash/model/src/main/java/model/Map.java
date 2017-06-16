@@ -3,7 +3,6 @@ package model;
 import java.sql.SQLException;
 import java.util.Observable;
 
-import model.element.IElement;
 import model.dao.MapDAO;
 
 /*

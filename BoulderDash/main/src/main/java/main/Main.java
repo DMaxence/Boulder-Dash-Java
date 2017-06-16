@@ -19,9 +19,10 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
+     * @throws SQLException 
      */
-    public static void main(final String[] args) {
-        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+    public static void main(final String[] args) throws SQLException {
+        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade(1));
 
         try {
             controller.start();
