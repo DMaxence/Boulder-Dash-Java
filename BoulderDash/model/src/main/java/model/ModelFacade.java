@@ -47,4 +47,9 @@ public class ModelFacade implements IModel {
     {
     	this.myCharacter = newChara;
     }
+
+	@Override
+	public IMobile getMyCharacter() {
+		return this.myCharacter;
+	}
 }

@@ -1,9 +1,9 @@
 package model;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import model.IMap;
+import model.element.mobile.IMobile;
 
 /**
  * <h1>The Interface IModel.</h1>
@@ -23,4 +23,6 @@ public interface IModel {
      *             the SQL exception
      */
     public IMap getMap();
+    
+    public IMobile getMyCharacter();
 }

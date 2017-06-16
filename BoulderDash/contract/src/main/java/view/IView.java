@@ -15,4 +15,9 @@ public interface IView {
      *            the message
      */
     void displayMessage(String message);
+    
+    /**
+     * Follow myCharacter.
+     */
+    void followMyCharacter();
 }

@@ -1,7 +1,6 @@
 package controller;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.io.IOException;
 
 import model.IModel;
 import view.IView;
@@ -12,13 +11,19 @@ import view.IView;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public class ControllerFacade implements IController {
+public class ControllerFacade implements IOrderPerformer, IBoulderDashController {
 
     /** The view. */
     private final IView  view;
 
     /** The model. */
     private final IModel model;
+    
+    /** The Constant speed. */
+    private static final int     speed = 300;
+    
+    /** The stack order. */
+    private UserOrder            stackOrder;
 
     /**
      * Instantiates a new controller facade.
@@ -36,12 +41,36 @@ public class ControllerFacade implements IController {
 
     /**
      * Start.
-     *
-     * @throws SQLException
-     *             the SQL exception
      */
-    public void start() throws SQLException {
+    @Override
+    public void start() {
         this.getView().displayMessage(this.getModel().getMap().toString());
+        System.exit(0);
+        while (this.getModel().getMyCharacter().isAlive()) {
+            Thread.sleep(speed);
+            switch (this.getStackOrder()) {
+                case RIGHT:
+                    this.getModel().getMyCharacter().moveRight();
+                    break;
+                case LEFT:
+                    this.getModel().getMyCharacter().moveLeft();
+                    break;
+                case DOWN:
+                	this.getModel().getMyCharacter().moveDown();
+                	break;
+                case UP:
+                	this.getModel().getMyCharacter().moveUp();
+                	break;
+                case NOP:
+                default:
+                    this.getModel().getMyCharacter().doNothing();
+                    break;
+            }
+            this.clearStackOrder();
+
+            this.getView().followMyCharacter();
+        }
+        this.getView().displayMessage("CRASH !!!!!!!!!.");
     }
 
     /**
@@ -60,5 +89,35 @@ public class ControllerFacade implements IController {
      */
     public IModel getModel() {
         return this.model;
+    }
+
+	@Override
+	public IOrderPerformer getOrderPeformer() {
+		return this;
+	}
+
+    /*
+     * (non-Javadoc)
+     * @see fr.exia.insanevehicles.controller.IIinsaneVehiclesController#orderPerform(fr.exia.
+     * insanevehicles.controller.UserOrder)
+     */
+    @Override
+    public final void orderPerform(final UserOrder userOrder) throws IOException {
+        this.setStackOrder(userOrder);
+    }
+    
+    private UserOrder getStackOrder()
+    {
+    	return this.stackOrder;
+    }
+    
+    private void setStackOrder(UserOrder newOrder)
+    {
+    	this.stackOrder = newOrder;
+    }
+    
+    private void clearStackOrder()
+    {
+    	this.stackOrder = UserOrder.NOP;
     }
 }

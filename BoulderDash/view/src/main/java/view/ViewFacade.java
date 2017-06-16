@@ -9,6 +9,8 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import controller.IOrderPerformer;
+import controller.UserOrder;
 import fr.exia.showboard.BoardFrame;
 import model.IMap;
 import model.element.mobile.IMobile;
@@ -27,6 +29,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	private IMap map;
 	private IMobile myCharacter;
 	private Rectangle closeView;
+	private IOrderPerformer orderPerformer;
 
     /**
      * Instantiates a new view facade.
