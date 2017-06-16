@@ -34,8 +34,6 @@ public class Sprite {
     public static BufferedImage characterTileSet = null;
     public static BufferedImage mapTileSet = null;
 
-    private static boolean buffersLoaded = false;
-
     /**
      * Instantiates a new sprite.
      *
@@ -48,35 +46,21 @@ public class Sprite {
         this.setConsoleImage(character);
         this.buffer = imageBuffer;
         bufferPart = part;
-        
-        
-        if(!buffersLoaded)
-        {
-        	try
-        	{
-        		Sprite.characterTileSet = ImageIO.read(new File("images/characterSet.png"));
-        		Sprite.mapTileSet = ImageIO.read(new File("images/mapSet.png"));
-        		
-        		Sprite.buffersLoaded = true;
-        	}
-        	catch (IOException e)
-        	{
-        		e.printStackTrace();
-        		System.out.println(e.getMessage());
-        		System.out.println(System.getProperty("user.dir"));
-        		
-        		File folder = new File(System.getProperty("user.dir") + "/images");
-        		File[] listOfFiles = folder.listFiles();
-
-        		    for (int i = 0; i < listOfFiles.length; i++) {
-        		      if (listOfFiles[i].isFile()) {
-        		        System.out.println("File " + listOfFiles[i].getName());
-        		      } else if (listOfFiles[i].isDirectory()) {
-        		        System.out.println("Directory " + listOfFiles[i].getName());
-        		      }
-        		    }
-        	}
-        }
+    }
+    
+    public static void loadBuffers()
+    {
+    	try
+    	{
+    		Sprite.characterTileSet = ImageIO.read(new File("images/characterSet.png"));
+    		Sprite.mapTileSet = ImageIO.read(new File("images/mapSet.png"));
+    	}
+    	catch (IOException e)
+    	{
+    		e.printStackTrace();
+    		System.out.println(e.getMessage());
+    		System.out.println("Working directory: " + System.getProperty("user.dir"));
+    	}	
     }
 
     /**
@@ -95,7 +79,10 @@ public class Sprite {
      *             Signals that an I/O exception has occurred.
      */
     public final void loadImage() throws IOException {
+    	System.out.println(buffer);
+    	System.out.println(this.getConsoleImage());
     	this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
+    	System.out.println("Loading OK");
     }
 
     /**

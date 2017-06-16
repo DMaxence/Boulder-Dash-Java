@@ -41,6 +41,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         this.setMyCharacter(character);
         this.getMyCharacter().getSprite().loadImage();
         this.setCloseView(this.getReasonableViewPort());
+        
         SwingUtilities.invokeLater(this);
     }
     
@@ -77,9 +78,14 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         JOptionPane.showMessageDialog(null, message);
     }
     
-    private void setMap(final IMap newMap)
+    private void setMap(final IMap newMap) throws IOException
     {
     	this.map = newMap;
+        for (int x = 0; x < this.getMap().getWidth(); x++) {
+            for (int y = 0; y < this.getMap().getHeight(); y++) {
+                this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+            }
+        }
     }
 
     private void setMyCharacter(final IMobile newCharacter)

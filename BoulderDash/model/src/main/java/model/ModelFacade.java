@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import model.element.Sprite;
 import model.element.mobile.IMobile;
 import model.element.mobile.MyCharacter;
 
@@ -25,6 +26,7 @@ public class ModelFacade implements IModel {
      */
     public ModelFacade(final int mapID) throws SQLException, IOException {
         super();
+        Sprite.loadBuffers();
         this.setMap(new Map(mapID));
         this.setMyCharacter(new MyCharacter(1, 1, this.getMap()));
     }
