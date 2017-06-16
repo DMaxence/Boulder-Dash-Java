@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import ElementFactory.ElementFactory;
 import model.IElement;
 
 /**
@@ -67,9 +68,30 @@ public abstract class MapDAO extends AbstractDAO {
 	        	height = result.getInt(heightColumnIndex);
 	        	tempMap = new IElement[width][height];
 	        	
+	        	int currentXToWrite = 0;
+	        	int currentYToWrite = 0;
+	        	boolean skipNext = false;
+	        	
 	            for(char c : result.getString(mapColumnIndex).toCharArray())
 	            {
-	            	// TODO factory
+	            	if(!skipNext)
+	            	{
+		            	tempMap[currentXToWrite][currentYToWrite] = ElementFactory.getFromFileSymbol(c);
+		            	currentXToWrite++;
+	            	}
+	            	else
+	            	{
+	            		skipNext = false;
+	            	}
+
+	            	
+	            	//If we get to the carriage return character
+	            	if (currentXToWrite % width == 0 && currentXToWrite != 0)
+	            	{
+	            		currentXToWrite = 0;
+	            		currentYToWrite++;
+	            		skipNext = true;
+	            	}
 	            }
 	        }
 	        else
@@ -79,6 +101,6 @@ public abstract class MapDAO extends AbstractDAO {
 	        }
 	        result.close();
 	    }
-	    return new IElement[1][1];
+	    return tempMap;
 	}
 }

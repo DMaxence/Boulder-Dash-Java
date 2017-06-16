@@ -1,49 +1,37 @@
 package ElementFactory;
 
+import element.Element;
 import model.motionlesselement.DugDirt;
 import model.motionlesselement.FilledDirt;
 import model.motionlesselement.Wall;
 
 public class ElementFactory {
-	  /** The Constant ditchRight. */
+	  /** The Constant wall. */
     private static final Wall        		 wall          		 = new Wall();
 
-    /** The Constant ditchLeft. */
+    /** The Constant dugDirt. */
     private static final DugDirt	         dugDirt             = new DugDirt();
 
-    /** The Constant ditchLeftTurnLeft. */
+    /** The Constant filledDirt. */
     private static final FilledDirt   		 filledDirt   		 = new FilledDirt();
 
     /**
      * The motionless elements is an array of all possible MotionlessElement.
+     * used for get from char symbol
      */
-    private static MotionlessElement[]       motionlessElements  = {
-        ditchRight,
-        ditchLeft,
-        ditchLeftTurnLeft,
-        ditchLeftTurnRight,
-        ditchRightTurnLeft,
-        ditchRightTurnRight,
-        MACADAM,
-        OBSTACLE,
-        TREE, };
+    private static Element[]       elements  = {
+        dugDirt,
+        filledDirt,
+        wall
+     };
 
     /**
      * Creates a new MotionlessElements object.
      *
      * @return the motionless element
      */
-    public static MotionlessElement createDitchRight() {
-        return ditchRight;
-    }
-
-    /**
-     * Creates a new MotionlessElements object.
-     *
-     * @return the motionless element
-     */
-    public static MotionlessElement createDitchLeft() {
-        return ditchLeft;
+    public static Element createDugDirt() {
+        return dugDirt;
     }
 
     /**
@@ -51,8 +39,8 @@ public class ElementFactory {
      *
      * @return the motionless element
      */
-    public static MotionlessElement createDitchLeftTurnLeft() {
-        return ditchLeftTurnLeft;
+    public static Element createFilledDirt() {
+        return filledDirt;
     }
 
     /**
@@ -60,53 +48,8 @@ public class ElementFactory {
      *
      * @return the motionless element
      */
-    public static MotionlessElement createDitchLeftTurnRight() {
-        return ditchLeftTurnRight;
-    }
-
-    /**
-     * Creates a new MotionlessElements object.
-     *
-     * @return the motionless element
-     */
-    public static MotionlessElement createDitchRightTurnLeft() {
-        return ditchRightTurnLeft;
-    }
-
-    /**
-     * Creates a new MotionlessElements object.
-     *
-     * @return the motionless element
-     */
-    public static MotionlessElement createDitchRightTurnRight() {
-        return ditchRightTurnRight;
-    }
-
-    /**
-     * Creates a new macadam object.
-     *
-     * @return the motionless element
-     */
-    public static MotionlessElement createMacadam() {
-        return MACADAM;
-    }
-
-    /**
-     * Creates a new obstacle object.
-     *
-     * @return the motionless element
-     */
-    public static MotionlessElement createObstacle() {
-        return OBSTACLE;
-    }
-
-    /**
-     * Creates a new MotionlessElements object.
-     *
-     * @return the motionless element
-     */
-    public static MotionlessElement createTree() {
-        return TREE;
+    public static Element createWall() {
+        return wall;
     }
 
     /**
@@ -116,12 +59,12 @@ public class ElementFactory {
      *            the file symbol
      * @return the from file symbol
      */
-    public static MotionlessElement getFromFileSymbol(final char fileSymbol) {
-        for (final MotionlessElement motionlessElement : motionlessElements) {
+    public static Element getFromFileSymbol(final char fileSymbol) {
+        for (final Element motionlessElement : elements) {
             if (motionlessElement.getSprite().getConsoleImage() == fileSymbol) {
                 return motionlessElement;
             }
         }
-        return MACADAM;
+        return wall;
     }
 }
