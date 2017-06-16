@@ -1,5 +1,6 @@
 package model.element.mobile;
 
+import java.awt.Rectangle;
 import java.io.IOException;
 
 import model.IMap;
@@ -15,16 +16,16 @@ import model.element.Sprite;
 public class MyCharacter extends Mobile {
 
     /** The Constant SPRITE. */
-    private static final Sprite sprite          = new Sprite('H', "TODO.png");
+    private static final Sprite sprite          = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 0, 16, 16));
 
     /** The Constant spriteTurnLeft. */
-    private static final Sprite spriteTurnLeft  = new Sprite('H', "TODO.png");
+    private static final Sprite spriteTurnLeft  = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 16, 16, 16));
 
     /** The Constant spriteTurnRight. */
-    private static final Sprite spriteTurnRight = new Sprite('H', "TODO.png");
+    private static final Sprite spriteTurnRight = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 48, 16, 16));;
 
     /** The Constant spriteExplode. */
-    private static final Sprite spriteExplode   = new Sprite('H', "TODO.png");
+    private static final Sprite spriteDie   	= new Sprite('H', Sprite.characterTileSet, new Rectangle(64, 0, 16, 16));
 
     /**
      * Instantiates a new my vehicle.
@@ -42,7 +43,7 @@ public class MyCharacter extends Mobile {
         super(x, y, sprite, map, Permeability.BLOCKING);
         spriteTurnLeft.loadImage();
         spriteTurnRight.loadImage();
-        spriteExplode.loadImage();
+        spriteDie.loadImage();
     }
 
     /*
@@ -72,7 +73,7 @@ public class MyCharacter extends Mobile {
     @Override
     protected final void die() {
         super.die();
-        this.setSprite(spriteExplode);
+        this.setSprite(spriteDie);
     }
 
     /*

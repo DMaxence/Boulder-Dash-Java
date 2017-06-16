@@ -1,6 +1,8 @@
 package model.element;
 
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,14 +19,22 @@ public class Sprite {
     /** The image. */
     private Image   image;
 
-    /** The image name. */
-    private String  imageName;
-
     /** The console image. */
     private char    consoleImage;
+    
+    /** The selected buffer */
+    private BufferedImage buffer;
+    
+    /** The part of buffer to keep */
+    private Rectangle bufferPart;
 
     /** The is image loaded. */
     private boolean imageLoaded;
+    
+    public static BufferedImage characterTileSet = null;
+    public static BufferedImage mapTileSet = null;
+
+    private static boolean buffersLoaded = false;
 
     /**
      * Instantiates a new sprite.
@@ -34,19 +44,39 @@ public class Sprite {
      * @param imageName
      *            the image name
      */
-    public Sprite(final char character, final String imageName) {
+    public Sprite(final char character, final BufferedImage imageBuffer, final Rectangle part) {
         this.setConsoleImage(character);
-        this.setImageName(imageName);
-    }
+        this.buffer = imageBuffer;
+        bufferPart = part;
+        
+        
+        if(!buffersLoaded)
+        {
+        	try
+        	{
+        		Sprite.characterTileSet = ImageIO.read(new File("images/characterSet.png"));
+        		Sprite.mapTileSet = ImageIO.read(new File("images/mapSet.png"));
+        		
+        		Sprite.buffersLoaded = true;
+        	}
+        	catch (IOException e)
+        	{
+        		e.printStackTrace();
+        		System.out.println(e.getMessage());
+        		System.out.println(System.getProperty("user.dir"));
+        		
+        		File folder = new File(System.getProperty("user.dir") + "/images");
+        		File[] listOfFiles = folder.listFiles();
 
-    /**
-     * Instantiates a new sprite.
-     *
-     * @param character
-     *            the character
-     */
-    public Sprite(final char character) {
-        this(character, "noimage.jpg");
+        		    for (int i = 0; i < listOfFiles.length; i++) {
+        		      if (listOfFiles[i].isFile()) {
+        		        System.out.println("File " + listOfFiles[i].getName());
+        		      } else if (listOfFiles[i].isDirectory()) {
+        		        System.out.println("Directory " + listOfFiles[i].getName());
+        		      }
+        		    }
+        	}
+        }
     }
 
     /**
@@ -57,7 +87,7 @@ public class Sprite {
     public final Image getImage() {
         return this.image;
     }
-
+    
     /**
      * Loads image.
      *
@@ -65,7 +95,7 @@ public class Sprite {
      *             Signals that an I/O exception has occurred.
      */
     public final void loadImage() throws IOException {
-        this.setImage(ImageIO.read(new File("images/" + this.getImageName())));
+    	this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
     }
 
     /**
@@ -95,25 +125,6 @@ public class Sprite {
      */
     private void setConsoleImage(final char consoleImage) {
         this.consoleImage = consoleImage;
-    }
-
-    /**
-     * Gets the image name.
-     *
-     * @return the imageName
-     */
-    public final String getImageName() {
-        return this.imageName;
-    }
-
-    /**
-     * Sets the image name.
-     *
-     * @param imageName
-     *            the imageName to set
-     */
-    private void setImageName(final String imageName) {
-        this.imageName = imageName;
     }
 
     /**
