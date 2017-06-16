@@ -79,10 +79,7 @@ public class Sprite {
      *             Signals that an I/O exception has occurred.
      */
     public final void loadImage() throws IOException {
-    	System.out.println(buffer);
-    	System.out.println(this.getConsoleImage());
     	this.setImage(buffer.getSubimage(bufferPart.x, bufferPart.y, bufferPart.width, bufferPart.height));
-    	System.out.println("Loading OK");
     }
 
     /**

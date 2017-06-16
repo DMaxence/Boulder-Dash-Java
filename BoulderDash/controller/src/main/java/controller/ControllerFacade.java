@@ -23,7 +23,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
     private static final int     speed = 300;
     
     /** The stack order. */
-    private UserOrder            stackOrder;
+    private UserOrder            stackOrder = UserOrder.NOP;
 
     /**
      * Instantiates a new controller facade.
@@ -45,7 +45,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
      */
     @Override
     public void start() throws InterruptedException {
-        
+
         while (this.getModel().getMyCharacter().isAlive()) {
             Thread.sleep(speed);
             switch (this.getStackOrder()) {
