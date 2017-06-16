@@ -1,4 +1,4 @@
-package model.motionlesselement;
+package model.element.motionlesselement;
 
 import element.Element;
 import model.element.Permeability;

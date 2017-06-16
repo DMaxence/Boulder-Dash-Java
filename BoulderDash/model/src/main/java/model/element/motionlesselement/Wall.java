@@ -1,4 +1,4 @@
-package model.motionlesselement;
+package model.element.motionlesselement;
 
 import model.element.Permeability;
 import model.element.Sprite;

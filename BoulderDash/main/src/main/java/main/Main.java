@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import controller.ControllerFacade;
@@ -20,8 +21,9 @@ public abstract class Main {
      * @param args
      *            the arguments
      * @throws SQLException 
+     * @throws IOException 
      */
-    public static void main(final String[] args) throws SQLException {
+    public static void main(final String[] args) throws SQLException, IOException {
         final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade(1));
 
         try {

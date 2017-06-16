@@ -1,9 +1,9 @@
 package ElementFactory;
 
 import element.Element;
-import model.motionlesselement.DugDirt;
-import model.motionlesselement.FilledDirt;
-import model.motionlesselement.Wall;
+import model.element.motionlesselement.DugDirt;
+import model.element.motionlesselement.FilledDirt;
+import model.element.motionlesselement.Wall;
 
 public class ElementFactory {
 	  /** The Constant wall. */

@@ -1,6 +1,10 @@
 package model;
 
+import java.io.IOException;
 import java.sql.SQLException;
+
+import model.element.mobile.IMobile;
+import model.element.mobile.MyCharacter;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -11,14 +15,18 @@ import java.sql.SQLException;
 public class ModelFacade implements IModel {
 	
 	private IMap map;
+	
+	private IMobile myCharacter;
 
     /**
      * Instantiates a new model facade.
      * @throws SQLException 
+     * @throws IOException 
      */
-    public ModelFacade(final int mapID) throws SQLException {
+    public ModelFacade(final int mapID) throws SQLException, IOException {
         super();
         this.setMap(new Map(mapID));
+        this.setMyCharacter(new MyCharacter(1, 1, this.getMap()));
     }
 
     /*
@@ -33,5 +41,10 @@ public class ModelFacade implements IModel {
     private void setMap(final Map newMap)
     {
     	this.map = newMap;
+    }
+    
+    private void setMyCharacter(IMobile newChara)
+    {
+    	this.myCharacter = newChara;
     }
 }

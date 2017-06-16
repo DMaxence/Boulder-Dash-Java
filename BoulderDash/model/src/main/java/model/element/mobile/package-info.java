@@ -5,4 +5,4 @@
  * @author paul
  *
  */
-package model.motionlesselement;
+package model.element.mobile;
