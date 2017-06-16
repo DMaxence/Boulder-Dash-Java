@@ -45,8 +45,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
      */
     @Override
     public void start() throws InterruptedException {
-        this.getView().displayMessage(this.getModel().getMap().toString());
-        System.exit(0);
+        
         while (this.getModel().getMyCharacter().isAlive()) {
             Thread.sleep(speed);
             switch (this.getStackOrder()) {
@@ -71,7 +70,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 
             this.getView().followMyCharacter();
         }
-        this.getView().displayMessage("CRASH !!!!!!!!!.");
+        this.getView().displayMessage("FATALITY.");
     }
 
     /**

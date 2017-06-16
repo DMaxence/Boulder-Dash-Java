@@ -40,8 +40,32 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         this.setMap(map);
         this.setMyCharacter(character);
         this.getMyCharacter().getSprite().loadImage();
-        this.setCloseView(new Rectangle(0, 0, 2, 2));
+        this.setCloseView(this.getReasonableViewPort());
         SwingUtilities.invokeLater(this);
+    }
+    
+    private Rectangle getReasonableViewPort()
+    {
+    	int reasonableWidth;
+    	int reasonableHeight;
+    	
+    	//First let's find a reasonable width
+    	if((int)(map.getWidth() * 0.75) > 10)
+    		reasonableWidth = 10;
+    	else if((int)(map.getWidth() * 0.75) < 5)
+    		reasonableWidth = 5;
+    	else
+    		reasonableWidth = (int)(map.getWidth() * 0.75);
+    	
+    	//Same with the height
+    	if((int)(map.getHeight() * 0.75) > 10)
+    		reasonableHeight = 10;
+    	else if((int)(map.getHeight() * 0.75) < 5)
+    		reasonableHeight = 5;
+    	else
+    		reasonableHeight = (int)(map.getHeight() * 0.75);
+    	
+    	return new Rectangle(0, 0, reasonableWidth, reasonableHeight);
     }
 
     /*
