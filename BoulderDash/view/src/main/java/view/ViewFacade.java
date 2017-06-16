@@ -156,4 +156,20 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	{
 		return this.map;
 	}
+
+	@Override
+	public void followMyCharacter() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private IOrderPerformer getOrderPerformer()
+	{
+		return this.orderPerformer;
+	}
+	
+	public void setOrderPerformer(final IOrderPerformer newPerformer)
+	{
+		this.orderPerformer = newPerformer;
+	}
 }

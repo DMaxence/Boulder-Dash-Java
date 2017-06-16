@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import controller.ControllerFacade;
+import controller.IBoulderDashController;
+import model.IModel;
 import model.ModelFacade;
 import view.ViewFacade;
 
@@ -24,12 +26,15 @@ public abstract class Main {
      * @throws IOException 
      */
     public static void main(final String[] args) throws SQLException, IOException {
-        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade(1));
+    	final IModel model = new ModelFacade(1);
+    	final ViewFacade view = new ViewFacade(model.getMap(), model.getMyCharacter());
+        final IBoulderDashController controller = new ControllerFacade(view, model);
 
         try {
             controller.start();
-        } catch (final SQLException exception) {
-            exception.printStackTrace();
-        }
+        } catch (InterruptedException e) {
+        	System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
     }
 }

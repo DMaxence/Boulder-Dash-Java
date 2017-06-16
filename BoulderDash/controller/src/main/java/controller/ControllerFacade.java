@@ -41,9 +41,10 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 
     /**
      * Start.
+     * @throws InterruptedException 
      */
     @Override
-    public void start() {
+    public void start() throws InterruptedException {
         this.getView().displayMessage(this.getModel().getMap().toString());
         System.exit(0);
         while (this.getModel().getMyCharacter().isAlive()) {
