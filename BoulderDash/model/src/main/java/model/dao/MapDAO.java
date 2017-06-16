@@ -3,8 +3,6 @@ package model.dao;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.IElement;
 
@@ -57,11 +55,27 @@ public abstract class MapDAO extends AbstractDAO {
     public static IElement[][] getMapById(final int id) throws SQLException {
 	    final CallableStatement callStatement = prepareCall(sqlMapById);
 	    callStatement.setInt(1, id);
+	    int width = 0;
+	    int height = 0;
+	    IElement[][] tempMap = null;
+	    
+	    
 	    if (callStatement.execute()) {
 	        final ResultSet result = callStatement.getResultSet();
 	        if (result.first()) {
-	            System.out.print(result.getString(mapColumnIndex));
-	            System.exit(0)	;
+	        	width = result.getInt(widthColumnIndex);
+	        	height = result.getInt(heightColumnIndex);
+	        	tempMap = new IElement[width][height];
+	        	
+	            for(char c : result.getString(mapColumnIndex).toCharArray())
+	            {
+	            	// TODO factory
+	            }
+	        }
+	        else
+	        {
+	        	System.out.println("Could not find map");
+	        	System.exit(1);
 	        }
 	        result.close();
 	    }
