@@ -3,6 +3,7 @@ package model.element.mobile;
 import java.awt.Rectangle;
 import java.io.IOException;
 
+import controller.UserOrder;
 import model.IMap;
 import model.element.Permeability;
 import model.element.Sprite;
@@ -117,5 +118,33 @@ public class MyCharacter extends Mobile {
     public final void doNothing() {
         super.doNothing();
         this.setSprite(sprite);
+    }
+    
+    @Override
+    public Boolean canMoveTo(final UserOrder direction)
+    {
+    	//TODO check if bitwise operators available
+    	switch(direction)
+    	{
+    	case UP:
+    		return 
+    				this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE ||
+    				this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.MINEABLE;
+		case DOWN:
+			return 
+					this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE ||
+					this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.MINEABLE;
+    	case RIGHT:
+    		return 
+    				this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PENETRABLE ||
+    				this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.MINEABLE;
+    	case LEFT:
+    		return 
+    				this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE ||
+    				this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.MINEABLE;
+    	case NOP:
+    	default:
+    		return true;
+    	}
     }
 }

@@ -68,7 +68,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 					this.getModel().getMyCharacter().doNothing();
 					break;
 				}
-				//this.getModel().movePawns();
+				this.getModel().movePawns();
 			}
 			this.clearStackOrder();
 
