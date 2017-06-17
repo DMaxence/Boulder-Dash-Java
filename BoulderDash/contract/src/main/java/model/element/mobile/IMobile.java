@@ -2,6 +2,7 @@ package model.element.mobile;
 
 import java.awt.Point;
 
+import controller.UserOrder;
 import model.IElement;
 import fr.exia.showboard.IPawn;
 
@@ -69,6 +70,8 @@ public interface IMobile extends IPawn, IElement {
      * @return the boolean
      */
     Boolean isCrushed();
+    
+    Boolean canMoveTo(final UserOrder direction);
 
     /*
      * (non-Javadoc)

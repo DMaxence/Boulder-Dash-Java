@@ -54,7 +54,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
     	if((int)(map.getWidth() * 0.75) > 10)
     		reasonableWidth = 10;
     	else if((int)(map.getWidth() * 0.75) < 5)
-    		reasonableWidth = 5;
+    		reasonableWidth = map.getWidth();
     	else
     		reasonableWidth = (int)(map.getWidth() * 0.75);
     	
@@ -62,7 +62,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
     	if((int)(map.getHeight() * 0.75) > 10)
     		reasonableHeight = 10;
     	else if((int)(map.getHeight() * 0.75) < 5)
-    		reasonableHeight = 5;
+    		reasonableHeight = map.getHeight();
     	else
     		reasonableHeight = (int)(map.getHeight() * 0.75);
     	

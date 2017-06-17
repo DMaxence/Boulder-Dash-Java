@@ -2,6 +2,7 @@ package model.element.mobile;
 
 import java.awt.Point;
 
+import controller.UserOrder;
 import model.IMap;
 import element.Element;
 import fr.exia.showboard.IBoard;
@@ -62,8 +63,14 @@ abstract class Mobile extends Element implements IMobile {
      */
     Mobile(final int x, final int y, final Sprite sprite, final IMap map, final Permeability permeability) {
         this(sprite, map, permeability);
-        this.setX(x);
-        this.setY(y);
+        //Following code will not work: if (0, y) or (x, 0) is BLOCKING,
+        //The game will end instanty. We have to set the initial position without
+        //Checking for collisions
+        //this.setX(x);
+        //this.setY(y);
+        
+        this.getPosition().x = x;
+        this.getPosition().y = (y + this.getMap().getHeight()) % this.getMap().getHeight();
     }
 
     /*
@@ -205,11 +212,30 @@ abstract class Mobile extends Element implements IMobile {
 
     /*
      * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.IMobile#isCrashed()
+     * @see fr.exia.insanevehicles.model.element.mobile.IMobile#isCrushed()
      */
     @Override
     public Boolean isCrushed() {
         return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
+    }
+    
+    @Override
+    public Boolean canMoveTo(final UserOrder direction)
+    {
+    	switch(direction)
+    	{
+    	case UP:
+    		return this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE;
+		case DOWN:
+			return this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE;
+    	case RIGHT:
+    		return this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PENETRABLE;
+    	case LEFT:
+    		return this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE;
+    	case NOP:
+    	default:
+    		return true;
+    	}
     }
 
     /*
