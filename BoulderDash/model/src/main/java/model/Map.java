@@ -70,4 +70,10 @@ public class Map extends Observable implements IMap{
         this.setChanged();
         this.notifyObservers();
     }
+
+	@Override
+	public void setOnTheMapXY(int x, int y, IElement elem) {
+		//this.map[x%this.getWidth()][y%this.getHeight()] = elem;
+		this.map[x][y] = elem;
+	}
 }

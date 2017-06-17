@@ -30,6 +30,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	private IMobile myCharacter;
 	private Rectangle closeView;
 	private IOrderPerformer orderPerformer;
+	private final BoardFrame boardFrame = new BoardFrame("Boulder Hendeck");
 
     /**
      * Instantiates a new view facade.
@@ -165,11 +166,10 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 
 	@Override
 	public final void run() {
-		final BoardFrame boardFrame = new BoardFrame("Boulder Hendeck");
         boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
         boardFrame.setDisplayFrame(this.closeView);
         boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
-        boardFrame.setHeightLooped(true);
+        //boardFrame.setHeightLooped(true);
         boardFrame.addKeyListener(this);
         boardFrame.setFocusable(true);
         boardFrame.setFocusTraversalKeysEnabled(false);
@@ -207,5 +207,14 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 	public void setOrderPerformer(final IOrderPerformer newPerformer)
 	{
 		this.orderPerformer = newPerformer;
+	}
+	
+	public void updateBoardFrame()
+	{
+        for (int x = 0; x < this.getMap().getWidth(); x++) {
+            for (int y = 0; y < this.getMap().getHeight(); y++) {
+                boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
+            }
+        }
 	}
 }

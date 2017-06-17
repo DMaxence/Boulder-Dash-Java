@@ -1,6 +1,7 @@
 package model.element.mobile;
 
 import java.awt.Point;
+import java.io.IOException;
 
 import controller.UserOrder;
 import model.IMap;
@@ -8,6 +9,7 @@ import element.Element;
 import fr.exia.showboard.IBoard;
 import model.element.Permeability;
 import model.element.Sprite;
+import ElementFactory.ElementFactory;
 
 /**
  * <h1>The Mobile Class.</h1>
@@ -144,11 +146,23 @@ abstract class Mobile extends Element implements IMobile {
      * @param x
      *            the new x
      */
-    public final void setX(final int x) {
+    public final void setX(final int x) { 	
+    	this.digDirt();
         this.getPosition().x = x;
         if (this.isCrushed()) {
             this.die();
         }
+    }
+    
+    public void digDirt()
+    {
+    	this.getMap().setOnTheMapXY(this.getX(), this.getY(), ElementFactory.createDugDirt());
+    	try {
+			this.getMap().getOnTheMapXY(getX(), getY()).getSprite().loadImage();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     /*
@@ -168,6 +182,7 @@ abstract class Mobile extends Element implements IMobile {
      *            based on the map height.
      */
     public final void setY(final int y) {
+    	this.digDirt();
         this.getPosition().y = (y + this.getMap().getHeight()) % this.getMap().getHeight();
         if (this.isCrushed()) {
             this.die();

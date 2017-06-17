@@ -20,4 +20,6 @@ public interface IView {
      * Follow myCharacter.
      */
     void followMyCharacter();
+    
+    void updateBoardFrame();
 }

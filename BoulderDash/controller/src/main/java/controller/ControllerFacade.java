@@ -47,8 +47,6 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 	 */
 	@Override
 	public void start() throws InterruptedException {
-		System.out.println("Player aliove:");
-		System.out.println(this.getModel().getMyCharacter().isAlive());
 		while (this.getModel().getMyCharacter().isAlive()) {
 			Thread.sleep(speed);
 			if (this.getModel().getMyCharacter().canMoveTo(this.getStackOrder())) {
@@ -74,6 +72,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 			this.clearStackOrder();
 
 			this.getView().followMyCharacter();
+			this.getView().updateBoardFrame();
 		}
 		this.getView().displayMessage("FATALITY.");
 	}
