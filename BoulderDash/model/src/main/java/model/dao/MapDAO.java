@@ -1,11 +1,15 @@
+
 package model.dao;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import ElementFactory.ElementFactory;
 import model.IElement;
+import model.Map;
+import model.ModelFacade;
+import model.element.mobile.Boulder;
 
 /**
  * <h1>The Class MapDAO.</h1>
@@ -38,35 +42,21 @@ public abstract class MapDAO extends AbstractDAO {
      * @return the example by id
      * @throws SQLException
      *             the SQL exception
+     * @throws IOException 
      */
-    /*public static Map getMapById(final int id) throws SQLException {
-        final CallableStatement callStatement = prepareCall(sqlMapById);
-        Map map = null;
-        callStatement.setInt(1, id);
-        if (callStatement.execute()) {
-            final ResultSet result = callStatement.getResultSet();
-            if (result.first()) {
-                map = new Map(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
-            }
-            result.close();
-        }
-        return example;
-    }*/
-    
-    public static IElement[][] getMapById(final int id) throws SQLException {
+    public static void getMapById(final int id, ModelFacade model) throws SQLException, IOException {
 	    final CallableStatement callStatement = prepareCall(sqlMapById);
 	    callStatement.setInt(1, id);
 	    int width = 0;
 	    int height = 0;
-	    IElement[][] tempMap = null;
-	    
+    	Map tempMap = null;
 	    
 	    if (callStatement.execute()) {
 	        final ResultSet result = callStatement.getResultSet();
 	        if (result.first()) {
 	        	width = result.getInt(widthColumnIndex);
 	        	height = result.getInt(heightColumnIndex);
-	        	tempMap = new IElement[width][height];
+	        	tempMap = new Map(width, height, new IElement[width][height]);
 	        	
 	        	int currentXToWrite = 0;
 	        	int currentYToWrite = 0;
@@ -76,7 +66,13 @@ public abstract class MapDAO extends AbstractDAO {
 	            {
 	            	if(!skipNext)
 	            	{
-		            	tempMap[currentXToWrite][currentYToWrite] = ElementFactory.getFromFileSymbol(c);
+	            		//Adding map element, if pawn, adding dug dirt
+		            	tempMap.setOnTheMapXY(currentXToWrite, currentYToWrite, ElementFactory.getFromFileSymbol(c));
+		            	
+		            	//Now let's check if the element to insert is an IMobile (boulder, diamond..)
+		            	if(c == 'O')
+		            		model.addIMobile(new Boulder(currentXToWrite, currentYToWrite, tempMap));
+		            	
 		            	currentXToWrite++;
 	            	}
 	            	else
@@ -84,7 +80,6 @@ public abstract class MapDAO extends AbstractDAO {
 	            		skipNext = false;
 	            	}
 
-	            	
 	            	//If we get to the carriage return character
 	            	if (currentXToWrite % width == 0 && currentXToWrite != 0)
 	            	{
@@ -101,6 +96,6 @@ public abstract class MapDAO extends AbstractDAO {
 	        }
 	        result.close();
 	    }
-	    return tempMap;
+	    model.setMap(tempMap);
 	}
 }

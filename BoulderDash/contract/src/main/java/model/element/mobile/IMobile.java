@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import controller.UserOrder;
 import model.IElement;
+import model.IMap;
 import fr.exia.showboard.IPawn;
 
 /**
@@ -79,5 +80,8 @@ public interface IMobile extends IPawn, IElement {
      */
     @Override
     Point getPosition();
+    
+    //TODO delete this it should be useless, for debug only
+    public void setMap(final IMap map);
 
 }

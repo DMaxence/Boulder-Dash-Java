@@ -72,7 +72,7 @@ abstract class Mobile extends Element implements IMobile {
         //this.setY(y);
         
         this.getPosition().x = x;
-        this.getPosition().y = (y + this.getMap().getHeight()) % this.getMap().getHeight();
+        this.getPosition().y = y;
     }
 
     /*
@@ -147,7 +147,6 @@ abstract class Mobile extends Element implements IMobile {
      *            the new x
      */
     public final void setX(final int x) { 	
-    	this.digDirt();
         this.getPosition().x = x;
         if (this.isCrushed()) {
             this.die();
@@ -182,7 +181,6 @@ abstract class Mobile extends Element implements IMobile {
      *            based on the map height.
      */
     public final void setY(final int y) {
-    	this.digDirt();
         this.getPosition().y = (y + this.getMap().getHeight()) % this.getMap().getHeight();
         if (this.isCrushed()) {
             this.die();
@@ -204,7 +202,10 @@ abstract class Mobile extends Element implements IMobile {
      * @param map
      *            the new map
      */
-    private void setMap(final IMap map) {
+    @Override
+    public void setMap(final IMap map) {
+    	System.out.println("Setting map for pawn with image" + this.getSprite().getConsoleImage());
+    	System.out.println(map.hashCode());
         this.map = map;
     }
 

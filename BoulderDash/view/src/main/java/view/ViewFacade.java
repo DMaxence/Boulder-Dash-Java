@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -26,21 +27,22 @@ public class ViewFacade implements IView, Runnable, KeyListener {
     /** The Constant squareSize. */
     private static final int squareSize = 50;
 	
-	private IMap map;
-	private IMobile myCharacter;
-	private Rectangle closeView;
-	private IOrderPerformer orderPerformer;
+	private IMap map = null;
+	private IMobile myCharacter = null;
+	private ArrayList<IMobile> pawns = null;
+	private Rectangle closeView = null;
+	private IOrderPerformer orderPerformer = null;
 	private final BoardFrame boardFrame = new BoardFrame("Boulder Hendeck");
 
     /**
      * Instantiates a new view facade.
      * @throws IOException 
      */
-    public ViewFacade(final IMap map, final IMobile character) throws IOException {
+    public ViewFacade(final IMap map, final IMobile character, final ArrayList<IMobile> pawns) throws IOException {
         super();
         this.setMap(map);
         this.setMyCharacter(character);
-        this.getMyCharacter().getSprite().loadImage();
+        this.setPawns(pawns);
         this.setCloseView(this.getReasonableViewPort());
         
         SwingUtilities.invokeLater(this);
@@ -180,7 +182,15 @@ public class ViewFacade implements IView, Runnable, KeyListener {
             }
         }
         boardFrame.addPawn(this.getMyCharacter());
-
+        for (IMobile pawn : this.pawns)
+        {
+        	System.out.println(pawn.getSprite().getConsoleImage());
+        	System.out.println(pawn.getPosition());
+        	System.out.println(pawn.getSprite().isImageLoaded());
+        	System.out.println(this.getMyCharacter().getSprite().isImageLoaded());
+        	boardFrame.addPawn(pawn);
+        }
+ 
         this.getMap().getObservable().addObserver(boardFrame.getObserver());
         this.followMyCharacter();
 
@@ -217,4 +227,10 @@ public class ViewFacade implements IView, Runnable, KeyListener {
             }
         }
 	}
+	
+	private void setPawns(final ArrayList<IMobile> newPawns)
+	{
+		this.pawns = newPawns;
+	}
+	
 }

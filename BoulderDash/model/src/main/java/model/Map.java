@@ -3,8 +3,6 @@ package model;
 import java.sql.SQLException;
 import java.util.Observable;
 
-import model.dao.MapDAO;
-
 /*
  * @author Paul Combaldieu
  */
@@ -13,10 +11,10 @@ public class Map extends Observable implements IMap{
 	private int height;
 	private IElement[][] map;
 	
-	public Map(final int ID) throws SQLException
+	public Map(final int newWidth, final int newHeight, final IElement[][] newMap) throws SQLException
 	{
 		super();
-		this.loadMapFromDatabase(ID);
+		this.map = newMap;
 		
 		this.width = map.length;
 		this.height = map[0].length;
@@ -34,11 +32,6 @@ public class Map extends Observable implements IMap{
 			temp += '\n';
 		}
 		return temp;
-	}
-	
-	private void loadMapFromDatabase(final int ID) throws SQLException
-	{
-		this.map = MapDAO.getMapById(ID);
 	}
 	
 	@Override

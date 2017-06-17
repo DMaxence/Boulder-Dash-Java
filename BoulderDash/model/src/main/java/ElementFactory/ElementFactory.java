@@ -65,6 +65,6 @@ public class ElementFactory {
                 return motionlessElement;
             }
         }
-        return wall;
+        return dugDirt;
     }
 }

@@ -52,6 +52,7 @@ public class MyCharacter extends Mobile {
         spriteTurnUp.loadImage();
         spriteTurnDown.loadImage();
         spriteDie.loadImage();
+        sprite.loadImage();
     }
 
     /*
@@ -60,6 +61,7 @@ public class MyCharacter extends Mobile {
      */
     @Override
     public final void moveLeft() {
+        super.digDirt();
         super.moveLeft();
         this.setSprite(spriteTurnLeft);
     }
@@ -70,6 +72,7 @@ public class MyCharacter extends Mobile {
      */
     @Override
     public final void moveRight() {
+        super.digDirt();
         super.moveRight();
         this.setSprite(spriteTurnRight);
     }
@@ -80,6 +83,7 @@ public class MyCharacter extends Mobile {
      */
     @Override
     public final void moveUp() {
+        super.digDirt();
         super.moveUp();
         this.setSprite(spriteTurnUp);
     }
@@ -90,6 +94,7 @@ public class MyCharacter extends Mobile {
      */
     @Override
     public final void moveDown() {
+        super.digDirt();
         super.moveDown();
         this.setSprite(spriteTurnDown);
     }

@@ -27,7 +27,7 @@ public abstract class Main {
      */
     public static void main(final String[] args) throws SQLException, IOException {
     	final IModel model = new ModelFacade(1);
-    	final ViewFacade view = new ViewFacade(model.getMap(), model.getMyCharacter());
+    	final ViewFacade view = new ViewFacade(model.getMap(), model.getMyCharacter(), model.getPawns());
         final IBoulderDashController controller = new ControllerFacade(view, model);
         view.setOrderPerformer(controller.getOrderPeformer());
 
