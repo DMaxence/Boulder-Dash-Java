@@ -171,7 +171,6 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
         boardFrame.setDisplayFrame(this.closeView);
         boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
-        //boardFrame.setHeightLooped(true);
         boardFrame.addKeyListener(this);
         boardFrame.setFocusable(true);
         boardFrame.setFocusTraversalKeysEnabled(false);
@@ -182,12 +181,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
             }
         }
         boardFrame.addPawn(this.getMyCharacter());
-        for (IMobile pawn : this.pawns)
-        {
-        	System.out.println(pawn.getSprite().getConsoleImage());
-        	System.out.println(pawn.getPosition());
-        	System.out.println(pawn.getSprite().isImageLoaded());
-        	System.out.println(this.getMyCharacter().getSprite().isImageLoaded());
+        for (IMobile pawn : this.pawns){
         	boardFrame.addPawn(pawn);
         }
  

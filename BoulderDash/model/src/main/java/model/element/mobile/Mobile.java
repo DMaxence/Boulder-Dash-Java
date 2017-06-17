@@ -204,8 +204,6 @@ abstract class Mobile extends Element implements IMobile {
      */
     @Override
     public void setMap(final IMap map) {
-    	System.out.println("Setting map for pawn with image" + this.getSprite().getConsoleImage());
-    	System.out.println(map.hashCode());
         this.map = map;
     }
 

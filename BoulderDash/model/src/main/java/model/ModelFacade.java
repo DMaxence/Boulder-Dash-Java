@@ -35,7 +35,6 @@ public class ModelFacade implements IModel {
         this.pawns = new ArrayList<IMobile>();
         MapDAO.getMapById(1, this);
         this.setMyCharacter(new MyCharacter(1, 1, this.getMap()));
-        //this.pawns.get(0).setMap(this.getMap());
     }
 
     /*
