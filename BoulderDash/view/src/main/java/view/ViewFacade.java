@@ -119,6 +119,12 @@ public class ViewFacade implements IView, Runnable, KeyListener {
             case KeyEvent.VK_LEFT:
                 userOrder = UserOrder.LEFT;
                 break;
+            case KeyEvent.VK_UP:
+            	userOrder = UserOrder.UP;
+            	break;
+            case KeyEvent.VK_DOWN:
+            	userOrder = UserOrder.DOWN;
+            	break;
             default:
                 userOrder = UserOrder.NOP;
                 break;
@@ -176,7 +182,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
         boardFrame.addPawn(this.getMyCharacter());
 
         this.getMap().getObservable().addObserver(boardFrame.getObserver());
-        //this.followMyVehicle();
+        this.followMyCharacter();
 
         boardFrame.setVisible(true);
 		

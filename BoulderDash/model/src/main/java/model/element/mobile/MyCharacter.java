@@ -22,7 +22,13 @@ public class MyCharacter extends Mobile {
     private static final Sprite spriteTurnLeft  = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 16, 16, 16));
 
     /** The Constant spriteTurnRight. */
-    private static final Sprite spriteTurnRight = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 48, 16, 16));;
+    private static final Sprite spriteTurnRight = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 48, 16, 16));
+
+    /** The Constant spriteTurnUp. */
+    private static final Sprite spriteTurnUp 	= new Sprite('H', Sprite.characterTileSet, new Rectangle(32, 80, 16, 16));
+    
+    /** The Constant spriteTurnDown. */
+    private static final Sprite spriteTurnDown 	= new Sprite('H', Sprite.characterTileSet, new Rectangle(64, 16, 16, 16));
 
     /** The Constant spriteExplode. */
     private static final Sprite spriteDie   	= new Sprite('H', Sprite.characterTileSet, new Rectangle(64, 0, 16, 16));
@@ -43,6 +49,8 @@ public class MyCharacter extends Mobile {
         super(x, y, sprite, map, Permeability.BLOCKING);
         spriteTurnLeft.loadImage();
         spriteTurnRight.loadImage();
+        spriteTurnUp.loadImage();
+        spriteTurnDown.loadImage();
         spriteDie.loadImage();
     }
 
@@ -64,6 +72,26 @@ public class MyCharacter extends Mobile {
     public final void moveRight() {
         super.moveRight();
         this.setSprite(spriteTurnRight);
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
+     */
+    @Override
+    public final void moveUp() {
+        super.moveUp();
+        this.setSprite(spriteTurnUp);
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
+     */
+    @Override
+    public final void moveDown() {
+        super.moveDown();
+        this.setSprite(spriteTurnDown);
     }
 
     /*

@@ -29,6 +29,7 @@ public abstract class Main {
     	final IModel model = new ModelFacade(1);
     	final ViewFacade view = new ViewFacade(model.getMap(), model.getMyCharacter());
         final IBoulderDashController controller = new ControllerFacade(view, model);
+        view.setOrderPerformer(controller.getOrderPeformer());
 
         try {
             controller.start();
