@@ -140,7 +140,8 @@ public class MyCharacter extends Mobile {
     	}
     }
     
-    protected Boolean pawnsAllowMovementTo(final UserOrder direction)
+    @Override
+	protected Boolean pawnsAllowMovementTo(final UserOrder direction)
     {
     	Point desiredPosition = null;
     	Boolean pushingAvailable = false;
@@ -200,10 +201,13 @@ public class MyCharacter extends Mobile {
 					}
 
 				} else if (pawn.getPermeability() == Permeability.MINEABLE) {
-					//Remove the collectible (diamond)
-					pawn.setMap(null);
+					//Player stepped on a diamond
+
 					this.getMap().getPawns().remove(pawn);
-					System.out.println(this.getMap().getPawns());
+					pawn.getPosition().x = -1; //No other way found to make it disappear
+					this.getMap().decreaseDiamondCount();
+					System.out.println("Diamonds remaining: " + this.getMap().getDiamondCount());
+					//System.out.println(this.getMap().getPawns());
 					return true;
 				}
 			}

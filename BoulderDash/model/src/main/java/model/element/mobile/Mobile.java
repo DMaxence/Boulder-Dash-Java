@@ -236,7 +236,7 @@ abstract class Mobile extends Element implements IMobile {
     @Override
     public Boolean canMoveTo(final UserOrder direction)
     {
-    	return this.mapAllowsMovementTo(direction);
+    	return this.mapAllowsMovementTo(direction) && this.pawnsAllowMovementTo(direction);
     }
     
     protected boolean mapAllowsMovementTo(final UserOrder direction)
@@ -256,6 +256,37 @@ abstract class Mobile extends Element implements IMobile {
     		return true;
     	}
     }
+    
+	protected Boolean pawnsAllowMovementTo(final UserOrder direction) {
+		Point desiredPosition = null;
+		switch (direction) {
+		case UP:
+			desiredPosition = new Point(this.getX(), this.getY() - 1);
+			break;
+		case DOWN:
+			desiredPosition = new Point(this.getX(), this.getY() + 1);
+			break;
+		case RIGHT:
+			desiredPosition = new Point(this.getX() + 1, this.getY());
+			break;
+		case LEFT:
+			desiredPosition = new Point(this.getX() - 1, this.getY());
+			break;
+		case NOP:
+		default:
+			return true;
+		}
+		for (IMobile pawn : this.getMap().getPawns()) {
+			if (pawn.getPosition().equals(desiredPosition)) {
+				if (pawn.getPermeability() != Permeability.PENETRABLE) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+		return true;
+	}
 
     /*
      * (non-Javadoc)

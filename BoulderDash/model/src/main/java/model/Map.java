@@ -26,15 +26,22 @@ public class Map extends Observable implements IMap{
         this.pawns = new ArrayList<IMobile>();
 	}
 	
-	public int decreaseDiamondCount()
+	@Override
+	public void decreaseDiamondCount()
 	{
 		this.diamondCount--;
-		return this.diamondCount;
 	}
 	
+	@Override
 	public void addDiamondCount()
 	{
 		this.diamondCount++;
+	}
+	
+	@Override
+	public int getDiamondCount()
+	{
+		return this.diamondCount;
 	}
 	
 	public final String toString()
