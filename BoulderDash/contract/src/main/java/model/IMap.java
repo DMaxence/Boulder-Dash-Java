@@ -17,4 +17,7 @@ public interface IMap {
 	public Observable getObservable();
 	public void addPawn(final IMobile pawn);
 	public ArrayList<IMobile> getPawns();
+	public void decreaseDiamondCount();
+	public void addDiamondCount();
+	public int getDiamondCount();
 }

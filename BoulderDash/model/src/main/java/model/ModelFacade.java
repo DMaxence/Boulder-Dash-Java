@@ -60,6 +60,7 @@ public class ModelFacade implements IModel {
     		switch (pawn.getSprite().getConsoleImage()) {
 			//Falling object
     		case 'O':
+    		case 'V':
 				if(pawn.canMoveTo(UserOrder.DOWN))
 					pawn.moveDown();
 				break;
