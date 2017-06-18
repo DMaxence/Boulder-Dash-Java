@@ -1,5 +1,6 @@
 package model.element.mobile;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.io.IOException;
 
@@ -121,9 +122,9 @@ public class MyCharacter extends Mobile {
     }
     
     @Override
-    public Boolean canMoveTo(final UserOrder direction)
+    protected boolean mapAllowsMovementTo(final UserOrder direction)
     {
-    	//TODO check if bitwise operators available
+    	//TODO check if bitwise operators available for enums
     	switch(direction)
     	{
     	case UP:
@@ -146,5 +147,39 @@ public class MyCharacter extends Mobile {
     	default:
     		return true;
     	}
+    }
+    
+    protected Boolean pawnsAllowMovementTo(final UserOrder direction)
+    {
+    	Point desiredPosition = null;
+    	switch(direction)
+    	{
+    	case UP:
+    		desiredPosition = new Point(this.getX(), this.getY() - 1);
+    		break;
+		case DOWN:
+			desiredPosition = new Point(this.getX(), this.getY() + 1);
+			break;
+    	case RIGHT:
+    		desiredPosition = new Point(this.getX() + 1, this.getY());
+    		break;
+    	case LEFT:
+    		desiredPosition = new Point(this.getX() - 1, this.getY());
+    		break;
+    	case NOP:
+    	default:
+    		return true;
+    	}
+    	
+		for(IMobile pawn : this.getMap().getPawns())
+			if(pawn.getPosition().equals( desiredPosition) && pawn.getPermeability() == Permeability.BLOCKING)
+				return false;
+		return true;
+    }
+    
+    @Override
+    public Boolean canMoveTo(final UserOrder direction)
+    {
+    	return this.mapAllowsMovementTo(direction) && this.pawnsAllowMovementTo(direction);
     }
 }

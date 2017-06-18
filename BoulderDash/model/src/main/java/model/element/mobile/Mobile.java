@@ -236,6 +236,11 @@ abstract class Mobile extends Element implements IMobile {
     @Override
     public Boolean canMoveTo(final UserOrder direction)
     {
+    	return this.mapAllowsMovementTo(direction);
+    }
+    
+    protected boolean mapAllowsMovementTo(final UserOrder direction)
+    {
     	switch(direction)
     	{
     	case UP:

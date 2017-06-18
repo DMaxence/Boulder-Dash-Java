@@ -1,7 +1,10 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Observable;
+
+import model.element.mobile.IMobile;
 
 /*
  * @author Paul Combaldieu
@@ -10,14 +13,16 @@ public class Map extends Observable implements IMap{
 	private int width;
 	private int height;
 	private IElement[][] map;
+	private ArrayList<IMobile> pawns;
 	
 	public Map(final int newWidth, final int newHeight, final IElement[][] newMap) throws SQLException
 	{
 		super();
 		this.map = newMap;
 		
-		this.width = map.length;
-		this.height = map[0].length;
+		this.width = newWidth;
+		this.height = newHeight;
+        this.pawns = new ArrayList<IMobile>();
 	}
 	
 	public final String toString()
@@ -68,5 +73,17 @@ public class Map extends Observable implements IMap{
 	public void setOnTheMapXY(int x, int y, IElement elem) {
 		//this.map[x%this.getWidth()][y%this.getHeight()] = elem;
 		this.map[x][y] = elem;
+	}
+
+	@Override
+	public void addPawn(IMobile pawn) {
+		this.pawns.add(pawn);
+		
+	}
+
+	@Override
+	public ArrayList<IMobile> getPawns()
+	{
+		return this.pawns;
 	}
 }

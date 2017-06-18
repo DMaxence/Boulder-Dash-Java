@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import ElementFactory.ElementFactory;
 import model.IElement;
 import model.Map;
-import model.ModelFacade;
 import model.element.mobile.Boulder;
 
 /**
@@ -44,7 +43,7 @@ public abstract class MapDAO extends AbstractDAO {
      *             the SQL exception
      * @throws IOException 
      */
-    public static void getMapById(final int id, ModelFacade model) throws SQLException, IOException {
+    public static Map getMapById(final int id) throws SQLException, IOException {
 	    final CallableStatement callStatement = prepareCall(sqlMapById);
 	    callStatement.setInt(1, id);
 	    int width = 0;
@@ -71,7 +70,7 @@ public abstract class MapDAO extends AbstractDAO {
 		            	
 		            	//Now let's check if the element to insert is an IMobile (boulder, diamond..)
 		            	if(c == 'O')
-		            		model.addIMobile(new Boulder(currentXToWrite, currentYToWrite, tempMap));
+		            		tempMap.addPawn(new Boulder(currentXToWrite, currentYToWrite, tempMap));
 		            	
 		            	currentXToWrite++;
 	            	}
@@ -96,6 +95,6 @@ public abstract class MapDAO extends AbstractDAO {
 	        }
 	        result.close();
 	    }
-	    model.setMap(tempMap);
+	    return tempMap;
 	}
 }

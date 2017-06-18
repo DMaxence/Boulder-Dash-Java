@@ -21,8 +21,6 @@ public class ModelFacade implements IModel {
 	private IMap map;
 	
 	private IMobile myCharacter;
-	
-	private ArrayList<IMobile> pawns;
 
     /**
      * Instantiates a new model facade.
@@ -32,8 +30,7 @@ public class ModelFacade implements IModel {
     public ModelFacade(final int mapID) throws SQLException, IOException {
         super();
         Sprite.loadBuffers();
-        this.pawns = new ArrayList<IMobile>();
-        MapDAO.getMapById(1, this);
+        this.setMap(MapDAO.getMapById(1));
         this.setMyCharacter(new MyCharacter(1, 1, this.getMap()));
     }
 
@@ -56,11 +53,6 @@ public class ModelFacade implements IModel {
     	this.myCharacter = newChara;
     }
     
-	public void addIMobile(final IMobile mobile) {
-
-		pawns.add(mobile);
-	}
-    
     public void movePawns()
     {
     	for(IMobile pawn : this.getPawns())
@@ -82,10 +74,9 @@ public class ModelFacade implements IModel {
 	public IMobile getMyCharacter() {
 		return this.myCharacter;
 	}
-	
+
 	@Override
-	public ArrayList<IMobile> getPawns()
-	{
-		return this.pawns;
+	public ArrayList<IMobile> getPawns() {
+		return this.getMap().getPawns();
 	}
 }
