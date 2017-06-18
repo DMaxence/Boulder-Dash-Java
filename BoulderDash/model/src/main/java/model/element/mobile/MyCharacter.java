@@ -152,6 +152,7 @@ public class MyCharacter extends Mobile {
     protected Boolean pawnsAllowMovementTo(final UserOrder direction)
     {
     	Point desiredPosition = null;
+    	Boolean pushingAvailable = false;
     	switch(direction)
     	{
     	case UP:
@@ -162,18 +163,31 @@ public class MyCharacter extends Mobile {
 			break;
     	case RIGHT:
     		desiredPosition = new Point(this.getX() + 1, this.getY());
+    		pushingAvailable = this.getMap().getOnTheMapXY(getX() + 2, getY()).getPermeability() == Permeability.PENETRABLE;
     		break;
     	case LEFT:
     		desiredPosition = new Point(this.getX() - 1, this.getY());
+    		pushingAvailable = this.getMap().getOnTheMapXY(getX() - 2, getY()).getPermeability() == Permeability.PENETRABLE;
     		break;
     	case NOP:
     	default:
     		return true;
-    	}
-    	
-		for(IMobile pawn : this.getMap().getPawns())
-			if(pawn.getPosition().equals( desiredPosition) && pawn.getPermeability() == Permeability.BLOCKING)
-				return false;
+		}
+
+		for (IMobile pawn : this.getMap().getPawns()) {
+			if (pawn.getPosition().equals(desiredPosition) && pawn.getPermeability() == Permeability.BLOCKING) {
+				if (pushingAvailable) {
+					if (direction == UserOrder.RIGHT)
+						pawn.moveRight();
+					else
+						pawn.moveLeft();
+					return true;
+				}
+				else
+					return false;
+
+			}
+		}
 		return true;
     }
     
