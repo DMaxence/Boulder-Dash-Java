@@ -124,25 +124,16 @@ public class MyCharacter extends Mobile {
     @Override
     protected boolean mapAllowsMovementTo(final UserOrder direction)
     {
-    	//TODO check if bitwise operators available for enums
     	switch(direction)
     	{
     	case UP:
-    		return 
-    				this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE ||
-    				this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.MINEABLE;
+    		return this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() != Permeability.BLOCKING;
 		case DOWN:
-			return 
-					this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE ||
-					this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.MINEABLE;
+			return this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() != Permeability.BLOCKING;
     	case RIGHT:
-    		return 
-    				this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PENETRABLE ||
-    				this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.MINEABLE;
+    		return this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() != Permeability.BLOCKING;
     	case LEFT:
-    		return 
-    				this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE ||
-    				this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.MINEABLE;
+    		return this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() != Permeability.BLOCKING;
     	case NOP:
     	default:
     		return true;
@@ -164,10 +155,30 @@ public class MyCharacter extends Mobile {
     	case RIGHT:
     		desiredPosition = new Point(this.getX() + 1, this.getY());
     		pushingAvailable = this.getMap().getOnTheMapXY(getX() + 2, getY()).getPermeability() == Permeability.PENETRABLE;
+			if(pushingAvailable){
+	    		for(IMobile pawn : this.getMap().getPawns())
+				{
+					if(pawn.getPosition().x == getX() + 2 && pawn.getPosition().y == getY() && pawn.getPermeability() != Permeability.PENETRABLE)
+					{
+						pushingAvailable = false;
+						break;
+					}
+				}	
+			}
     		break;
     	case LEFT:
     		desiredPosition = new Point(this.getX() - 1, this.getY());
     		pushingAvailable = this.getMap().getOnTheMapXY(getX() - 2, getY()).getPermeability() == Permeability.PENETRABLE;
+			if(pushingAvailable){
+	    		for(IMobile pawn : this.getMap().getPawns())
+				{
+					if(pawn.getPosition().x == getX() - 2 && pawn.getPosition().y == getY() && pawn.getPermeability() != Permeability.PENETRABLE)
+					{
+						pushingAvailable = false;
+						break;
+					}
+				}	
+			}
     		break;
     	case NOP:
     	default:
@@ -175,21 +186,30 @@ public class MyCharacter extends Mobile {
 		}
 
 		for (IMobile pawn : this.getMap().getPawns()) {
-			if (pawn.getPosition().equals(desiredPosition) && pawn.getPermeability() == Permeability.BLOCKING) {
-				if (pushingAvailable) {
-					if (direction == UserOrder.RIGHT)
-						pawn.moveRight();
-					else
-						pawn.moveLeft();
+			if (pawn.getPosition().equals(desiredPosition)) {
+				if (pawn.getPermeability() == Permeability.BLOCKING) {
+					if (pushingAvailable) {
+						if (direction == UserOrder.RIGHT)
+							pawn.moveRight();
+						else
+							pawn.moveLeft();
+						return true;
+					} else {
+
+						return false;
+					}
+
+				} else if (pawn.getPermeability() == Permeability.MINEABLE) {
+					//Remove the collectible (diamond)
+					pawn.setMap(null);
+					this.getMap().getPawns().remove(pawn);
+					System.out.println(this.getMap().getPawns());
 					return true;
 				}
-				else
-					return false;
-
 			}
 		}
 		return true;
-    }
+	}
     
     @Override
     public Boolean canMoveTo(final UserOrder direction)

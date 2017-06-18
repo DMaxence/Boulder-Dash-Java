@@ -14,6 +14,7 @@ public class Map extends Observable implements IMap{
 	private int height;
 	private IElement[][] map;
 	private ArrayList<IMobile> pawns;
+	private int diamondCount = 0;
 	
 	public Map(final int newWidth, final int newHeight, final IElement[][] newMap) throws SQLException
 	{
@@ -23,6 +24,17 @@ public class Map extends Observable implements IMap{
 		this.width = newWidth;
 		this.height = newHeight;
         this.pawns = new ArrayList<IMobile>();
+	}
+	
+	public int decreaseDiamondCount()
+	{
+		this.diamondCount--;
+		return this.diamondCount;
+	}
+	
+	public void addDiamondCount()
+	{
+		this.diamondCount++;
 	}
 	
 	public final String toString()

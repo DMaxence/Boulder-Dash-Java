@@ -9,6 +9,7 @@ import ElementFactory.ElementFactory;
 import model.IElement;
 import model.Map;
 import model.element.mobile.Boulder;
+import model.element.mobile.Diamond;
 
 /**
  * <h1>The Class MapDAO.</h1>
@@ -69,8 +70,14 @@ public abstract class MapDAO extends AbstractDAO {
 		            	tempMap.setOnTheMapXY(currentXToWrite, currentYToWrite, ElementFactory.getFromFileSymbol(c));
 		            	
 		            	//Now let's check if the element to insert is an IMobile (boulder, diamond..)
+		            	//TODO there's one tempMap to remove here
 		            	if(c == 'O')
 		            		tempMap.addPawn(new Boulder(currentXToWrite, currentYToWrite, tempMap));
+		            	else if (c == 'V')
+		            	{
+		            		tempMap.addPawn(new Diamond(currentXToWrite, currentYToWrite, tempMap));
+		            		tempMap.addDiamondCount();
+		            	}
 		            	
 		            	currentXToWrite++;
 	            	}
