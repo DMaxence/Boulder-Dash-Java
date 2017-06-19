@@ -17,173 +17,178 @@ import model.element.Sprite;
  */
 public class MyCharacter extends Mobile {
 
-    /** The Constant SPRITE. */
-    private static final Sprite sprite          = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 0, 16, 16));
+	/** The Constant SPRITE. */
+	private static final Sprite sprite = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 0, 16, 16));
 
-    /** The Constant spriteTurnLeft. */
-    private static final Sprite spriteTurnLeft  = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 16, 16, 16));
+	/** The Constant spriteTurnLeft. */
+	private static final Sprite spriteTurnLeft = new Sprite('H', Sprite.characterTileSet,
+			new Rectangle(16, 16, 16, 16));
 
-    /** The Constant spriteTurnRight. */
-    private static final Sprite spriteTurnRight = new Sprite('H', Sprite.characterTileSet, new Rectangle(16, 48, 16, 16));
+	/** The Constant spriteTurnRight. */
+	private static final Sprite spriteTurnRight = new Sprite('H', Sprite.characterTileSet,
+			new Rectangle(16, 48, 16, 16));
 
-    /** The Constant spriteTurnUp. */
-    private static final Sprite spriteTurnUp 	= new Sprite('H', Sprite.characterTileSet, new Rectangle(32, 80, 16, 16));
-    
-    /** The Constant spriteTurnDown. */
-    private static final Sprite spriteTurnDown 	= new Sprite('H', Sprite.characterTileSet, new Rectangle(64, 16, 16, 16));
+	/** The Constant spriteTurnUp. */
+	private static final Sprite spriteTurnUp = new Sprite('H', Sprite.characterTileSet, new Rectangle(32, 80, 16, 16));
 
-    /** The Constant spriteExplode. */
-    private static final Sprite spriteDie   	= new Sprite('H', Sprite.characterTileSet, new Rectangle(64, 0, 16, 16));
+	/** The Constant spriteTurnDown. */
+	private static final Sprite spriteTurnDown = new Sprite('H', Sprite.characterTileSet,
+			new Rectangle(64, 16, 16, 16));
 
-    /**
-     * Instantiates a new my vehicle.
-     *
-     * @param x
-     *            the x
-     * @param y
-     *            the y
-     * @param road
-     *            the road
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     */
-    public MyCharacter(final int x, final int y, final IMap map) throws IOException{
-        super(x, y, sprite, map, Permeability.BLOCKING);
-        spriteTurnLeft.loadImage();
-        spriteTurnRight.loadImage();
-        spriteTurnUp.loadImage();
-        spriteTurnDown.loadImage();
-        spriteDie.loadImage();
-        sprite.loadImage();
-    }
+	/** The Constant spriteExplode. */
+	private static final Sprite spriteDie = new Sprite('H', Sprite.characterTileSet, new Rectangle(64, 0, 16, 16));
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveLeft()
-     */
-    @Override
-    public final void moveLeft() {
-        super.digDirt();
-        super.moveLeft();
-        this.setSprite(spriteTurnLeft);
-    }
+	/**
+	 * Instantiates a new my vehicle.
+	 *
+	 * @param x
+	 *            the x
+	 * @param y
+	 *            the y
+	 * @param road
+	 *            the road
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public MyCharacter(final int x, final int y, final IMap map) throws IOException {
+		super(x, y, sprite, map, Permeability.BLOCKING);
+		spriteTurnLeft.loadImage();
+		spriteTurnRight.loadImage();
+		spriteTurnUp.loadImage();
+		spriteTurnDown.loadImage();
+		spriteDie.loadImage();
+		sprite.loadImage();
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-     */
-    @Override
-    public final void moveRight() {
-        super.digDirt();
-        super.moveRight();
-        this.setSprite(spriteTurnRight);
-    }
-    
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-     */
-    @Override
-    public final void moveUp() {
-        super.digDirt();
-        super.moveUp();
-        this.setSprite(spriteTurnUp);
-    }
-    
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-     */
-    @Override
-    public final void moveDown() {
-        super.digDirt();
-        super.moveDown();
-        this.setSprite(spriteTurnDown);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveLeft()
+	 */
+	@Override
+	public final void moveLeft() {
+		super.digDirt();
+		super.moveLeft();
+		this.setSprite(spriteTurnLeft);
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#die()
-     */
-    @Override
-    protected final void die() {
-        super.die();
-        this.setSprite(spriteDie);
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
+	 */
+	@Override
+	public final void moveRight() {
+		super.digDirt();
+		super.moveRight();
+		this.setSprite(spriteTurnRight);
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#doNothing()
-     */
-    @Override
-    public final void doNothing() {
-        super.doNothing();
-        this.setSprite(sprite);
-    }
-    
-    @Override
-    protected boolean mapAllowsMovementTo(final UserOrder direction)
-    {
-    	switch(direction)
-    	{
-    	case UP:
-    		return this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() != Permeability.BLOCKING;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
+	 */
+	@Override
+	public final void moveUp() {
+		super.digDirt();
+		super.moveUp();
+		this.setSprite(spriteTurnUp);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
+	 */
+	@Override
+	public final void moveDown() {
+		super.digDirt();
+		super.moveDown();
+		this.setSprite(spriteTurnDown);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#die()
+	 */
+	@Override
+	public final void die() {
+		super.die();
+		this.setSprite(spriteDie);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#doNothing()
+	 */
+	@Override
+	public final void doNothing() {
+		super.doNothing();
+		this.setSprite(sprite);
+	}
+
+	@Override
+	protected boolean mapAllowsMovementTo(final UserOrder direction) {
+		switch (direction) {
+		case UP:
+			return this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() != Permeability.BLOCKING;
 		case DOWN:
 			return this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() != Permeability.BLOCKING;
-    	case RIGHT:
-    		return this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() != Permeability.BLOCKING;
-    	case LEFT:
-    		return this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() != Permeability.BLOCKING;
-    	case NOP:
-    	default:
-    		return true;
-    	}
-    }
-    
-    @Override
-	protected Boolean pawnsAllowMovementTo(final UserOrder direction)
-    {
-    	Point desiredPosition = null;
-    	Boolean pushingAvailable = false;
-    	switch(direction)
-    	{
-    	case UP:
-    		desiredPosition = new Point(this.getX(), this.getY() - 1);
-    		break;
+		case RIGHT:
+			return this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() != Permeability.BLOCKING;
+		case LEFT:
+			return this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() != Permeability.BLOCKING;
+		case NOP:
+		default:
+			return true;
+		}
+	}
+
+	@Override
+	protected Boolean pawnsAllowMovementTo(final UserOrder direction) {
+		Point desiredPosition = null;
+		Boolean pushingAvailable = false;
+		switch (direction) {
+		case UP:
+			desiredPosition = new Point(this.getX(), this.getY() - 1);
+			break;
 		case DOWN:
 			desiredPosition = new Point(this.getX(), this.getY() + 1);
 			break;
-    	case RIGHT:
-    		desiredPosition = new Point(this.getX() + 1, this.getY());
-    		pushingAvailable = this.getMap().getOnTheMapXY(getX() + 2, getY()).getPermeability() == Permeability.PENETRABLE;
-			if(pushingAvailable){
-	    		for(IMobile pawn : this.getMap().getPawns())
-				{
-					if(pawn.getPosition().x == getX() + 2 && pawn.getPosition().y == getY() && pawn.getPermeability() != Permeability.PENETRABLE)
-					{
+		case RIGHT:
+			desiredPosition = new Point(this.getX() + 1, this.getY());
+			pushingAvailable = this.getMap().getOnTheMapXY(getX() + 2, getY())
+					.getPermeability() == Permeability.PENETRABLE;
+			if (pushingAvailable) {
+				for (IMobile pawn : this.getMap().getPawns()) {
+					if (pawn.getPosition().x == getX() + 2 && pawn.getPosition().y == getY()
+							&& pawn.getPermeability() != Permeability.PENETRABLE) {
 						pushingAvailable = false;
 						break;
 					}
-				}	
+				}
 			}
-    		break;
-    	case LEFT:
-    		desiredPosition = new Point(this.getX() - 1, this.getY());
-    		pushingAvailable = this.getMap().getOnTheMapXY(getX() - 2, getY()).getPermeability() == Permeability.PENETRABLE;
-			if(pushingAvailable){
-	    		for(IMobile pawn : this.getMap().getPawns())
-				{
-					if(pawn.getPosition().x == getX() - 2 && pawn.getPosition().y == getY() && pawn.getPermeability() != Permeability.PENETRABLE)
-					{
+			break;
+		case LEFT:
+			desiredPosition = new Point(this.getX() - 1, this.getY());
+			pushingAvailable = this.getMap().getOnTheMapXY(getX() - 2, getY())
+					.getPermeability() == Permeability.PENETRABLE;
+			if (pushingAvailable) {
+				for (IMobile pawn : this.getMap().getPawns()) {
+					if (pawn.getPosition().x == getX() - 2 && pawn.getPosition().y == getY()
+							&& pawn.getPermeability() != Permeability.PENETRABLE) {
 						pushingAvailable = false;
 						break;
 					}
-				}	
+				}
 			}
-    		break;
-    	case NOP:
-    	default:
-    		return true;
+			break;
+		case NOP:
+		default:
+			return true;
 		}
 
 		for (IMobile pawn : this.getMap().getPawns()) {
@@ -201,10 +206,11 @@ public class MyCharacter extends Mobile {
 					}
 
 				} else if (pawn.getPermeability() == Permeability.MINEABLE) {
-					//Player stepped on a diamond
+					// Player stepped on a diamond
 
 					this.getMap().getPawns().remove(pawn);
-					pawn.getPosition().x = 1; //No other way found to make it disappear
+					pawn.getPosition().x = 1; // No other way found to make it
+												// disappear
 					pawn.getPosition().y = -1;
 					this.getMap().decreaseDiamondCount();
 
@@ -214,14 +220,30 @@ public class MyCharacter extends Mobile {
 		}
 		return true;
 	}
-    
-    @Override
-    public Boolean canMoveTo(final UserOrder direction)
-    {
-    	return this.mapAllowsMovementTo(direction) && this.pawnsAllowMovementTo(direction);
-    }
-    
-    public void setMap(final IMap map) {
-        this.getMap().setMyCharacter(this);
-    }
+
+	@Override
+	public Boolean canMoveTo(final UserOrder direction) {
+		return this.mapAllowsMovementTo(direction) && this.pawnsAllowMovementTo(direction);
+	}
+
+	public void setMap(final IMap map) {
+		this.getMap().setMyCharacter(this);
+	}
+
+	@Override
+	public Boolean isCrushed() {
+		// We want to keep all the boulders
+		for (IMobile pawn : this.getMap().getPawns()) {
+
+			if (pawn.getSprite().getConsoleImage() == 'O') {
+				Boulder boulder = (Boulder) pawn;
+				if (boulder.getPosition().x == this.getPosition().x
+						&& boulder.getPosition().y == this.getPosition().y - 1
+						&& boulder.getFallSpeed()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

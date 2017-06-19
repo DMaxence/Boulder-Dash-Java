@@ -32,7 +32,10 @@ abstract class Mobile extends Element implements IMobile {
 
     /** The board. */
     private IBoard  board;
-
+    
+    /** The FallSpeed */
+    private boolean fallSpeed = false;
+    
     /**
 	 * Instantiates a new mobile.
 	 *
@@ -103,6 +106,7 @@ abstract class Mobile extends Element implements IMobile {
     public void moveDown() {
         this.setY(this.getY() + 1);
         this.setHasMoved();
+        this.fallSpeed = true;
     }
 
     /*
@@ -122,6 +126,7 @@ abstract class Mobile extends Element implements IMobile {
     @Override
     public void doNothing() {
         this.setHasMoved();
+        this.fallSpeed = false;
     }
 
     /**
@@ -317,5 +322,9 @@ abstract class Mobile extends Element implements IMobile {
     protected IBoard getBoard() {
         return this.board;
     }
+
+	public boolean getFallSpeed() {
+		return fallSpeed;
+	}
 
 }

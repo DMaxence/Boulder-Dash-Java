@@ -17,7 +17,6 @@ public class Boulder extends Mobile {
 
     /** The Constant SPRITE. */
     private static final Sprite sprite          = new Sprite('O', Sprite.mapTileSet, new Rectangle(48, 0, 16, 16));
-
     /**
      * Instantiates a new my vehicle.
      *

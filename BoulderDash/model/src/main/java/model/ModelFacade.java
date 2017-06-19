@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import model.dao.MapDAO;
 import model.element.Sprite;
+import model.element.mobile.Boulder;
 import model.element.mobile.IMobile;
 import model.element.mobile.MyCharacter;
 import controller.UserOrder;
@@ -18,7 +19,7 @@ public class ModelFacade implements IModel {
 	
 	private IMap map;
 	
-	private IMobile myCharacter;
+	private MyCharacter myCharacter;
 
     /**
      * Instantiates a new model facade.
@@ -46,7 +47,7 @@ public class ModelFacade implements IModel {
     	this.map = newMap;
     }
     
-    private void setMyCharacter(final IMobile newChara)
+    private void setMyCharacter(final MyCharacter newChara)
     {
     	this.myCharacter = newChara;
     }
@@ -59,8 +60,14 @@ public class ModelFacade implements IModel {
 			//Falling object
     		case 'O':
     		case 'V':
-				if(pawn.canMoveTo(UserOrder.DOWN))
+				if(pawn.canMoveTo(UserOrder.DOWN)) {
 					pawn.moveDown();
+					if(this.getMyCharacter().isCrushed())
+						this.getMyCharacter().die();
+				}
+				else {
+					pawn.doNothing();
+				}
 				break;
 
 			default:
@@ -70,7 +77,7 @@ public class ModelFacade implements IModel {
     }
 
 	@Override
-	public IMobile getMyCharacter() {
+	public MyCharacter getMyCharacter() {
 		return this.myCharacter;
 	}
 }
