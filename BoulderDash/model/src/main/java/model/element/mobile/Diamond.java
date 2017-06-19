@@ -95,6 +95,6 @@ public class Diamond extends Mobile {
 	@Override
 	public void followMyStrategy() {
 		
-		Diamond.strategy.followStrategy(this, this.getMap(), this.getMap().getMyCharacter());
+		Diamond.strategy.followStrategy(this, this.getMap());
 	}
 }

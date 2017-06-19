@@ -94,6 +94,6 @@ public class Boulder extends Mobile {
 	@Override
 	public void followMyStrategy() {
 		
-		Boulder.strategy.followStrategy(this, this.getMap(), this.getMap().getMyCharacter());
+		Boulder.strategy.followStrategy(this, this.getMap());
 	}
 }

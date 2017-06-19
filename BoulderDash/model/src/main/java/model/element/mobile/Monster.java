@@ -3,6 +3,8 @@ package model.element.mobile;
 import java.awt.Rectangle;
 import java.io.IOException;
 
+import controller.IStrategy;
+import controller.RandomMonsterStrategy;
 import model.IMap;
 import model.element.Permeability;
 import model.element.Sprite;
@@ -16,7 +18,12 @@ import model.element.Sprite;
 public class Monster extends Mobile {
 
     /** The Constant SPRITE. */
-    private static final Sprite sprite          = new Sprite('O', Sprite.mapTileSet, new Rectangle(144, 16, 16, 16));
+    private static final Sprite sprite          = new Sprite('M', Sprite.mapTileSet, new Rectangle(144, 16, 16, 16));
+    
+    private static final IStrategy randomStrategy = new RandomMonsterStrategy();
+    private static final IStrategy followWallClockWiseStrategy = new RandomMonsterStrategy();
+    private static final IStrategy followWallAntiClockWiseStrategy = new RandomMonsterStrategy();
+    private IStrategy myStrategy = null;
     /**
      * Instantiates a new my vehicle.
      *
@@ -32,6 +39,17 @@ public class Monster extends Mobile {
     public Monster(final int x, final int y, final IMap map) throws IOException{
         super(x, y, sprite, map, Permeability.BLOCKING);
         sprite.loadImage();
+        switch ((int)(Math.random() * (3))) {
+        case 1:
+        	this.myStrategy = Monster.randomStrategy;
+        	break;
+        case 2:
+        	this.myStrategy = Monster.followWallAntiClockWiseStrategy;
+        	break;
+        default:
+        	this.myStrategy = Monster.followWallClockWiseStrategy;
+        	break;
+        }
     }
 
     /*
@@ -90,7 +108,7 @@ public class Monster extends Mobile {
 
 	@Override
 	public void followMyStrategy() {
-		// TODO Auto-generated method stub
-		
+
+		this.myStrategy.followStrategy(this, this.getMap());
 	}
 }

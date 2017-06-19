@@ -10,6 +10,7 @@ import model.IElement;
 import model.Map;
 import model.element.mobile.Boulder;
 import model.element.mobile.Diamond;
+import model.element.mobile.Monster;
 
 /**
  * <h1>The Class MapDAO.</h1>
@@ -77,6 +78,10 @@ public abstract class MapDAO extends AbstractDAO {
 		            	{
 		            		tempMap.addPawn(new Diamond(currentXToWrite, currentYToWrite, tempMap));
 		            		tempMap.addDiamondCount();
+		            	}
+		            	else if (c == 'M') {
+		            		
+		            		tempMap.addPawn(new Monster(currentXToWrite, currentYToWrite, tempMap));
 		            	}
 		            	
 		            	currentXToWrite++;

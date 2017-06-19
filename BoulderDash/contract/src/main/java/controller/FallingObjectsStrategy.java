@@ -4,10 +4,10 @@ import model.IMap;
 import model.element.Permeability;
 import model.element.mobile.IMobile;
 
-public class FallingObjectsStrategy implements IStrategy {
+public abstract class FallingObjectsStrategy implements IStrategy {
 
 	@Override
-	public void followStrategy(IMobile currentPawn, IMap map, IMobile myCharacter) {
+	public void followStrategy(IMobile currentPawn, IMap map) {
 		// if current pawn can go down
 		if (currentPawn.canMoveTo(UserOrder.DOWN)) {
 			currentPawn.moveDown();
