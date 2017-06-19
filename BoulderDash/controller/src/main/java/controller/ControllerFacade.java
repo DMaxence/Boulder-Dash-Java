@@ -74,6 +74,12 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 
 			this.getView().followMyCharacter();
 			this.getView().updateBoardFrame();
+			
+			if(this.getModel().getMap().getDiamondCount() == 0)
+			{
+				this.getView().displayMessage("You won!");
+				System.exit(0);
+			}
 		}
 		this.getView().displayMessage("FATALITY.");
 	}

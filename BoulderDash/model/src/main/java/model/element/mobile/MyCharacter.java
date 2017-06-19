@@ -207,8 +207,7 @@ public class MyCharacter extends Mobile {
 					pawn.getPosition().x = 1; //No other way found to make it disappear
 					pawn.getPosition().y = -1;
 					this.getMap().decreaseDiamondCount();
-					System.out.println("Diamonds remaining: " + this.getMap().getDiamondCount());
-					//System.out.println(this.getMap().getPawns());
+
 					return true;
 				}
 			}
