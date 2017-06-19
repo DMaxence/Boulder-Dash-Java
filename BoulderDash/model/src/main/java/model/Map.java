@@ -14,6 +14,7 @@ public class Map extends Observable implements IMap{
 	private int height;
 	private IElement[][] map;
 	private ArrayList<IMobile> pawns;
+	private IMobile myCharacter = null;
 	private int diamondCount = 0;
 	
 	public Map(final int newWidth, final int newHeight, final IElement[][] newMap) throws SQLException
@@ -24,6 +25,12 @@ public class Map extends Observable implements IMap{
 		this.width = newWidth;
 		this.height = newHeight;
         this.pawns = new ArrayList<IMobile>();
+	}
+	
+	@Override 
+	public void setMyCharacter(final IMobile newChara)
+	{
+		this.myCharacter = newChara;
 	}
 	
 	@Override
@@ -97,9 +104,14 @@ public class Map extends Observable implements IMap{
 	@Override
 	public void addPawn(IMobile pawn) {
 		this.pawns.add(pawn);
-		
 	}
 
+	@Override
+	public IMobile getMyCharacter()
+	{
+		return this.myCharacter;
+	}
+	
 	@Override
 	public ArrayList<IMobile> getPawns()
 	{
