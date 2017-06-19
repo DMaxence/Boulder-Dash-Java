@@ -33,7 +33,7 @@ public abstract class Main {
         int idAsked = Integer.parseInt(idToAsk);
         
     	final IModel model = new ModelFacade(idAsked);
-    	final ViewFacade view = new ViewFacade(model.getMap(), model.getMyCharacter(), model.getPawns());
+    	final ViewFacade view = new ViewFacade(model.getMap(), model.getMyCharacter(), model.getMap().getPawns());
         final IBoulderDashController controller = new ControllerFacade(view, model);
         view.setOrderPerformer(controller.getOrderPeformer());
 

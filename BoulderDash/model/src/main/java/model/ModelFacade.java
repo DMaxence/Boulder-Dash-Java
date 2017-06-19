@@ -2,8 +2,6 @@ package model;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
 import model.dao.MapDAO;
 import model.element.Sprite;
 import model.element.mobile.IMobile;
@@ -55,7 +53,7 @@ public class ModelFacade implements IModel {
     
     public void movePawns()
     {
-    	for(IMobile pawn : this.getPawns())
+    	for(IMobile pawn : this.getMap().getPawns())
     	{
     		switch (pawn.getSprite().getConsoleImage()) {
 			//Falling object
@@ -74,10 +72,5 @@ public class ModelFacade implements IModel {
 	@Override
 	public IMobile getMyCharacter() {
 		return this.myCharacter;
-	}
-
-	@Override
-	public ArrayList<IMobile> getPawns() {
-		return this.getMap().getPawns();
 	}
 }
