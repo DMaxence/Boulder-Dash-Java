@@ -6,132 +6,130 @@ import model.IModel;
 import view.IView;
 
 /**
- * <h1>The Class ControllerFacade provides a facade of the Controller component.</h1>
+ * <h1>The Class ControllerFacade provides a facade of the Controller
+ * component.</h1>
  * 
  * @author Tejesh Tailor
  *
  */
 public class ControllerFacade implements IOrderPerformer, IBoulderDashController {
 
-	/** The view. */
-	private final IView view;
+  /** The view. */
+  private final IView view;
 
-	/** The model. */
-	private final IModel model;
+  /** The model. */
+  private final IModel model;
 
-	/** The Constant speed. */
-	private static final int speed = 250;
+  /** The Constant speed. */
+  private static final int speed = 250;
 
-	/** The stack order. */
-	private UserOrder stackOrder = UserOrder.NOP;
+  /** The stack order. */
+  private UserOrder stackOrder = UserOrder.NOP;
 
-	/**
-	 * Instantiates a new controller facade.
-	 *
-	 * @param view
-	 *            the view
-	 * @param model
-	 *            the model
-	 */
-	public ControllerFacade(final IView view, final IModel model) {
-		super();
-		this.view = view;
-		this.model = model;
-		
-	}
+  /**
+   * Instantiates a new controller facade.
+   *
+   * @param view
+   *          the view
+   * @param model
+   *          the model
+   */
+  public ControllerFacade(final IView view, final IModel model) {
+    super();
+    this.view = view;
+    this.model = model;
 
-	/**
-	 * Start.
-	 * 
-	 * @throws InterruptedException
-	 */
-	@Override
-	public void start() throws InterruptedException {
-		this.getModel().getMap().setMyCharacter(this.getModel().getMyCharacter());
-		while (this.getModel().getMyCharacter().isAlive()) {
-			Thread.sleep(speed);
-			if (this.getModel().getMyCharacter().canMoveTo(this.getStackOrder())) {
-				switch (this.getStackOrder()) {
-				case RIGHT:
-					this.getModel().getMyCharacter().moveRight();
-					break;
-				case LEFT:
-					this.getModel().getMyCharacter().moveLeft();
-					break;
-				case DOWN:
-					this.getModel().getMyCharacter().moveDown();
-					break;
-				case UP:
-					this.getModel().getMyCharacter().moveUp();
-					break;
-				case NOP:
-				default:
-					this.getModel().getMyCharacter().doNothing();
-					break;
-				}
-				this.getModel().movePawns();
-			}
-			this.clearStackOrder();
+  }
 
-			this.getView().followMyCharacter();
-			this.getView().updateBoardFrame();
-			
-			if(this.getModel().getMap().getDiamondCount() == 0)
-			{
-				this.getView().displayMessage("You won !! Congratulations ;) ");
-				System.exit(0);
-			}
-		}
-		this.getView().displayMessage("You are dead, GAME OVER. ");
-	}
+  /**
+   * Start.
+   * 
+   * @throws InterruptedException
+   */
+  @Override
+  public void start() throws InterruptedException {
+    this.getModel().getMap().setMyCharacter(this.getModel().getMyCharacter());
+    while (this.getModel().getMyCharacter().isAlive()) {
+      Thread.sleep(speed);
+      if (this.getModel().getMyCharacter().canMoveTo(this.getStackOrder())) {
+        switch (this.getStackOrder()) {
+        case RIGHT:
+          this.getModel().getMyCharacter().moveRight();
+          break;
+        case LEFT:
+          this.getModel().getMyCharacter().moveLeft();
+          break;
+        case DOWN:
+          this.getModel().getMyCharacter().moveDown();
+          break;
+        case UP:
+          this.getModel().getMyCharacter().moveUp();
+          break;
+        case NOP:
+        default:
+          this.getModel().getMyCharacter().doNothing();
+          break;
+        }
+        this.getModel().movePawns();
+      }
+      this.clearStackOrder();
 
-	/**
-	 * Gets the view.
-	 *
-	 * @return the view
-	 */
-	public IView getView() {
-		return this.view;
-	}
-	
+      this.getView().followMyCharacter();
+      this.getView().updateBoardFrame();
 
-	/**
-	 * Gets the model.
-	 *
-	 * @return the model
-	 */
-	public IModel getModel() {
-		return this.model;
-	}
-	
+      if (this.getModel().getMap().getDiamondCount() == 0) {
+        this.getView().displayMessage("You won !! Congratulations ;) ");
+        System.exit(0);
+      }
+    }
+    this.getView().displayMessage("You are dead, GAME OVER. ");
+  }
 
-	@Override
-	public IOrderPerformer getOrderPeformer() {
-		return this;
-	}
+  /**
+   * Gets the view.
+   *
+   * @return the view
+   */
+  public IView getView() {
+    return this.view;
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * fr.exia.insanevehicles.controller.IIinsaneVehiclesController#orderPerform
-	 * (fr.exia. insanevehicles.controller.UserOrder)
-	 */
-	
-	@Override
-	public final void orderPerform(final UserOrder userOrder) throws IOException {
-		this.setStackOrder(userOrder);
-	}
+  /**
+   * Gets the model.
+   *
+   * @return the model
+   */
+  public IModel getModel() {
+    return this.model;
+  }
 
-	private UserOrder getStackOrder() {
-		return this.stackOrder;
-	}
+  @Override
+  public IOrderPerformer getOrderPeformer() {
+    return this;
+  }
 
-	private void setStackOrder(UserOrder newOrder) {
-		this.stackOrder = newOrder;
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * fr.exia.insanevehicles.controller.IIinsaneVehiclesController#orderPerform
+   * (fr.exia. insanevehicles.controller.UserOrder)
+   */
 
-	private void clearStackOrder() {
-		this.stackOrder = UserOrder.NOP;
-	}
+  @Override
+  public final void orderPerform(final UserOrder userOrder) throws IOException {
+    this.setStackOrder(userOrder);
+  }
+
+  private UserOrder getStackOrder() {
+    return this.stackOrder;
+  }
+
+  private void setStackOrder(UserOrder newOrder) {
+    this.stackOrder = newOrder;
+  }
+
+  private void clearStackOrder() {
+    this.stackOrder = UserOrder.NOP;
+  }
 }
