@@ -199,10 +199,27 @@ public class ViewFacade implements IView, Runnable, KeyListener {
 
 	@Override
 	public void followMyCharacter() {
-		// TODO Auto-generated method stub
+		this.getCloseView().y = (int) (this.myCharacter.getY() - (this.getCloseView().getHeight() / 2));
+		this.getCloseView().x = (int) (this.myCharacter.getX() - (this.getCloseView().getWidth() / 2));
 		
+		if (this.myCharacter.getY() < this.getCloseView().getHeight() / 2) {
+			this.getCloseView().y = 0;
+		}
+		else if (this.myCharacter.getY() > (this.map.getHeight() - (this.getCloseView().getHeight() / 2))) {
+			this.getCloseView().y = (int) (this.map.getHeight() - this.getCloseView().getHeight());
+		}
+		if (this.myCharacter.getX() < this.getCloseView().getWidth() / 2) {
+			this.getCloseView().x = 0;
+		}
+		else if (this.myCharacter.getX() > (this.map.getWidth() - (this.getCloseView().getWidth() / 2))) {
+			this.getCloseView().x = (int) (this.map.getWidth() - this.getCloseView().getWidth());
+		}
 	}
 	
+	public Rectangle getCloseView() {
+		return closeView;
+	}
+
 	private IOrderPerformer getOrderPerformer()
 	{
 		return this.orderPerformer;
