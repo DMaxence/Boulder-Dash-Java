@@ -2,6 +2,8 @@ package model;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import model.dao.MapDAO;
 import model.element.Permeability;
 import model.element.Sprite;
@@ -53,11 +55,19 @@ public class ModelFacade implements IModel {
   }
 
   public void movePawns() {
-    for (IMobile pawn : this.getMap().getPawns()) {
+    ArrayList<IMobile> copyPawns = new ArrayList<>(this.getMap().getPawns());
+    
+    for (IMobile pawn : copyPawns) {
       switch (pawn.getSprite().getConsoleImage()) {
       // Falling object
       case 'O':
       case 'V':
+        if (pawn.getSprite().getConsoleImage() == 'V') {
+          if (pawn.getPosition().y == this.getMyCharacter().getPosition().y - 1 && pawn.getPosition().x == this.getMyCharacter().getPosition().x) {
+            this.getMyCharacter().collectDiamond(pawn);
+            break;
+          }
+        }
         if (pawn.canMoveTo(UserOrder.DOWN)) {
           pawn.moveDown();
           if (this.getMyCharacter().isCrushed())
