@@ -37,6 +37,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 		super();
 		this.view = view;
 		this.model = model;
+		
 	}
 
 	/**
@@ -81,7 +82,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 				System.exit(0);
 			}
 		}
-		this.getView().displayMessage("You are dead, GAME OVER. ^^ ");
+		this.getView().displayMessage("You are dead, GAME OVER. ");
 	}
 
 	/**
