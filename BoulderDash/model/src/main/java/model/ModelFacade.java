@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import model.dao.MapDAO;
 import model.element.Sprite;
-import model.element.mobile.Boulder;
 import model.element.mobile.IMobile;
 import model.element.mobile.MyCharacter;
 import controller.UserOrder;
