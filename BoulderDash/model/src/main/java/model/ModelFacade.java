@@ -73,21 +73,26 @@ public class ModelFacade implements IModel {
             this.getMyCharacter().die();
         } else {
           for (IMobile pawnVerif : this.getMap().getPawns()) {
+            
             if (pawn.getPosition().y == pawnVerif.getPosition().y - 1
                 && pawn.getPosition().x == pawnVerif.getPosition().x) {
               if (pawn.canMoveTo(UserOrder.LEFT)) {
+                System.out.println("left");
                 if (this.getMap().getSquareIsOccupiedXY(pawnVerif.getPosition().x - 1,
                     pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
                   pawn.moveLeft();
+                  break;
                 }
-              } else if (pawn.canMoveTo(UserOrder.RIGHT)) {
-                if (this.getMap().getSquareIsOccupiedXY(pawnVerif.getPosition().x + 1,
-                    pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
-                  pawn.moveRight();
+                if (pawn.canMoveTo(UserOrder.RIGHT)) {
+                  System.out.println("right");
+                  if (this.getMap().getSquareIsOccupiedXY(pawnVerif.getPosition().x + 1,
+                      pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
+                    pawn.moveRight();
+                    break;
+                  }
                 }
               }
             }
-
           }
           pawn.doNothing();
         }
