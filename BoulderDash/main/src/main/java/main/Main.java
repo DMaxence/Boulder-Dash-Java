@@ -3,6 +3,8 @@ package main;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import controller.ControllerFacade;
 import controller.IBoulderDashController;
 import model.IModel;
@@ -26,7 +28,11 @@ public abstract class Main {
      * @throws IOException 
      */
     public static void main(final String[] args) throws SQLException, IOException {
-    	final IModel model = new ModelFacade(1);
+    	
+    	String idToAsk= JOptionPane.showInputDialog("Please input id of the map : ");
+        int idAsked = Integer.parseInt(idToAsk);
+        
+    	final IModel model = new ModelFacade(idAsked);
     	final ViewFacade view = new ViewFacade(model.getMap(), model.getMyCharacter(), model.getPawns());
         final IBoulderDashController controller = new ControllerFacade(view, model);
         view.setOrderPerformer(controller.getOrderPeformer());
