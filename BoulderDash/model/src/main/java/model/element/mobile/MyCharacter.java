@@ -204,10 +204,10 @@ public class MyCharacter extends Mobile {
 					//Player stepped on a diamond
 
 					this.getMap().getPawns().remove(pawn);
-					pawn.getPosition().x = -1; //No other way found to make it disappear
+					pawn.getPosition().x = 1; //No other way found to make it disappear
+					pawn.getPosition().y = -1;
 					this.getMap().decreaseDiamondCount();
-					System.out.println("Diamonds remaining: " + this.getMap().getDiamondCount());
-					//System.out.println(this.getMap().getPawns());
+
 					return true;
 				}
 			}
@@ -219,5 +219,11 @@ public class MyCharacter extends Mobile {
     public Boolean canMoveTo(final UserOrder direction)
     {
     	return this.mapAllowsMovementTo(direction) && this.pawnsAllowMovementTo(direction);
+    }
+    
+    @Override
+    public void setMap(final IMap map) {
+        super.setMap(map);
+        this.getMap().setMyCharacter(this);
     }
 }

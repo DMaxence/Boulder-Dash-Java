@@ -20,4 +20,6 @@ public interface IMap {
 	public void decreaseDiamondCount();
 	public void addDiamondCount();
 	public int getDiamondCount();
+	public IMobile getMyCharacter();
+	public void setMyCharacter(IMobile character);
 }

@@ -1,8 +1,6 @@
 package model;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-
 import model.IMap;
 import model.element.mobile.IMobile;
 
@@ -29,5 +27,5 @@ public interface IModel {
     
     public void movePawns();
     
-    public ArrayList<IMobile> getPawns();
+    //public ArrayList<IMobile> getPawns();
 }
