@@ -69,13 +69,11 @@ public class ModelFacade implements IModel {
               if (pawn.canMoveTo(UserOrder.LEFT)) {
                 if (this.getMap().getSquareIsOccupiedXY(pawnVerif.getPosition().x - 1,
                     pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
-                  System.out.println("move left");
                   pawn.moveLeft();
                 }
               } else if (pawn.canMoveTo(UserOrder.RIGHT)) {
                 if (this.getMap().getSquareIsOccupiedXY(pawnVerif.getPosition().x + 1,
                     pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
-                  System.out.println("move right");
                   pawn.moveRight();
                 }
               }
@@ -84,7 +82,7 @@ public class ModelFacade implements IModel {
           }
           pawn.doNothing();
         }
-
+        
         break;
 
       default:

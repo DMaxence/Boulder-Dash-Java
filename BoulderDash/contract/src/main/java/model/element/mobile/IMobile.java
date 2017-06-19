@@ -79,5 +79,7 @@ public interface IMobile extends IPawn, IElement {
      */
     @Override
     Point getPosition();
+    
+    public void removeFromBoard();
 
 }

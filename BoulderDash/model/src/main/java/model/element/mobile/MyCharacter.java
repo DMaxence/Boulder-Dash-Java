@@ -207,12 +207,7 @@ public class MyCharacter extends Mobile {
 
 				} else if (pawn.getPermeability() == Permeability.MINEABLE) {
 					// Player stepped on a diamond
-
-					this.getMap().getPawns().remove(pawn);
-					pawn.getPosition().x = 1; // No other way found to make it
-												// disappear
-					pawn.getPosition().y = -1;
-					this.getMap().decreaseDiamondCount();
+					this.collectDiamond(pawn);
 
 					return true;
 				}
@@ -245,5 +240,15 @@ public class MyCharacter extends Mobile {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * 
+	 * @param pawn
+	 */
+	public void collectDiamond(IMobile pawn) {
+	  
+	  pawn.removeFromBoard();
+      this.getMap().decreaseDiamondCount();
 	}
 }

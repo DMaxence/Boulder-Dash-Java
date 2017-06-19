@@ -326,5 +326,11 @@ abstract class Mobile extends Element implements IMobile {
 	public boolean getFallSpeed() {
 		return fallSpeed;
 	}
+	
+	@Override
+	public void removeFromBoard() {
+	  this.setPosition(new Point(1, -1));
+	  this.getMap().getPawns().remove(this);
+	}
 
 }
