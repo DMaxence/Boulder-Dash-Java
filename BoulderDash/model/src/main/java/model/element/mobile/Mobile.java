@@ -45,7 +45,7 @@ abstract class Mobile extends Element implements IMobile {
 	 */
     Mobile(final Sprite sprite, final IMap map, final Permeability permeability) {
         super(sprite, permeability);
-        this.setMap(map);
+        this.map = map;
         this.position = new Point();
     }
 
@@ -196,17 +196,6 @@ abstract class Mobile extends Element implements IMobile {
         return this.map;
     }
 
-    /**
-     * Sets the map.
-     *
-     * @param map
-     *            the new map
-     */
-    @Override
-    public void setMap(final IMap map) {
-        this.map = map;
-    }
-
     /*
      * (non-Javadoc)
      * @see fr.exia.insanevehicles.model.element.mobile.IMobile#isAlive()
@@ -285,6 +274,7 @@ abstract class Mobile extends Element implements IMobile {
 				}
 			}
 		}
+		
 		
 		if (this.getMap().getMyCharacter().getPosition().equals(desiredPosition)) {
 			if (this.getSprite().getConsoleImage() == 'V') {

@@ -221,9 +221,7 @@ public class MyCharacter extends Mobile {
     	return this.mapAllowsMovementTo(direction) && this.pawnsAllowMovementTo(direction);
     }
     
-    @Override
     public void setMap(final IMap map) {
-        super.setMap(map);
         this.getMap().setMyCharacter(this);
     }
 }
