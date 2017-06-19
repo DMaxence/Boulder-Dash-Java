@@ -1,9 +1,11 @@
 package model;
 
+import java.awt.Point;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import model.element.Permeability;
 import model.element.mobile.IMobile;
 
 /*
@@ -14,20 +16,22 @@ public class Map extends Observable implements IMap {
   private int height;
   private IElement[][] map;
   private ArrayList<IMobile> pawns;
-  private IMobile myCharacter = null; 
+  private IMobile myCharacter = null;
   private int diamondCount = 0;
 
   /**
    * Constructeur par défaut.
-   * @param newWidth la nouvelle largeur
-   * @param newHeight la nouvelle hauteur
-   * @param newMap la nouvelle map
-   * @throws SQLException l'exception
+   * 
+   * @param newWidth
+   *          la nouvelle largeur
+   * @param newHeight
+   *          la nouvelle hauteur
+   * @param newMap
+   *          la nouvelle map
+   * @throws SQLException
+   *           l'exception
    */
-  public Map(final int newWidth,
-      final int newHeight, 
-      final IElement[][] newMap) 
-      throws SQLException {
+  public Map(final int newWidth, final int newHeight, final IElement[][] newMap) throws SQLException {
     super();
     this.map = newMap;
 
@@ -36,31 +40,31 @@ public class Map extends Observable implements IMap {
     this.pawns = new ArrayList<IMobile>();
   }
 
-  @Override 
-    public void setMyCharacter(final IMobile newChara) {
+  @Override
+  public void setMyCharacter(final IMobile newChara) {
     this.myCharacter = newChara;
   }
 
   @Override
-    public void decreaseDiamondCount() {
+  public void decreaseDiamondCount() {
     this.diamondCount--;
   }
 
   @Override
-    public void addDiamondCount() {
+  public void addDiamondCount() {
     this.diamondCount++;
   }
 
   @Override
-    public int getDiamondCount() {
+  public int getDiamondCount() {
     return this.diamondCount;
   }
-  
+
   /**
    * Retourne la map en caractères ASCII.
    */
   @Override
-    public final String toString() {
+  public final String toString() {
     String temp = new String();
     for (int y = 0; y < this.getHeight(); y++) {
       for (int x = 0; x < this.getWidth(); x++) {
@@ -72,22 +76,22 @@ public class Map extends Observable implements IMap {
   }
 
   @Override
-    public int getWidth() {
+  public int getWidth() {
     return this.width;
   }
 
   @Override
-    public int getHeight() {
+  public int getHeight() {
     return this.height;
   }
 
   @Override
-    public IElement getOnTheMapXY(final int x, final int y) {
+  public IElement getOnTheMapXY(final int x, final int y) {
     return this.map[x][y];
   }
 
   @Override
-    public Observable getObservable() {
+  public Observable getObservable() {
     return this;
   }
 
@@ -98,12 +102,12 @@ public class Map extends Observable implements IMap {
   }
 
   @Override
-    public void setOnTheMapXY(int x, int y, IElement elem) {
+  public void setOnTheMapXY(int x, int y, IElement elem) {
     this.map[x][y] = elem;
   }
 
   @Override
-    public void addPawn(IMobile pawn) {
+  public void addPawn(IMobile pawn) {
     this.pawns.add(pawn);
   }
 
@@ -113,7 +117,23 @@ public class Map extends Observable implements IMap {
   }
 
   @Override
-    public ArrayList<IMobile> getPawns() {
+  public ArrayList<IMobile> getPawns() {
     return this.pawns;
+  }
+
+  /**
+   * 
+   * @param x
+   * @param y
+   * @return
+   */
+  @Override
+  public Permeability getSquareIsOccupiedXY(final int x, final int y) {
+    Point point = new Point(x, y);
+    for(IMobile pawn : this.getPawns()) {
+      if (pawn.getPosition().equals(point))
+        return pawn.getPermeability();
+    }
+    return this.getOnTheMapXY(x, y).getPermeability();
   }
 }

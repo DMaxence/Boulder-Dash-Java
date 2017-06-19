@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import model.element.Permeability;
 import model.element.mobile.IMobile;
 
 /*
@@ -22,4 +23,5 @@ public interface IMap {
 	public int getDiamondCount();
 	public IMobile getMyCharacter();
 	public void setMyCharacter(IMobile character);
+	public Permeability getSquareIsOccupiedXY(final int x, final int y);
 }
