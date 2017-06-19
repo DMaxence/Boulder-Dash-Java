@@ -1,5 +1,6 @@
-package controller;
+package model.element.mobile;
 
+import controller.FallingObjectsStrategy;
 import model.IMap;
 import model.element.mobile.IMobile;
 

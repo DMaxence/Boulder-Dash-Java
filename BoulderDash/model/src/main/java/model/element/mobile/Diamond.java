@@ -3,7 +3,6 @@ package model.element.mobile;
 import java.awt.Rectangle;
 import java.io.IOException;
 
-import controller.DiamondStrategy;
 import controller.IStrategy;
 import model.IMap;
 import model.element.Permeability;
