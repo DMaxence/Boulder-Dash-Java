@@ -28,7 +28,7 @@ public class ModelFacade implements IModel {
     public ModelFacade(final int mapID) throws SQLException, IOException {
         super();
         Sprite.loadBuffers();
-        this.setMap(MapDAO.getMapById(1));
+        this.setMap(MapDAO.getMapById(mapID));
         this.setMyCharacter(new MyCharacter(1, 1, this.getMap()));
     }
 
