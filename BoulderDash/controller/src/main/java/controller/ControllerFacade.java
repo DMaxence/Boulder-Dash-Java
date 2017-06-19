@@ -6,11 +6,10 @@ import model.IModel;
 import view.IView;
 
 /**
- * <h1>The Class ControllerFacade provides a facade of the Controller
- * component.</h1>
+ * <h1>The Class ControllerFacade provides a facade of the Controller component.</h1>
+ * 
+ * @author Tejesh Tailor
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
  */
 public class ControllerFacade implements IOrderPerformer, IBoulderDashController {
 
@@ -78,11 +77,11 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 			
 			if(this.getModel().getMap().getDiamondCount() == 0)
 			{
-				this.getView().displayMessage("You won!");
+				this.getView().displayMessage("You won !! Congratulations ;) ");
 				System.exit(0);
 			}
 		}
-		this.getView().displayMessage("You are dead.");
+		this.getView().displayMessage("You are dead, GAME OVER. ^^ ");
 	}
 
 	/**
@@ -93,6 +92,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 	public IView getView() {
 		return this.view;
 	}
+	
 
 	/**
 	 * Gets the model.
@@ -102,6 +102,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 	public IModel getModel() {
 		return this.model;
 	}
+	
 
 	@Override
 	public IOrderPerformer getOrderPeformer() {
@@ -115,6 +116,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
 	 * fr.exia.insanevehicles.controller.IIinsaneVehiclesController#orderPerform
 	 * (fr.exia. insanevehicles.controller.UserOrder)
 	 */
+	
 	@Override
 	public final void orderPerform(final UserOrder userOrder) throws IOException {
 		this.setStackOrder(userOrder);
