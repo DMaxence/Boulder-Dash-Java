@@ -3,7 +3,6 @@ package model.element.mobile;
 import java.awt.Rectangle;
 import java.io.IOException;
 
-import controller.IStrategy;
 import model.IMap;
 import model.element.Permeability;
 import model.element.Sprite;
@@ -14,12 +13,10 @@ import model.element.Sprite;
  * @author Paul
  * @version 0.2
  */
-public class Boulder extends Mobile {
+public class Monster extends Mobile {
 
     /** The Constant SPRITE. */
-    private static final Sprite sprite          = new Sprite('O', Sprite.mapTileSet, new Rectangle(48, 0, 16, 16));
-    
-    private static final IStrategy strategy = new BoulderStrategy();
+    private static final Sprite sprite          = new Sprite('O', Sprite.mapTileSet, new Rectangle(144, 16, 16, 16));
     /**
      * Instantiates a new my vehicle.
      *
@@ -32,7 +29,7 @@ public class Boulder extends Mobile {
      * @throws IOException
      *             Signals that an I/O exception has occurred.
      */
-    public Boulder(final int x, final int y, final IMap map) throws IOException{
+    public Monster(final int x, final int y, final IMap map) throws IOException{
         super(x, y, sprite, map, Permeability.BLOCKING);
         sprite.loadImage();
     }
@@ -93,7 +90,7 @@ public class Boulder extends Mobile {
 
 	@Override
 	public void followMyStrategy() {
+		// TODO Auto-generated method stub
 		
-		Boulder.strategy.followStrategy(this, this.getMap(), this.getMap().getMyCharacter());
 	}
 }

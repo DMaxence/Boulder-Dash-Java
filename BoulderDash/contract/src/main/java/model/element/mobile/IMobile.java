@@ -81,5 +81,7 @@ public interface IMobile extends IPawn, IElement {
     Point getPosition();
     
     public void removeFromBoard();
+    
+    public void followMyStrategy();
 
 }

@@ -3,6 +3,8 @@ package model.element.mobile;
 import java.awt.Rectangle;
 import java.io.IOException;
 
+import controller.DiamondStrategy;
+import controller.IStrategy;
 import model.IMap;
 import model.element.Permeability;
 import model.element.Sprite;
@@ -17,7 +19,8 @@ public class Diamond extends Mobile {
 
     /** The Constant SPRITE. */
     private static final Sprite sprite          = new Sprite('V', Sprite.mapTileSet, new Rectangle(64, 0, 16, 16));
-
+    
+    private static final IStrategy strategy = new DiamondStrategy();
     /**
      * Instantiates a new my vehicle.
      *
@@ -88,4 +91,10 @@ public class Diamond extends Mobile {
     public final void doNothing() {
         super.doNothing();
     }
+
+	@Override
+	public void followMyStrategy() {
+		
+		Diamond.strategy.followStrategy(this, this.getMap(), this.getMap().getMyCharacter());
+	}
 }
