@@ -248,7 +248,7 @@ public class MyCharacter extends Mobile {
 	 */
 	public void collectDiamond(IMobile pawn) {
 	  
-	  pawn.removeFromBoard();
-      this.getMap().decreaseDiamondCount();
+	//  pawn.removeFromBoard();
+     // this.getMap().decreaseDiamondCount();
 	}
 }
