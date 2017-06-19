@@ -83,6 +83,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
       }
     }
     this.getView().displayMessage("You are dead, GAME OVER. ");
+    System.exit(0);
   }
 
   /**

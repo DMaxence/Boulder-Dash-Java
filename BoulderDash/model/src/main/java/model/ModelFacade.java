@@ -60,14 +60,13 @@ public class ModelFacade implements IModel {
     for (IMobile pawn : copyPawns) {
       switch (pawn.getSprite().getConsoleImage()) {
       // Falling object
-      case 'O':
       case 'V':
-        if (pawn.getSprite().getConsoleImage() == 'V') {
-          if (pawn.getPosition().y == this.getMyCharacter().getPosition().y - 1 && pawn.getPosition().x == this.getMyCharacter().getPosition().x || pawn.getPosition() == this.getMyCharacter().getPosition()) {
+          if ((pawn.getPosition().y == this.getMyCharacter().getPosition().y - 1 && pawn.getPosition().x == this.getMyCharacter().getPosition().x) 
+              || pawn.getPosition().equals(getMyCharacter().getPosition())) {
             this.getMyCharacter().collectDiamond(pawn);
             break;
           }
-        }
+      case 'O':
         if (pawn.canMoveTo(UserOrder.DOWN)) {
           pawn.moveDown();
           if (this.getMyCharacter().isCrushed())
