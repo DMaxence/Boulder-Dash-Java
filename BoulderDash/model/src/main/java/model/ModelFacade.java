@@ -63,7 +63,7 @@ public class ModelFacade implements IModel {
       case 'O':
       case 'V':
         if (pawn.getSprite().getConsoleImage() == 'V') {
-          if (pawn.getPosition().y == this.getMyCharacter().getPosition().y - 1 && pawn.getPosition().x == this.getMyCharacter().getPosition().x && pawn.getPosition() == this.getMyCharacter().getPosition()) {
+          if (pawn.getPosition().y == this.getMyCharacter().getPosition().y - 1 && pawn.getPosition().x == this.getMyCharacter().getPosition().x || pawn.getPosition() == this.getMyCharacter().getPosition()) {
             this.getMyCharacter().collectDiamond(pawn);
             break;
           }
