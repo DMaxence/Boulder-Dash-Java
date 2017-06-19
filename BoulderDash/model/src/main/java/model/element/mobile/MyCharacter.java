@@ -251,4 +251,10 @@ public class MyCharacter extends Mobile {
 	//  pawn.removeFromBoard();
      // this.getMap().decreaseDiamondCount();
 	}
+
+	@Override
+	public void followMyStrategy() {
+		//nop
+		
+	}
 }

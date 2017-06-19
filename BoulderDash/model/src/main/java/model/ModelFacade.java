@@ -5,11 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.dao.MapDAO;
-import model.element.Permeability;
 import model.element.Sprite;
 import model.element.mobile.IMobile;
 import model.element.mobile.MyCharacter;
-import controller.UserOrder;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -85,7 +83,8 @@ public class ModelFacade implements IModel {
 		 * 
 		 * default: break; } }
 		 */
-		for (IMobile pawn : this.getMap().getPawns()) {
+		ArrayList<IMobile> copyPawns = new ArrayList<>(this.getMap().getPawns());
+		for (IMobile pawn : copyPawns) {
 			pawn.followMyStrategy();
 		}
 		if (this.getMyCharacter().isCrushed())
