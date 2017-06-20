@@ -227,23 +227,12 @@ public class MyCharacter extends Mobile {
 
 	@Override
 	public Boolean isCrushed() {
-		// We want to keep all the boulders
 		for (IMobile pawn : this.getMap().getPawns()) {
-
-			if (pawn.getSprite().getConsoleImage() == 'O') {
-				Boulder boulder = (Boulder) pawn;
-				if (boulder.getPosition().x == this.getPosition().x
-						&& boulder.getPosition().y == this.getPosition().y - 1
-						&& boulder.getFallSpeed()) {
-					return true;
-				}
-			}
-			else if(pawn.getSprite().getConsoleImage() == 'M')
-			{
+			if(pawn.getSprite().getConsoleImage() == 'M'){
 				return this.getPosition().equals(pawn.getPosition());
 			}
 		}
-		return false;
+		return super.isCrushed();
 	}
 	
 	/**
@@ -258,7 +247,6 @@ public class MyCharacter extends Mobile {
 
 	@Override
 	public void followMyStrategy() {
-		//nop
-		
+		//nop	
 	}
 }

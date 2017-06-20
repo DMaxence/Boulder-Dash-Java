@@ -1,14 +1,12 @@
-package controller;
+package model.element.strategy;
 
 import model.IMap;
 import model.element.mobile.IMobile;
 
-public abstract class MonsterStrategy implements IStrategy{
+public class NoStrategy extends MonsterStrategy {
 
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
-		//nop
-
+		// Nop
 	}
-
 }

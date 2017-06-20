@@ -218,12 +218,22 @@ abstract class Mobile extends Element implements IMobile {
         this.setHasMoved();
     }
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.IMobile#isCrushed()
+    /**
+     * @return If the mobile is crushed by a boulder of in a blocking entity.
      */
     @Override
     public Boolean isCrushed() {
+    	for (IMobile pawn : this.getMap().getPawns()) {
+
+			if (pawn.getSprite().getConsoleImage() == 'O') {
+				Boulder boulder = (Boulder) pawn;
+				if (boulder.getPosition().x == this.getPosition().x
+						&& boulder.getPosition().y == this.getPosition().y - 1
+						&& boulder.getFallSpeed()) {
+					return true;
+				}
+			}
+    	}
         return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
     }
     

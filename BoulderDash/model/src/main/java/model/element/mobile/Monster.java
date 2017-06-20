@@ -10,6 +10,7 @@ import model.element.Permeability;
 import model.element.Sprite;
 import model.element.strategy.FollowWallAntiClockWiseStrategy;
 import model.element.strategy.FollowWallClockWiseStrategy;
+import model.element.strategy.NoStrategy;
 import model.element.strategy.RandomMonsterStrategy;
 
 /**
@@ -26,6 +27,7 @@ public class Monster extends Mobile {
 	private static final IStrategy randomStrategy = new RandomMonsterStrategy();
 	private static final IStrategy followWallClockWiseStrategy = new FollowWallClockWiseStrategy();
 	private static final IStrategy followWallAntiClockWiseStrategy = new FollowWallAntiClockWiseStrategy();
+	private static final IStrategy noStrategy = new NoStrategy();
 	private IStrategy myStrategy = null;
 	private UserOrder lastWallTouched = UserOrder.NOP;
 
@@ -119,7 +121,6 @@ public class Monster extends Mobile {
 
 	@Override
 	public void followMyStrategy() {
-
 		this.myStrategy.followStrategy(this, this.getMap());
 	}
 
@@ -132,4 +133,9 @@ public class Monster extends Mobile {
 	public void setLastWallTouched(final UserOrder userOrder) {
 		this.lastWallTouched = userOrder;
 	}
+	
+	public void removeStrategy() {
+		this.myStrategy = Monster.noStrategy;
+	}
+	
 }

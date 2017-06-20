@@ -1,6 +1,5 @@
 package model.element.strategy;
 
-import controller.MonsterStrategy;
 import controller.UserOrder;
 import model.IMap;
 import model.element.mobile.IMobile;
@@ -10,6 +9,12 @@ public class FollowWallAntiClockWiseStrategy extends MonsterStrategy {
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
 		// first check until a wall is touched
+		super.followStrategy(currentPawn, map);
+		if(currentPawn.isCrushed())
+		{
+			return;
+		}
+		
 		if (currentPawn.getLastWallTouched() == UserOrder.NOP) {
 
 			if (currentPawn.canMoveTo(UserOrder.RIGHT)) {
