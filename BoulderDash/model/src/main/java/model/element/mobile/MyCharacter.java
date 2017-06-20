@@ -60,11 +60,6 @@ public class MyCharacter extends Mobile {
 		sprite.loadImage();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveLeft()
-	 */
 	@Override
 	public final void moveLeft() {
 		super.digDirt();
@@ -72,11 +67,6 @@ public class MyCharacter extends Mobile {
 		this.setSprite(spriteTurnLeft);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-	 */
 	@Override
 	public final void moveRight() {
 		super.digDirt();
@@ -84,11 +74,6 @@ public class MyCharacter extends Mobile {
 		this.setSprite(spriteTurnRight);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-	 */
 	@Override
 	public final void moveUp() {
 		super.digDirt();
@@ -96,11 +81,6 @@ public class MyCharacter extends Mobile {
 		this.setSprite(spriteTurnUp);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-	 */
 	@Override
 	public final void moveDown() {
 		super.digDirt();
@@ -108,22 +88,12 @@ public class MyCharacter extends Mobile {
 		this.setSprite(spriteTurnDown);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#die()
-	 */
 	@Override
 	public final void die() {
 		super.die();
 		this.setSprite(spriteDie);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#doNothing()
-	 */
 	@Override
 	public final void doNothing() {
 		super.doNothing();
@@ -154,20 +124,11 @@ public class MyCharacter extends Mobile {
 	 * If a diamond has to be collected, or a boulder pushed, it will happen here.
 	 * @return Whether pawns can let you step on them if they are next to you at the given direction
 	 */
-	//TODO factor code
 	@Override
 	protected Boolean pawnsAllowMovementTo(final UserOrder direction) {
-		Point desiredPosition = null;
 		Boolean pushingAvailable = false;
 		switch (direction) {
-		case UP:
-			desiredPosition = new Point(this.getX(), this.getY() - 1);
-			break;
-		case DOWN:
-			desiredPosition = new Point(this.getX(), this.getY() + 1);
-			break;
 		case RIGHT:
-			desiredPosition = new Point(this.getX() + 1, this.getY());
 			pushingAvailable = this.getMap().getOnTheMapXY(getX() + 2, getY())
 					.getPermeability() == Permeability.PENETRABLE;
 			if (pushingAvailable) {
@@ -181,7 +142,6 @@ public class MyCharacter extends Mobile {
 			}
 			break;
 		case LEFT:
-			desiredPosition = new Point(this.getX() - 1, this.getY());
 			pushingAvailable = this.getMap().getOnTheMapXY(getX() - 2, getY())
 					.getPermeability() == Permeability.PENETRABLE;
 			if (pushingAvailable) {
@@ -198,7 +158,9 @@ public class MyCharacter extends Mobile {
 		default:
 			return true;
 		}
-
+		
+		//TODO factor
+		final Point desiredPosition = this.getPositionFromUserOrder(direction);
 		for (IMobile pawn : this.getMap().getPawns()) {
 			if (pawn.getPosition().equals(desiredPosition)) {
 				if (pawn.getPermeability() == Permeability.BLOCKING) {
