@@ -6,10 +6,10 @@ import controller.UserOrder;
 
 /**
  * <h1>The Interface IController.</h1>
- * 
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
+ * @author Tejesh Tailor
+ *
  */
+
 public interface IOrderPerformer {
 
     /**
