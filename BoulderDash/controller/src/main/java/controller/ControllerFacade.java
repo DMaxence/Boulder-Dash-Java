@@ -20,14 +20,14 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
   /** The model. */
   private final IModel model;
 
-  /** The Constant speed. */
+  /** The Constant speed of Character. */
   private static final int speed = 250;
 
   /** The stack order. */
   private UserOrder stackOrder = UserOrder.NOP;
 
   /**
-   * Instantiates a new controller facade.
+   * Instantiates a new controller.
    *
    * @param view
    *          the view

@@ -8,7 +8,8 @@ import java.util.Observable;
 import model.element.Permeability;
 import model.element.mobile.IMobile;
 
-/*
+/**
+ * <h1>The Class Map provides a facade of the Model component.</h1>
  * @author Paul Combaldieu
  */
 public class Map extends Observable implements IMap {
@@ -20,16 +21,16 @@ public class Map extends Observable implements IMap {
   private int diamondCount = 0;
 
   /**
-   * Constructeur par défaut.
+   * Default constructor.
    * 
    * @param newWidth
-   *          la nouvelle largeur
+   *          the new width
    * @param newHeight
-   *          la nouvelle hauteur
+   *          the new height
    * @param newMap
-   *          la nouvelle map
+   *          the new map
    * @throws SQLException
-   *           l'exception
+   *           expection
    */
   public Map(final int newWidth, final int newHeight, final IElement[][] newMap) throws SQLException {
     super();
@@ -61,7 +62,7 @@ public class Map extends Observable implements IMap {
   }
 
   /**
-   * Retourne la map en caractères ASCII.
+   * @return the map in ASCII character
    */
   @Override
   public final String toString() {
@@ -125,7 +126,7 @@ public class Map extends Observable implements IMap {
    * 
    * @param x
    * @param y
-   * @return
+   * @return x and y
    */
   @Override
   public Permeability getSquareIsOccupiedXY(final int x, final int y) {

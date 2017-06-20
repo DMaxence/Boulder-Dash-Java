@@ -12,7 +12,7 @@ import model.element.mobile.MyCharacter;
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
  * 
- * @author Tejesh Tailor
+ * @author Paul Combaldieu
  * @version 1.0
  */
 public class ModelFacade implements IModel {
