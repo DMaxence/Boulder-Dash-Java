@@ -251,6 +251,11 @@ abstract class Mobile extends Element implements IMobile {
     	}
     }
     
+    /**
+     * This method does NOT test the position of the player.
+     * @param direction
+     * @return if the pawn can step to the given direction
+     */
 	protected Boolean pawnsAllowMovementTo(final UserOrder direction) {
 		Point desiredPosition = null;
 		switch (direction) {
@@ -281,13 +286,6 @@ abstract class Mobile extends Element implements IMobile {
 		}
 		
 		
-//		if (this.getMap().getMyCharacter().getPosition().equals(desiredPosition)) {
-//			if (this.getSprite().getConsoleImage() == 'V') {
-//				return true;
-//			} else {
-//				return false;
-//			}
-//		}
 		return true;
 	}
 
