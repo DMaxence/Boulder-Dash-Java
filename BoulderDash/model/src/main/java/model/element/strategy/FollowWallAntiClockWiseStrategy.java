@@ -1,8 +1,9 @@
-package model.element.mobile;
+package model.element.strategy;
 
 import controller.MonsterStrategy;
 import controller.UserOrder;
 import model.IMap;
+import model.element.mobile.IMobile;
 
 public class FollowWallAntiClockWiseStrategy extends MonsterStrategy {
 
