@@ -7,6 +7,7 @@ import controller.IStrategy;
 import model.IMap;
 import model.element.Permeability;
 import model.element.Sprite;
+import model.element.strategy.DiamondStrategy;
 
 /**
  * <h1>The MyCharacter Class.</h1>

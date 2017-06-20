@@ -1,4 +1,4 @@
-package model.element.mobile;
+package model.element.strategy;
 
 import controller.MonsterStrategy;
 import controller.UserOrder;

@@ -1,7 +1,8 @@
-package model.element.mobile;
+package model.element.strategy;
 
 import controller.FallingObjectsStrategy;
 import model.IMap;
+import model.element.mobile.IMobile;
 
 public class BoulderStrategy extends FallingObjectsStrategy {
 
