@@ -27,7 +27,7 @@ public abstract class FallingObjectsStrategy implements IStrategy {
 						if (map.getSquareIsOccupiedXY(pawnVerif.getPosition().x - 1,
 								pawnVerif.getPosition().y + 1) == Permeability.PENETRABLE) {
 							currentPawn.moveLeft();
-							break;
+							return;
 						}
 					}
 
@@ -38,11 +38,12 @@ public abstract class FallingObjectsStrategy implements IStrategy {
 						if (map.getSquareIsOccupiedXY(pawnVerif.getPosition().x + 1,
 								pawnVerif.getPosition().y + 1) == Permeability.PENETRABLE) {
 							currentPawn.moveRight();
-							break;
+							return;
 						}
 					}
 				}
 			}
+			currentPawn.doNothing();
 		}
 	}
 
