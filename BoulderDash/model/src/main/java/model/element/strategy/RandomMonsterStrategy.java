@@ -5,29 +5,34 @@ import model.IMap;
 import model.element.mobile.IMobile;
 
 /**
- * One of the strategy that can be used by monsters. Moves in random directions, if available.
+ * One of the strategy that can be used by monsters. Moves in random directions,
+ * if available.
+ * 
  * @author paul
  *
  */
 public class RandomMonsterStrategy extends MonsterStrategy {
-	
+
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
-		
+
 		super.followStrategy(currentPawn, map);
-		if(currentPawn.getPosition().y < 0) {
+		if (currentPawn.getPosition().y < 0) {
 			return;
 		}
-		
+
 		UserOrder orderToFollow = UserOrder.RIGHT;
 		int tries = 0;
 		while (!currentPawn.canMoveTo(orderToFollow) || tries < 4) {
 			orderToFollow = UserOrder.randomOrder();
 			tries++;
 		}
+		this.moveToOrder(orderToFollow, currentPawn);
+	}
 
-		if(currentPawn.canMoveTo(orderToFollow)) {
-			switch(orderToFollow) {
+	private void moveToOrder(final UserOrder orderToFollow, final IMobile currentPawn) {
+		if (currentPawn.canMoveTo(orderToFollow)) {
+			switch (orderToFollow) {
 			case UP:
 				currentPawn.moveUp();
 				break;

@@ -18,7 +18,6 @@ public abstract class MonsterStrategy implements IStrategy{
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
 		if(currentPawn.isCrushed()) {
-			System.out.println("A monster has been crushed");
 			Monster monster = (Monster)(currentPawn);
 			monster.removeStrategy();
 			monster.removeFromBoard();
