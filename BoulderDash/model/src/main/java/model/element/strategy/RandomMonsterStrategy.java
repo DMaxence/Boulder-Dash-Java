@@ -5,7 +5,7 @@ import controller.UserOrder;
 import model.IMap;
 import model.element.mobile.IMobile;
 
-public class RandomMonsterStrategy extends MonsterStrategy{
+public class RandomMonsterStrategy extends MonsterStrategy {
 	
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {

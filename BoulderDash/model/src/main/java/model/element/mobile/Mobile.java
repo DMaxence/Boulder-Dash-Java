@@ -332,5 +332,15 @@ abstract class Mobile extends Element implements IMobile {
 	  this.setPosition(new Point(1, -1));
 	  this.getMap().getPawns().remove(this);
 	}
-
+	
+	@Override
+	public UserOrder getLastWallTouched() {
+		//nop
+		return UserOrder.NOP;
+	}
+	
+	@Override
+	public void setLastWallTouched(final UserOrder userOrder) {
+		//nop
+	}
 }

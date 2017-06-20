@@ -83,5 +83,8 @@ public interface IMobile extends IPawn, IElement {
     public void removeFromBoard();
     
     public void followMyStrategy();
+    
+    public UserOrder getLastWallTouched();
+    public void setLastWallTouched(final UserOrder userOrder);
 
 }
