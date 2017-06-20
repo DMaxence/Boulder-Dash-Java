@@ -15,7 +15,7 @@ public abstract class Element implements IElement {
 	private Permeability permeability;
 
 	/**
-	 * Instantiates a new element.
+	 * Allows to Instantiates a new element.
 	 *
 	 * @param sprite
 	 *            the sprite
@@ -27,11 +27,7 @@ public abstract class Element implements IElement {
 		this.setPermeability(permeability);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.IElement#getSprite()
-	 */
+	
 	@Override
 	public final Sprite getSprite() {
 		return this.sprite;
@@ -47,11 +43,7 @@ public abstract class Element implements IElement {
 		this.sprite = sprite;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.IElement#getPermeability()
-	 */
+	
 	@Override
 	public final Permeability getPermeability() {
 		return this.permeability;
@@ -67,11 +59,7 @@ public abstract class Element implements IElement {
 		this.permeability = permeability;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.exia.insanevehicles.model.element.IElement#getImage()
-	 */
+
 	@Override
 	public final Image getImage() {
 		return this.getSprite().getImage();
