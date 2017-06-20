@@ -25,7 +25,7 @@ public abstract class FallingObjectsStrategy implements IStrategy {
 
 						// if the current pawn can go slide to the left to fall
 						if (map.getSquareIsOccupiedXY(pawnVerif.getPosition().x - 1,
-								pawnVerif.getPosition().y + 1) == Permeability.PENETRABLE) {
+								pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
 							currentPawn.moveLeft();
 							return;
 						}
@@ -36,7 +36,7 @@ public abstract class FallingObjectsStrategy implements IStrategy {
 
 						// if the current pawn can go slide to the right to fall
 						if (map.getSquareIsOccupiedXY(pawnVerif.getPosition().x + 1,
-								pawnVerif.getPosition().y + 1) == Permeability.PENETRABLE) {
+								pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
 							currentPawn.moveRight();
 							return;
 						}
