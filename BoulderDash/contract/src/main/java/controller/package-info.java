@@ -1,5 +1,5 @@
 /**
- * Provides all contracts for the controller component
+ * Provides all contracts for the controller component.
  * @author Tejesh Tailor
  * 
  */
