@@ -1,11 +1,6 @@
 package view;
 
-import controller.IOrderPerformer;
-import controller.UserOrder;
-import fr.exia.showboard.BoardFrame;
-
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -24,249 +19,107 @@ import model.element.mobile.IMobile;
  * @author Maxence Duhoux
  * @version 1.0
  */
-public class ViewFacade implements IView, Runnable, KeyListener {
+public class ViewFacade extends GenericView implements IView, Runnable, KeyListener {
+	/**
+	 * Instantiates a new view facade.
+	 * 
+	 * @throws IOException
+	 *             reject exceptions
+	 */
+	public ViewFacade(final IMap map, final IMobile character, final ArrayList<IMobile> pawns) throws IOException {
+		super();
+		this.setMap(map);
+		this.setMyCharacter(character);
+		this.setPawns(pawns);
+		this.setCloseView(this.getReasonableViewPort());
 
-  /** The Constant squareSize. */
-  private static final int squareSize = 50;
+		SwingUtilities.invokeLater(this);
+	}
 
-  /** The map */
-  private IMap map = null;
-  
-  /** The player's character */
-  private IMobile myCharacter = null;
-  
-  /** The list of pawns */
-  private ArrayList<IMobile> pawns = null;
-  
-  /** The close view on the player */
-  private Rectangle closeView = null;
-  
-  /** The order performer */
-  private IOrderPerformer orderPerformer = null;
-  
-  /** The BoardFrame */
-  private final BoardFrame boardFrame = new BoardFrame("Boulder Hendeck");
+	/**
+	 * Displays the message in dialog box.
+	 * 
+	 * @see view.IView#displayMessage(java.lang.String)
+	 */
+	@Override
+	public final void displayMessage(final String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
 
-  /**
-   * Instantiates a new view facade.
-   * 
-   * @throws IOException
-   *           reject exceptions
-   */
-  public ViewFacade(final IMap map, final IMobile character, final ArrayList<IMobile> pawns) 
-      throws IOException {
-    super();
-    this.setMap(map);
-    this.setMyCharacter(character);
-    this.setPawns(pawns);
-    this.setCloseView(this.getReasonableViewPort());
+	private void setMap(final IMap newMap) throws IOException {
+		this.map = newMap;
+		for (int x = 0; x < this.getMap().getWidth(); x++) {
+			for (int y = 0; y < this.getMap().getHeight(); y++) {
+				this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+			}
+		}
+	}
 
-    SwingUtilities.invokeLater(this);
-  }
+	/**
+	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public final void keyPressed(final KeyEvent keyEvent) {
+		try {
+			this.getOrderPerformer().orderPerform(keyCodeToUserOrder(keyEvent.getKeyCode()));
+		} catch (final IOException exception) {
+			exception.printStackTrace();
+		}
+	}
 
-  /**
-   * Gets a reasonable size for the close view depending on the map 
-   * @return A rectangle with reasonable dimensions.
-   */
-  private Rectangle getReasonableViewPort() {
-    int reasonableWidth;
-    int reasonableHeight;
+	@Override
+	public void keyReleased(final KeyEvent keyEvent) {
+		// Nop
+	}
 
-    // First let's find a reasonable width
-    if ((int) (map.getWidth() * 0.75) > 10) {
-      reasonableWidth = 10;
-    } else if ((int) (map.getWidth() * 0.75) < 5) {
-      reasonableWidth = map.getWidth();
-    } else {
-      reasonableWidth = (int) (map.getWidth() * 0.75);
-    }
+	@Override
+	public void keyTyped(final KeyEvent keyEvent) {
+		// Nop
+	}
 
-    // Same with the height
-    if ((int) (map.getHeight() * 0.75) > 10) {
-      reasonableHeight = 10;
-    } else if ((int) (map.getHeight() * 0.75) < 5) {
-      reasonableHeight = map.getHeight();
-    } else {
-      reasonableHeight = (int) (map.getHeight() * 0.75);
-    }
+	@Override
+	public final void run() {
+		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
+		boardFrame.setDisplayFrame(this.closeView);
+		boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
+		boardFrame.addKeyListener(this);
+		boardFrame.setFocusable(true);
+		boardFrame.setFocusTraversalKeysEnabled(false);
 
-    return new Rectangle(0, 0, reasonableWidth, reasonableHeight);
-  }
+		for (int x = 0; x < this.getMap().getWidth(); x++) {
+			for (int y = 0; y < this.getMap().getHeight(); y++) {
+				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
+			}
+		}
+		boardFrame.addPawn(this.getMyCharacter());
+		for (IMobile pawn : this.pawns) {
+			boardFrame.addPawn(pawn);
+		}
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see view.IView#displayMessage(java.lang.String)
-   */
-  @Override
-  public final void displayMessage(final String message) {
-    JOptionPane.showMessageDialog(null, message);
-  }
+		this.getMap().getObservable().addObserver(boardFrame.getObserver());
+		this.followMyCharacter();
 
-  private void setMap(final IMap newMap) throws IOException {
-    this.map = newMap;
-    for (int x = 0; x < this.getMap().getWidth(); x++) {
-      for (int y = 0; y < this.getMap().getHeight(); y++) {
-        this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
-      }
-    }
-  }
+		boardFrame.setVisible(true);
 
-  private void setMyCharacter(final IMobile newCharacter) {
-    this.myCharacter = newCharacter;
-  }
+	}
 
-  private IMobile getMyCharacter() {
-    return this.myCharacter;
-  }
+	/**
+	 * Move the view to focus on the character.
+	 */
+	@Override
+	public void followMyCharacter() {
+		this.getCloseView().y = (int) (this.myCharacter.getY() - (this.getCloseView().getHeight() / 2));
+		this.getCloseView().x = (int) (this.myCharacter.getX() - (this.getCloseView().getWidth() / 2));
 
-  private void setCloseView(final Rectangle newView) {
-    this.closeView = newView;
-  }
-
-  /**
-   * Key code to user order.
-   *
-   * @param keyCode
-   *          the key code
-   * @return the user order
-   */
-  private static UserOrder keyCodeToUserOrder(final int keyCode) {
-    UserOrder userOrder;
-    switch (keyCode) {
-      case KeyEvent.VK_RIGHT:
-        userOrder = UserOrder.RIGHT;
-        break;
-      case KeyEvent.VK_LEFT:
-        userOrder = UserOrder.LEFT;
-        break;
-      case KeyEvent.VK_UP:
-        userOrder = UserOrder.UP;
-        break;
-      case KeyEvent.VK_DOWN:
-        userOrder = UserOrder.DOWN;
-        break;
-      default:
-        userOrder = UserOrder.NOP;
-        break;
-    }
-    return userOrder;
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-   */
-  @Override
-  public void keyTyped(final KeyEvent keyEvent) {
-    // Nop
-  }
-
-  /**
-   * 
-   * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
-   */
-  @Override
-  public final void keyPressed(final KeyEvent keyEvent) {
-    try {
-      this.getOrderPerformer().orderPerform(keyCodeToUserOrder(keyEvent.getKeyCode()));
-    } catch (final IOException exception) {
-      exception.printStackTrace();
-    }
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
-   */
-  @Override
-  public void keyReleased(final KeyEvent keyEvent) {
-    // Nop
-  }
-
-  @Override
-  public final void run() {
-    boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
-    boardFrame.setDisplayFrame(this.closeView);
-    boardFrame.setSize(this.closeView.width * squareSize, this.closeView.height * squareSize);
-    boardFrame.addKeyListener(this);
-    boardFrame.setFocusable(true);
-    boardFrame.setFocusTraversalKeysEnabled(false);
-
-    for (int x = 0; x < this.getMap().getWidth(); x++) {
-      for (int y = 0; y < this.getMap().getHeight(); y++) {
-        boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
-      }
-    }
-    boardFrame.addPawn(this.getMyCharacter());
-    for (IMobile pawn : this.pawns) {
-      boardFrame.addPawn(pawn);
-    }
-
-    this.getMap().getObservable().addObserver(boardFrame.getObserver());
-    this.followMyCharacter();
-
-    boardFrame.setVisible(true);
-
-  }
-
-  private IMap getMap() {
-    return this.map;
-  }
-  
-  /**
-   * Move the view to focus on the character.
-   */
-  @Override
-  public void followMyCharacter() {
-    this.getCloseView().y = (int) (this.myCharacter.getY() - (this.getCloseView().getHeight() / 2));
-    this.getCloseView().x = (int) (this.myCharacter.getX() - (this.getCloseView().getWidth() / 2));
-
-    if (this.myCharacter.getY() < this.getCloseView().getHeight() / 2) {
-      this.getCloseView().y = 0;
-    } else if (this.myCharacter.getY() 
-        > (this.map.getHeight() - (this.getCloseView().getHeight() / 2))) {
-      this.getCloseView().y = (int) (this.map.getHeight() - this.getCloseView().getHeight());
-    }
-    if (this.myCharacter.getX() < this.getCloseView().getWidth() / 2) {
-      this.getCloseView().x = 0;
-    } else if (this.myCharacter.getX() 
-        > (this.map.getWidth() - (this.getCloseView().getWidth() / 2))) {
-      this.getCloseView().x = (int) (this.map.getWidth() - this.getCloseView().getWidth());
-    }
-  }
-
-  public Rectangle getCloseView() {
-    return closeView;
-  }
-
-  private IOrderPerformer getOrderPerformer() {
-    return this.orderPerformer;
-  }
-
-  public void setOrderPerformer(final IOrderPerformer newPerformer) {
-    this.orderPerformer = newPerformer;
-  }
-  
-  /**
-   * Update the board frame. Redraws squares.
-   */
-  public void updateBoardFrame() {
-    for (int x = 0; x < this.getMap().getWidth(); x++) {
-      for (int y = 0; y < this.getMap().getHeight(); y++) {
-        boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
-      }
-    }
-  }
-
-  /**
-   * 
-   * @param newPawns The pawn list.
-   */
-  private void setPawns(final ArrayList<IMobile> newPawns) {
-    this.pawns = newPawns;
-  }
-
+		if (this.myCharacter.getY() < this.getCloseView().getHeight() / 2) {
+			this.getCloseView().y = 0;
+		} else if (this.myCharacter.getY() > (this.map.getHeight() - (this.getCloseView().getHeight() / 2))) {
+			this.getCloseView().y = (int) (this.map.getHeight() - this.getCloseView().getHeight());
+		}
+		if (this.myCharacter.getX() < this.getCloseView().getWidth() / 2) {
+			this.getCloseView().x = 0;
+		} else if (this.myCharacter.getX() > (this.map.getWidth() - (this.getCloseView().getWidth() / 2))) {
+			this.getCloseView().x = (int) (this.map.getWidth() - this.getCloseView().getWidth());
+		}
+	}
 }
