@@ -123,7 +123,6 @@ public class Monster extends Mobile {
 
 	@Override
 	public UserOrder getLastWallTouched() {
-		System.out.println("dernier mur: "+this.lastWallTouched);
 		return this.lastWallTouched;
 	}
 
