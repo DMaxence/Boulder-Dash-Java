@@ -13,11 +13,23 @@ import model.element.mobile.IMobile;
  * @author Paul Combaldieu
  */
 public class Map extends Observable implements IMap {
+
+	/** The width */
   private int width;
+  
+  /** The height */
   private int height;
+  
+  /** The elements */
   private IElement[][] map;
+  
+  /** The pawn list */
   private ArrayList<IMobile> pawns;
+  
+  /** The myCharacter */
   private IMobile myCharacter = null;
+  
+  /** The diamond count */
   private int diamondCount = 0;
 
   /**
