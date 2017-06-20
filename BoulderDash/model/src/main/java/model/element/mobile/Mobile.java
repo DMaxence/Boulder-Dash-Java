@@ -156,6 +156,9 @@ abstract class Mobile extends Element implements IMobile {
         }
     }
     
+    /**
+     * Places dug dirt on the mobile's location.
+     */
     public void digDirt()
     {
     	this.getMap().setOnTheMapXY(this.getX(), this.getY(), ElementFactory.createDugDirt());
@@ -217,7 +220,7 @@ abstract class Mobile extends Element implements IMobile {
     }
 
     /**
-     * @return If the mobile is crushed by a boulder of in a blocking entity.
+     * @return Whether the mobile is crushed by a boulder of in a blocking entity.
      */
     @Override
     public Boolean isCrushed() {
@@ -235,12 +238,21 @@ abstract class Mobile extends Element implements IMobile {
         return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
     }
     
+    /**
+     * @return Whether mapAllowsMovementTo and pawnAllowsMovementTo are both true.
+     * 
+     */
     @Override
     public Boolean canMoveTo(final UserOrder direction)
     {
     	return this.mapAllowsMovementTo(direction) && this.pawnsAllowMovementTo(direction);
     }
     
+    /**
+     * 
+     * @param direction
+     * @return Whether the map permeability is PENETRABLE at the given direction, compared to the current location.
+     */
     protected boolean mapAllowsMovementTo(final UserOrder direction)
     {
     	switch(direction)
@@ -333,18 +345,30 @@ abstract class Mobile extends Element implements IMobile {
 		return fallSpeed;
 	}
 	
+	/**
+	 * Removes this pawn from the board
+	 */
 	@Override
 	public void removeFromBoard() {
 	  this.setPosition(new Point(1, -1));
 	  this.getMap().getPawns().remove(this);
 	}
 	
+	/**
+	 * @return Where the last touched wall was. By default NOP. Must be overriden by monsters.
+	 */
 	@Override
 	public UserOrder getLastWallTouched() {
 		//nop
 		return UserOrder.NOP;
 	}
 	
+	/**
+	 * Must be overriden by monsters.
+	 * @param userOrder
+	 * Where the touched wall is
+	 * 
+	 */
 	@Override
 	public void setLastWallTouched(final UserOrder userOrder) {
 		//nop

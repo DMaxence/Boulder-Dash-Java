@@ -3,7 +3,11 @@ package model.element.strategy;
 import controller.FallingObjectsStrategy;
 import model.IMap;
 import model.element.mobile.IMobile;
-
+/**
+ * The strategy used by diamonds. The same as FallingObject strategy, but can be removed when on player's location.
+ * @author paul
+ *
+ */
 public class DiamondStrategy extends FallingObjectsStrategy {
 
 	@Override

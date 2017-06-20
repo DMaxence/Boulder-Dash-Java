@@ -22,7 +22,9 @@ public class Boulder extends Mobile {
     /** The Constant SPRITE. */
     private static final Sprite sprite          = new Sprite('O', Sprite.mapTileSet, new Rectangle(48, 0, 16, 16));
     
+    /** The strategy in use by all boulders */
     private static final IStrategy strategy = new BoulderStrategy();
+    
     /**
      * Instantiates a new my vehicle.
      *
@@ -93,13 +95,20 @@ public class Boulder extends Mobile {
     public final void doNothing() {
         super.doNothing();
     }
-
+    
+    /**
+     * Executes an action according to the BoulderStrategy.
+     * @see BoulderStrategy
+     */
 	@Override
 	public void followMyStrategy() {
-		
 		Boulder.strategy.followStrategy(this, this.getMap());
 	}
 	
+	/**
+	 * Checks if the boulder can move to the given direction.
+	 * Note that this takes account of all pawns including the player.
+	 */
 	@Override
 	protected Boolean pawnsAllowMovementTo(final UserOrder direction) {
 		Point desiredPosition = null;

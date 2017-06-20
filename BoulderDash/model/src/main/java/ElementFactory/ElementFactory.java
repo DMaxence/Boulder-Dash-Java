@@ -5,6 +5,11 @@ import model.element.motionlesselement.DugDirt;
 import model.element.motionlesselement.FilledDirt;
 import model.element.motionlesselement.Wall;
 
+/**
+ * Motionless element factory. 
+ * @author paul
+ *
+ */
 public class ElementFactory {
 	  /** The Constant wall. */
     private static final Wall        		 wall          		 = new Wall();

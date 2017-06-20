@@ -6,6 +6,11 @@ import model.IElement;
 import model.element.Permeability;
 import model.element.Sprite;
 
+/**
+ * An element is an object that can be used on an IBoard
+ * @author paul
+ *
+ */
 public abstract class Element implements IElement {
 
 	/** The sprite. */
@@ -27,7 +32,9 @@ public abstract class Element implements IElement {
 		this.setPermeability(permeability);
 	}
 
-	
+	/**
+	 * Getter for the sprite.
+	 */
 	@Override
 	public final Sprite getSprite() {
 		return this.sprite;
@@ -43,7 +50,10 @@ public abstract class Element implements IElement {
 		this.sprite = sprite;
 	}
 
-	
+	/**
+	 * Getter for the permeability
+	 * @see Permeability
+	 */
 	@Override
 	public final Permeability getPermeability() {
 		return this.permeability;
@@ -59,7 +69,10 @@ public abstract class Element implements IElement {
 		this.permeability = permeability;
 	}
 
-
+	/**
+	 * Getter for the image.
+	 * @see java.awt.Image
+	 */
 	@Override
 	public final Image getImage() {
 		return this.getSprite().getImage();

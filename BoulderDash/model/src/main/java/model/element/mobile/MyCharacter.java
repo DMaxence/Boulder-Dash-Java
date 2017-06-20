@@ -39,14 +39,14 @@ public class MyCharacter extends Mobile {
 	private static final Sprite spriteDie = new Sprite('H', Sprite.characterTileSet, new Rectangle(64, 0, 16, 16));
 
 	/**
-	 * Instantiates a new my vehicle.
+	 * Instantiates a new my character.
 	 *
 	 * @param x
 	 *            the x
 	 * @param y
 	 *            the y
-	 * @param road
-	 *            the road
+	 * @param map
+	 *            the map
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
@@ -129,7 +129,10 @@ public class MyCharacter extends Mobile {
 		super.doNothing();
 		this.setSprite(sprite);
 	}
-
+	
+	/**
+	 * @return whether the square next to the player in the given direction is NOT BLOCKING.
+	 */
 	@Override
 	protected boolean mapAllowsMovementTo(final UserOrder direction) {
 		switch (direction) {
@@ -147,6 +150,11 @@ public class MyCharacter extends Mobile {
 		}
 	}
 
+	/**
+	 * If a diamond has to be collected, or a boulder pushed, it will happen here.
+	 * @return Whether pawns can let you step on them if they are next to you at the given direction
+	 */
+	//TODO factor code
 	@Override
 	protected Boolean pawnsAllowMovementTo(final UserOrder direction) {
 		Point desiredPosition = null;

@@ -4,6 +4,11 @@ import controller.UserOrder;
 import model.IMap;
 import model.element.mobile.IMobile;
 
+/**
+ * One of the strategy that can be used by monsters.
+ * @author paul
+ *
+ */
 public class FollowWallAntiClockWiseStrategy extends MonsterStrategy {
 
 	@Override

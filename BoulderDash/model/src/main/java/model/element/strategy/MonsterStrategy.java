@@ -5,6 +5,11 @@ import model.IMap;
 import model.element.mobile.IMobile;
 import model.element.mobile.Monster;
 
+/**
+ * The base strategy for monsters. If crushed, removed from board, and strategy set to noStrategy.
+ * @author paul
+ *
+ */
 public abstract class MonsterStrategy implements IStrategy{
 
 	/**

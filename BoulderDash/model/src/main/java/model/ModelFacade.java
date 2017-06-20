@@ -17,8 +17,10 @@ import model.element.mobile.MyCharacter;
  */
 public class ModelFacade implements IModel {
 
+	/** The map */
 	private IMap map;
 
+	/** The player's character */
 	private MyCharacter myCharacter;
 
 	/**
@@ -52,37 +54,11 @@ public class ModelFacade implements IModel {
 		this.myCharacter = newChara;
 	}
 
+	/**
+	 * Moves pawns (boulders, diamonds, ...).
+	 * Their movement is related to their strategy.
+	 */
 	public void movePawns() {
-		/**
-		 * for (IMobile pawn : this.getMap().get) { switch
-		 * (pawn.getSprite().getConsoleImage()) { // Falling object case 'V': if
-		 * ((pawn.getPosition().y == this.getMyCharacter().getPosition().y - 1
-		 * && pawn.getPosition().x == this.getMyCharacter().getPosition().x) ||
-		 * pawn.getPosition().equals(getMyCharacter().getPosition())) {
-		 * this.getMyCharacter().collectDiamond(pawn); break; } case 'O': if
-		 * (pawn.canMoveTo(UserOrder.DOWN)) { pawn.moveDown(); if
-		 * (this.getMyCharacter().isCrushed()) this.getMyCharacter().die(); }
-		 * else { for (IMobile pawnVerif : this.getMap().getPawns()) {
-		 * 
-		 * if (pawn.getPosition().y == pawnVerif.getPosition().y - 1 &&
-		 * pawn.getPosition().x == pawnVerif.getPosition().x) { if
-		 * (pawn.canMoveTo(UserOrder.LEFT)) { System.out.println("left"); if
-		 * (this.getMap().getSquareIsOccupiedXY(pawnVerif.getPosition().x - 1,
-		 * pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
-		 * pawn.moveLeft(); break; } if (pawn.canMoveTo(UserOrder.RIGHT)) {
-		 * System.out.println("right"); if
-		 * (this.getMap().getSquareIsOccupiedXY(pawnVerif.getPosition().x + 1,
-		 * pawnVerif.getPosition().y) == Permeability.PENETRABLE) {
-		 * pawn.moveRight(); break; } } } } } pawn.doNothing(); }
-		 * 
-		 * break;
-		 * 
-		 * case 'M':
-		 * 
-		 * break;
-		 * 
-		 * default: break; } }
-		 */
 		ArrayList<IMobile> copyPawns = new ArrayList<>(this.getMap().getPawns());
 		for (IMobile pawn : copyPawns) {
 			pawn.followMyStrategy();

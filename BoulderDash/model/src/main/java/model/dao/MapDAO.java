@@ -24,7 +24,7 @@ public abstract class MapDAO extends AbstractDAO {
     private static String sqlMapById   = "{call getMapByID(?)}";
 
     /** The id column index. */
-    private static int    idColumnIndex    = 1;
+    //private static int    idColumnIndex    = 1;
     
     /** The width column index. */
     private static int    widthColumnIndex    = 2;
@@ -40,7 +40,7 @@ public abstract class MapDAO extends AbstractDAO {
      *
      * @param id
      *            the id
-     * @return the example by id
+     * @return the map by id
      * @throws SQLException
      *             the SQL exception
      * @throws IOException 

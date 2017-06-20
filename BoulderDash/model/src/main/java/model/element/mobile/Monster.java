@@ -21,25 +21,36 @@ import model.element.strategy.RandomMonsterStrategy;
  */
 public class Monster extends Mobile {
 
-	/** The Constant SPRITE. */
+	/** The static Constant SPRITE. */
 	private static final Sprite sprite = new Sprite('M', Sprite.mapTileSet, new Rectangle(144, 16, 16, 16));
-
+	
+	/** The static constant randomStrategy */
 	private static final IStrategy randomStrategy = new RandomMonsterStrategy();
+	
+	/** The static constant followWallClockWiseStrategy */
 	private static final IStrategy followWallClockWiseStrategy = new FollowWallClockWiseStrategy();
+	
+	/** The static constant followWallAntiClockWiseStrategy */
 	private static final IStrategy followWallAntiClockWiseStrategy = new FollowWallAntiClockWiseStrategy();
+	
+	/** The static constant noStrategy */
 	private static final IStrategy noStrategy = new NoStrategy();
+	
+	/** The strategy in use by this monster */
 	private IStrategy myStrategy = null;
+	
+	/** The last wall touched by this monster */
 	private UserOrder lastWallTouched = UserOrder.NOP;
 
 	/**
-	 * Instantiates a new my vehicle.
+	 * Instantiates a new monster.
 	 *
 	 * @param x
 	 *            the x
 	 * @param y
 	 *            the y
-	 * @param road
-	 *            the road
+	 * @param map
+	 *            the map
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
@@ -119,6 +130,9 @@ public class Monster extends Mobile {
 		super.doNothing();
 	}
 
+	/**
+	 * Follows the strategy set in myStrategy.
+	 */
 	@Override
 	public void followMyStrategy() {
 		this.myStrategy.followStrategy(this, this.getMap());
@@ -133,7 +147,9 @@ public class Monster extends Mobile {
 	public void setLastWallTouched(final UserOrder userOrder) {
 		this.lastWallTouched = userOrder;
 	}
-	
+	/**
+	 * Sets the strategy to noStrategy.
+	 */
 	public void removeStrategy() {
 		this.myStrategy = Monster.noStrategy;
 	}

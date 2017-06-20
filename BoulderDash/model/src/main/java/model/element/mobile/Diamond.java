@@ -7,6 +7,7 @@ import controller.IStrategy;
 import model.IMap;
 import model.element.Permeability;
 import model.element.Sprite;
+import model.element.strategy.BoulderStrategy;
 import model.element.strategy.DiamondStrategy;
 
 /**
@@ -98,7 +99,11 @@ public class Diamond extends Mobile {
 	public final void doNothing() {
 		super.doNothing();
 	}
-
+	
+    /**
+     * Executes an action according to the DiamondStrategy.
+     * @see BoulderStrategy
+     */
 	@Override
 	public void followMyStrategy() {
 		Diamond.strategy.followStrategy(this, this.getMap());
