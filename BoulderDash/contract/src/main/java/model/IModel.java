@@ -6,9 +6,8 @@ import model.element.mobile.IMobile;
 
 /**
  * <h1>The Interface IModel.</h1>
+ * @author Tejesh Tailor
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
  */
 public interface IModel {
 

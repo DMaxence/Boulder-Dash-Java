@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 /**
  * <h1>The Class AbstractDAO.</h1>
  * 
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author Tejesh Tailor
  * @version 1.0
+ *
  */
 public abstract class AbstractDAO {
 
