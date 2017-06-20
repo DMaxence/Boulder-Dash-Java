@@ -238,6 +238,10 @@ public class MyCharacter extends Mobile {
 					return true;
 				}
 			}
+			else if(pawn.getSprite().getConsoleImage() == 'M')
+			{
+				return this.getPosition().equals(pawn.getPosition());
+			}
 		}
 		return false;
 	}
