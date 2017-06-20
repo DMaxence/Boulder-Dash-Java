@@ -25,8 +25,8 @@ public class Monster extends Mobile {
 	private static final Sprite sprite = new Sprite('M', Sprite.mapTileSet, new Rectangle(144, 16, 16, 16));
 
 	private static final IStrategy randomStrategy = new RandomMonsterStrategy();
-	private static final IStrategy followWallClockWiseStrategy = new FollowWallClockWiseStrategy();
-	private static final IStrategy followWallAntiClockWiseStrategy = new FollowWallAntiClockWiseStrategy();
+	private static final IStrategy followWallClockWiseStrategy = new RandomMonsterStrategy()/*FollowWallClockWiseStrategy()*/;
+	private static final IStrategy followWallAntiClockWiseStrategy = new RandomMonsterStrategy()/*FollowWallAntiClockWiseStrategy()*/;
 	private static final IStrategy noStrategy = new NoStrategy();
 	private IStrategy myStrategy = null;
 	private UserOrder lastWallTouched = UserOrder.NOP;

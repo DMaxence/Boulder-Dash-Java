@@ -10,8 +10,7 @@ public class RandomMonsterStrategy extends MonsterStrategy {
 	public void followStrategy(IMobile currentPawn, IMap map) {
 		
 		super.followStrategy(currentPawn, map);
-		if(currentPawn.isCrushed())
-		{
+		if(currentPawn.getPosition().y < 0) {
 			return;
 		}
 		
