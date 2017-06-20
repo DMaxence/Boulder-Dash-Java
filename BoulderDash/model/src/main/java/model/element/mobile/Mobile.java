@@ -281,13 +281,13 @@ abstract class Mobile extends Element implements IMobile {
 		}
 		
 		
-		if (this.getMap().getMyCharacter().getPosition().equals(desiredPosition)) {
-			if (this.getSprite().getConsoleImage() == 'V') {
-				return true;
-			} else {
-				return false;
-			}
-		}
+//		if (this.getMap().getMyCharacter().getPosition().equals(desiredPosition)) {
+//			if (this.getSprite().getConsoleImage() == 'V') {
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		}
 		return true;
 	}
 
