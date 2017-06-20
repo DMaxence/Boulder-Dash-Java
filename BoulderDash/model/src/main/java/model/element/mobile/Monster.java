@@ -4,7 +4,6 @@ import java.awt.Rectangle;
 import java.io.IOException;
 
 import controller.IStrategy;
-import controller.RandomMonsterStrategy;
 import model.IMap;
 import model.element.Permeability;
 import model.element.Sprite;
@@ -76,7 +75,7 @@ public class Monster extends Mobile {
      */
     @Override
     public final void moveUp() {
-        //Nop
+        super.moveUp();
     }
     
     /*

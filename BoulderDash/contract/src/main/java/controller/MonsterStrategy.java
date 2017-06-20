@@ -8,7 +8,7 @@ public abstract class MonsterStrategy implements IStrategy{
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
 		//nop
-		
+
 	}
 
 }

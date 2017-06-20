@@ -1,5 +1,7 @@
-package controller;
+package model.element.mobile;
 
+import controller.MonsterStrategy;
+import controller.UserOrder;
 import model.IMap;
 import model.element.mobile.IMobile;
 
@@ -7,13 +9,13 @@ public class RandomMonsterStrategy extends MonsterStrategy{
 	
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
-		
-		UserOrder orderToFollow = UserOrder.NOP;
+		UserOrder orderToFollow = UserOrder.RIGHT;
 		int tries = 0;
-		while (!currentPawn.canMoveTo(orderToFollow) || tries > 4) {
+		while (!currentPawn.canMoveTo(orderToFollow) || tries < 4) {
 			orderToFollow = UserOrder.randomOrder();
+			tries++;
 		}
-		
+
 		if(currentPawn.canMoveTo(orderToFollow)) {
 			switch(orderToFollow) {
 			case UP:
