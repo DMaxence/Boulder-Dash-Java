@@ -3,9 +3,15 @@ package model.element.mobile;
 import java.awt.Rectangle;
 import java.io.IOException;
 
+import controller.IStrategy;
+import controller.UserOrder;
 import model.IMap;
 import model.element.Permeability;
 import model.element.Sprite;
+import model.element.strategy.FollowWallAntiClockWiseStrategy;
+import model.element.strategy.FollowWallClockWiseStrategy;
+import model.element.strategy.NoStrategy;
+import model.element.strategy.RandomMonsterStrategy;
 
 /**
  * <h1>The MyCharacter Class.</h1>
@@ -15,82 +21,121 @@ import model.element.Sprite;
  */
 public class Monster extends Mobile {
 
-    /** The Constant SPRITE. */
-    private static final Sprite sprite          = new Sprite('O', Sprite.mapTileSet, new Rectangle(144, 16, 16, 16));
-    /**
-     * Instantiates a new my vehicle.
-     *
-     * @param x
-     *            the x
-     * @param y
-     *            the y
-     * @param road
-     *            the road
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     */
-    public Monster(final int x, final int y, final IMap map) throws IOException{
-        super(x, y, sprite, map, Permeability.BLOCKING);
-        sprite.loadImage();
-    }
+	/** The Constant SPRITE. */
+	private static final Sprite sprite = new Sprite('M', Sprite.mapTileSet, new Rectangle(144, 16, 16, 16));
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveLeft()
-     */
-    @Override
-    public final void moveLeft() {
-        super.moveLeft();
-    }
+	private static final IStrategy randomStrategy = new RandomMonsterStrategy();
+	private static final IStrategy followWallClockWiseStrategy = new RandomMonsterStrategy()/*FollowWallClockWiseStrategy()*/;
+	private static final IStrategy followWallAntiClockWiseStrategy = new RandomMonsterStrategy()/*FollowWallAntiClockWiseStrategy()*/;
+	private static final IStrategy noStrategy = new NoStrategy();
+	private IStrategy myStrategy = null;
+	private UserOrder lastWallTouched = UserOrder.NOP;
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-     */
-    @Override
-    public final void moveRight() {
-        super.moveRight();
-    }
-    
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-     */
-    @Override
-    public final void moveUp() {
-        //Nop
-    }
-    
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
-     */
-    @Override
-    public final void moveDown() {
-        super.moveDown();
-    }
+	/**
+	 * Instantiates a new my vehicle.
+	 *
+	 * @param x
+	 *            the x
+	 * @param y
+	 *            the y
+	 * @param road
+	 *            the road
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public Monster(final int x, final int y, final IMap map) throws IOException {
+		super(x, y, sprite, map, Permeability.BLOCKING);
+		sprite.loadImage();
+		switch ((int) (Math.random() * (3))) {
+		case 1:
+			this.myStrategy = Monster.randomStrategy;
+			break;
+		case 2:
+			this.myStrategy = Monster.followWallAntiClockWiseStrategy;
+			break;
+		default:
+			this.myStrategy = Monster.followWallClockWiseStrategy;
+			break;
+		}
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#die()
-     */
-    @Override
-    protected final void die() {
-        //Nop
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveLeft()
+	 */
+	@Override
+	public final void moveLeft() {
+		super.moveLeft();
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.Mobile#doNothing()
-     */
-    @Override
-    public final void doNothing() {
-        super.doNothing();
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
+	 */
+	@Override
+	public final void moveRight() {
+		super.moveRight();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
+	 */
+	@Override
+	public final void moveUp() {
+		super.moveUp();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#moveRight()
+	 */
+	@Override
+	public final void moveDown() {
+		super.moveDown();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#die()
+	 */
+	@Override
+	protected final void die() {
+		// Nop
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.exia.insanevehicles.model.element.mobile.Mobile#doNothing()
+	 */
+	@Override
+	public final void doNothing() {
+		super.doNothing();
+	}
 
 	@Override
 	public void followMyStrategy() {
-		// TODO Auto-generated method stub
-		
+		this.myStrategy.followStrategy(this, this.getMap());
 	}
+
+	@Override
+	public UserOrder getLastWallTouched() {
+		return this.lastWallTouched;
+	}
+
+	@Override
+	public void setLastWallTouched(final UserOrder userOrder) {
+		this.lastWallTouched = userOrder;
+	}
+	
+	public void removeStrategy() {
+		this.myStrategy = Monster.noStrategy;
+	}
+	
 }

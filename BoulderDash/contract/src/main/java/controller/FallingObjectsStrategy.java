@@ -4,10 +4,10 @@ import model.IMap;
 import model.element.Permeability;
 import model.element.mobile.IMobile;
 
-public class FallingObjectsStrategy implements IStrategy {
+public abstract class FallingObjectsStrategy implements IStrategy {
 
 	@Override
-	public void followStrategy(IMobile currentPawn, IMap map, IMobile myCharacter) {
+	public void followStrategy(IMobile currentPawn, IMap map) {
 		// if current pawn can go down
 		if (currentPawn.canMoveTo(UserOrder.DOWN)) {
 			currentPawn.moveDown();
@@ -27,7 +27,7 @@ public class FallingObjectsStrategy implements IStrategy {
 						if (map.getSquareIsOccupiedXY(pawnVerif.getPosition().x - 1,
 								pawnVerif.getPosition().y + 1) == Permeability.PENETRABLE) {
 							currentPawn.moveLeft();
-							break;
+							return;
 						}
 					}
 
@@ -38,11 +38,12 @@ public class FallingObjectsStrategy implements IStrategy {
 						if (map.getSquareIsOccupiedXY(pawnVerif.getPosition().x + 1,
 								pawnVerif.getPosition().y + 1) == Permeability.PENETRABLE) {
 							currentPawn.moveRight();
-							break;
+							return;
 						}
 					}
 				}
 			}
+			currentPawn.doNothing();
 		}
 	}
 

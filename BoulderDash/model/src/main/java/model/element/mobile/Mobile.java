@@ -216,12 +216,22 @@ abstract class Mobile extends Element implements IMobile {
         this.setHasMoved();
     }
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.insanevehicles.model.element.mobile.IMobile#isCrushed()
+    /**
+     * @return If the mobile is crushed by a boulder of in a blocking entity.
      */
     @Override
     public Boolean isCrushed() {
+    	for (IMobile pawn : this.getMap().getPawns()) {
+
+			if (pawn.getSprite().getConsoleImage() == 'O') {
+				Boulder boulder = (Boulder) pawn;
+				if (boulder.getPosition().x == this.getPosition().x
+						&& boulder.getPosition().y == this.getPosition().y - 1
+						&& boulder.getFallSpeed()) {
+					return true;
+				}
+			}
+    	}
         return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
     }
     
@@ -249,6 +259,11 @@ abstract class Mobile extends Element implements IMobile {
     	}
     }
     
+    /**
+     * This method does NOT test the position of the player.
+     * @param direction
+     * @return if the pawn can step to the given direction
+     */
 	protected Boolean pawnsAllowMovementTo(final UserOrder direction) {
 		Point desiredPosition = null;
 		switch (direction) {
@@ -279,13 +294,6 @@ abstract class Mobile extends Element implements IMobile {
 		}
 		
 		
-		if (this.getMap().getMyCharacter().getPosition().equals(desiredPosition)) {
-			if (this.getSprite().getConsoleImage() == 'V') {
-				return true;
-			} else {
-				return false;
-			}
-		}
 		return true;
 	}
 
@@ -330,5 +338,15 @@ abstract class Mobile extends Element implements IMobile {
 	  this.setPosition(new Point(1, -1));
 	  this.getMap().getPawns().remove(this);
 	}
-
+	
+	@Override
+	public UserOrder getLastWallTouched() {
+		//nop
+		return UserOrder.NOP;
+	}
+	
+	@Override
+	public void setLastWallTouched(final UserOrder userOrder) {
+		//nop
+	}
 }

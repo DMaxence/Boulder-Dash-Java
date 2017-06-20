@@ -51,6 +51,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
     this.getModel().getMap().setMyCharacter(this.getModel().getMyCharacter());
     while (this.getModel().getMyCharacter().isAlive()) {
       Thread.sleep(speed);
+      
       if (this.getModel().getMyCharacter().canMoveTo(this.getStackOrder())) {
         switch (this.getStackOrder()) {
         case RIGHT:
@@ -69,9 +70,9 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
         default:
           this.getModel().getMyCharacter().doNothing();
           break;
-        }
-        this.getModel().movePawns();
+        }  
       }
+      this.getModel().movePawns();
       this.clearStackOrder();
 
       this.getView().followMyCharacter();
