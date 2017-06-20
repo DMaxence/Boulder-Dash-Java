@@ -11,6 +11,11 @@ import model.element.mobile.IMobile;
  */
 public abstract class FallingObjectsStrategy implements IStrategy {
 
+	/**
+	 * The strategy for falling objects.
+	 * @param currentPawn The pawn which will apply the strategy.
+	 * @param map The map to move the pawn on
+	 */
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
 		// if current pawn can go down

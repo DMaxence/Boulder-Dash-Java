@@ -130,6 +130,9 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
     this.stackOrder = newOrder;
   }
 
+  /**
+   * Sets the stack to NOP.
+   */
   private void clearStackOrder() {
     this.stackOrder = UserOrder.NOP;
   }

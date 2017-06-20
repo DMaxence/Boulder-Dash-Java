@@ -7,6 +7,7 @@ import model.element.Permeability;
 import model.element.mobile.IMobile;
 
 /**
+ * The map interface.
  * @author Paul Combaldieu
  */
 public interface IMap {

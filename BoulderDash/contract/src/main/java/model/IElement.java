@@ -6,7 +6,11 @@ import fr.exia.showboard.ISquare;
 import model.element.Permeability;
 import model.element.Sprite;
 
-
+/**
+ * The interface that represents elements on the board.
+ * @author paul
+ *
+ */
 public interface IElement extends ISquare {
 
     /**

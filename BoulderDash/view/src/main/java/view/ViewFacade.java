@@ -29,11 +29,22 @@ public class ViewFacade implements IView, Runnable, KeyListener {
   /** The Constant squareSize. */
   private static final int squareSize = 50;
 
+  /** The map */
   private IMap map = null;
+  
+  /** The player's character */
   private IMobile myCharacter = null;
+  
+  /** The list of pawns */
   private ArrayList<IMobile> pawns = null;
+  
+  /** The close view on the player */
   private Rectangle closeView = null;
+  
+  /** The order performer */
   private IOrderPerformer orderPerformer = null;
+  
+  /** The BoardFrame */
   private final BoardFrame boardFrame = new BoardFrame("Boulder Hendeck");
 
   /**
@@ -53,6 +64,10 @@ public class ViewFacade implements IView, Runnable, KeyListener {
     SwingUtilities.invokeLater(this);
   }
 
+  /**
+   * Gets a reasonable size for the close view depending on the map 
+   * @return A rectangle with reasonable dimensions.
+   */
   private Rectangle getReasonableViewPort() {
     int reasonableWidth;
     int reasonableHeight;
@@ -148,8 +163,7 @@ public class ViewFacade implements IView, Runnable, KeyListener {
     // Nop
   }
 
-  /*
-   * (non-Javadoc)
+  /**
    * 
    * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
    */
@@ -201,7 +215,10 @@ public class ViewFacade implements IView, Runnable, KeyListener {
   private IMap getMap() {
     return this.map;
   }
-
+  
+  /**
+   * Move the view to focus on the character.
+   */
   @Override
   public void followMyCharacter() {
     this.getCloseView().y = (int) (this.myCharacter.getY() - (this.getCloseView().getHeight() / 2));
@@ -234,9 +251,8 @@ public class ViewFacade implements IView, Runnable, KeyListener {
   }
   
   /**
-   * Update the board frame.
+   * Update the board frame. Redraws squares.
    */
-  
   public void updateBoardFrame() {
     for (int x = 0; x < this.getMap().getWidth(); x++) {
       for (int y = 0; y < this.getMap().getHeight(); y++) {
@@ -245,6 +261,10 @@ public class ViewFacade implements IView, Runnable, KeyListener {
     }
   }
 
+  /**
+   * 
+   * @param newPawns The pawn list.
+   */
   private void setPawns(final ArrayList<IMobile> newPawns) {
     this.pawns = newPawns;
   }
