@@ -71,6 +71,9 @@ public interface IMobile extends IPawn, IElement {
      */
     Boolean isCrushed();
     
+    /** 
+     * @return Whether this pawn can move to the given position 
+     */
     Boolean canMoveTo(final UserOrder direction);
 
     /*
@@ -80,11 +83,26 @@ public interface IMobile extends IPawn, IElement {
     @Override
     Point getPosition();
     
+    /**
+     * Removes this pawn from the board.
+     */
     public void removeFromBoard();
     
+    /**
+     * Makes this pawn follow its strategy.
+     */
     public void followMyStrategy();
     
+    /**
+     * Gets the direction of the last touched wall
+     * @return the direction.
+     */
     public UserOrder getLastWallTouched();
+    
+    /**
+     * Sets the direction of the last touched wall.
+     * @param userOrder The direction.
+     */
     public void setLastWallTouched(final UserOrder userOrder);
 
 }

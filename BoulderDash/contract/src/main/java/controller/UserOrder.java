@@ -25,6 +25,10 @@ public enum UserOrder {
 	/** The nope. */
 	NOP;
 	
+	/**
+	 * 
+	 * @return a random value of UserOrder
+	 */
 	public static UserOrder randomOrder() {
 	    int pick = new Random().nextInt(UserOrder.values().length);
 	    return UserOrder.values()[pick];

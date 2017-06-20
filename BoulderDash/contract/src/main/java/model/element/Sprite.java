@@ -30,7 +30,10 @@ public class Sprite {
     /** The is image loaded. */
     private boolean imageLoaded;
     
+    /** The buffer for the character images */
     public static BufferedImage characterTileSet = null;
+    
+    /** The buffer for the map images */
     public static BufferedImage mapTileSet = null;
 
     /**
@@ -47,6 +50,9 @@ public class Sprite {
         bufferPart = part;
     }
     
+    /**
+     * Loads the buffers for the characters and the map
+     */
     public static void loadBuffers()
     {
     	try

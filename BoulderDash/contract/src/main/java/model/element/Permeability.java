@@ -13,5 +13,7 @@ public enum Permeability {
     
     /** The penetrable. */
     PENETRABLE,
+    
+    /** The mineable */
     MINEABLE;
 }

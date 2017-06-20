@@ -12,19 +12,19 @@ import model.element.mobile.IMobile;
 public interface IModel {
 
     /**
-     * Gets the example by id.
+     * Gets the map by id.
      *
      * @param id
      *            the id
-     * @return the example by id
+     * @return the map by id
      * @throws SQLException
      *             the SQL exception
      */
     public IMap getMap();
     
+    /** @return the player's character */
     public IMobile getMyCharacter();
     
+    /** Makes the pawn follow their strategy */
     public void movePawns();
-    
-    //public ArrayList<IMobile> getPawns();
 }

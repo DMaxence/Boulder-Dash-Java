@@ -4,6 +4,11 @@ import model.IMap;
 import model.element.Permeability;
 import model.element.mobile.IMobile;
 
+/**
+ * The base strategy for a falling object.
+ * @author paul, Maxence Duhoux
+ *
+ */
 public abstract class FallingObjectsStrategy implements IStrategy {
 
 	@Override
