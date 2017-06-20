@@ -6,7 +6,7 @@ import model.IModel;
 import view.IView;
 
 /**
- * <h1>The Class ControllerFacade provides a facade of the Controller
+ * <h1>The Class ControllerFacade provides the code of the Controller
  * component.</h1>
  * 
  * @author Tejesh Tailor
@@ -108,15 +108,14 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
   public IOrderPerformer getOrderPeformer() {
     return this;
   }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * fr.exia.insanevehicles.controller.IIinsaneVehiclesController#orderPerform
-   * (fr.exia. insanevehicles.controller.UserOrder)
-   */
-
+  
+/*
+ * (non-Javadoc)
+ * @see 
+ * controller.IOrderPerformer#orderPerform(controller.UserOrder)
+ * 
+ */
+  
   @Override
   public final void orderPerform(final UserOrder userOrder) throws IOException {
     this.setStackOrder(userOrder);
