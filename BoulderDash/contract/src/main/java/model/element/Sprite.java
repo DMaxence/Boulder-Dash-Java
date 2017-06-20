@@ -1,5 +1,4 @@
 package model.element;
-
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -10,8 +9,8 @@ import javax.imageio.ImageIO;
 
 /**
  * <h1>The Sprite Class.</h1>
- *
- * @author Jade
+ * 
+ * @author Tejesh Tailor
  * @version 0.1
  */
 public class Sprite {
@@ -22,10 +21,10 @@ public class Sprite {
     /** The console image. */
     private char    consoleImage;
     
-    /** The selected buffer */
+    /** The selected buffer. */
     private BufferedImage buffer;
     
-    /** The part of buffer to keep */
+    /** The part of buffer to keep. */
     private Rectangle bufferPart;
 
     /** The is image loaded. */

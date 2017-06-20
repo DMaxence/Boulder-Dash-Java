@@ -3,11 +3,12 @@ package controller;
 /**
  * <h1>The Interface IIinsaneVehiclesController.</h1>
  *
- * @author Jade
- * @version 0.1
  * @see IOrderPerformer
+ * @author Tejesh Tailor
+ *
  */
 public interface IBoulderDashController {
+  
 
     /**
      * Play.
@@ -16,6 +17,7 @@ public interface IBoulderDashController {
      *             the interrupted exception
      */
     void start() throws InterruptedException;
+    
 
     /**
      * Gets the order peformer.

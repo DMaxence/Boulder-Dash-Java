@@ -207,7 +207,9 @@ public class MyCharacter extends Mobile {
 
 				} else if (pawn.getPermeability() == Permeability.MINEABLE) {
 					// Player stepped on a diamond
-					this.collectDiamond(pawn);
+
+					pawn.removeFromBoard();
+					this.getMap().decreaseDiamondCount();
 
 					return true;
 				}
@@ -234,19 +236,9 @@ public class MyCharacter extends Mobile {
 		}
 		return super.isCrushed();
 	}
-	
-	/**
-	 * 
-	 * @param pawn
-	 */
-	public void collectDiamond(IMobile pawn) {
-	  
-	//  pawn.removeFromBoard();
-     // this.getMap().decreaseDiamondCount();
-	}
 
 	@Override
 	public void followMyStrategy() {
-		//nop	
+		//nop
 	}
 }

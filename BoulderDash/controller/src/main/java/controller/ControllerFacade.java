@@ -6,7 +6,7 @@ import model.IModel;
 import view.IView;
 
 /**
- * <h1>The Class ControllerFacade provides a facade of the Controller
+ * <h1>The Class ControllerFacade provides the code of the Controller
  * component.</h1>
  * 
  * @author Tejesh Tailor
@@ -20,14 +20,14 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
   /** The model. */
   private final IModel model;
 
-  /** The Constant speed. */
+  /** The Constant speed of Character. */
   private static final int speed = 250;
 
   /** The stack order. */
   private UserOrder stackOrder = UserOrder.NOP;
 
   /**
-   * Instantiates a new controller facade.
+   * Instantiates a new controller.
    *
    * @param view
    *          the view
@@ -109,15 +109,14 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
   public IOrderPerformer getOrderPeformer() {
     return this;
   }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * fr.exia.insanevehicles.controller.IIinsaneVehiclesController#orderPerform
-   * (fr.exia. insanevehicles.controller.UserOrder)
-   */
-
+  
+/*
+ * (non-Javadoc)
+ * @see 
+ * controller.IOrderPerformer#orderPerform(controller.UserOrder)
+ * 
+ */
+  
   @Override
   public final void orderPerform(final UserOrder userOrder) throws IOException {
     this.setStackOrder(userOrder);

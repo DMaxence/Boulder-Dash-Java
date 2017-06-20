@@ -19,9 +19,7 @@ import ElementFactory.ElementFactory;
  */
 abstract class Mobile extends Element implements IMobile {
 
-    /**
-     * The x.
-     */
+    /**The x. */
     private Point   position;
 
     /** The alive. */

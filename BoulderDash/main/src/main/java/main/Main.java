@@ -13,9 +13,8 @@ import view.ViewFacade;
 
 /**
  * <h1>The Class Main.</h1>
+ * @author Tejesh Tailor
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
  */
 public abstract class Main {
 
@@ -29,7 +28,7 @@ public abstract class Main {
      */
     public static void main(final String[] args) throws SQLException, IOException {
     	
-    	String idToAsk= JOptionPane.showInputDialog("Please input id of the map : ");
+    	String idToAsk= JOptionPane.showInputDialog("Hello ! Please input id of the map : ");
         int idAsked = Integer.parseInt(idToAsk);
         
     	final IModel model = new ModelFacade(idAsked);
