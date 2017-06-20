@@ -231,7 +231,8 @@ public class MyCharacter extends Mobile {
 	public Boolean isCrushed() {
 		for (IMobile pawn : this.getMap().getPawns()) {
 			if(pawn.getSprite().getConsoleImage() == 'M'){
-				return this.getPosition().equals(pawn.getPosition());
+				if (this.getPosition().equals(pawn.getPosition()))
+					return true;
 			}
 		}
 		return super.isCrushed();
