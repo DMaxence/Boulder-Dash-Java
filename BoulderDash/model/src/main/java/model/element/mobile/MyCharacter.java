@@ -156,7 +156,7 @@ public class MyCharacter extends Mobile {
 			break;
 		case NOP:
 		default:
-			return true;
+			break;
 		}
 		
 		//TODO factor
