@@ -7,8 +7,9 @@ import view.IView;
  * <h1>The Class ControllerFacade provides the code of the Controller
  * component.</h1>
  * 
+ * 
  * @author Tejesh Tailor
- *
+ * @version 1.0
  */
 public class ControllerFacade implements IOrderPerformer, IBoulderDashController {
 
@@ -19,7 +20,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
   private final IModel model;
 
   /** The Constant speed of Character. */
-  private static final int speed = 250;
+  private static final int speed = 200;
 
   /** The stack order. */
   private UserOrder stackOrder = UserOrder.NOP;

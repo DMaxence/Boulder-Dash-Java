@@ -23,13 +23,13 @@ public abstract class GenericView {
 	/** The list of pawns. */
 	protected ArrayList<IMobile> pawns = null;
 
-	/** The close view on the player */
+	/** The close view on the player. */
 	protected Rectangle closeView = null;
 
-	/** The order performer */
+	/** The order performer. */
 	protected IOrderPerformer orderPerformer = null;
 
-	/** The BoardFrame */
+	/** The BoardFrame. */
 	protected final BoardFrame boardFrame = new BoardFrame("Boulder Hendeck");
 
 	/**
@@ -74,9 +74,9 @@ public abstract class GenericView {
 	}
 
 	/**
-	 * Gets a reasonable size for the close view depending on the map
+	 * Gets a reasonable size for the close view depending on the map.
 	 * 
-	 * @return A rectangle with reasonable dimensions.
+	 * @return A rectangle with reasonable dimensions
 	 */
 	protected Rectangle getReasonableViewPort() {
 		int reasonableWidth;
@@ -91,7 +91,7 @@ public abstract class GenericView {
 			reasonableWidth = (int) (map.getWidth() * 0.75);
 		}
 
-		// Same with the height
+		// Now the same with height
 		if ((int) (map.getHeight() * 0.75) > 10) {
 			reasonableHeight = 10;
 		} else if ((int) (map.getHeight() * 0.75) < 5) {
@@ -120,7 +120,7 @@ public abstract class GenericView {
 	}
 
 	/**
-	 * Update the board frame. Redraws squares.
+	 * Update the board frame and redraws squares.
 	 */
 	public void updateBoardFrame() {
 		for (int x = 0; x < this.getMap().getWidth(); x++) {
