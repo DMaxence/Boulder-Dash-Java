@@ -56,6 +56,13 @@ public abstract class MapDAO extends AbstractDAO {
 			if (result.first()) {
 				width = result.getInt(widthColumnIndex);
 				height = result.getInt(heightColumnIndex);
+				try{
+					MapDAO.testCorrectLevel(width, height, result.getString(mapColumnIndex));
+				}
+				catch(Exception e){
+					System.out.println(e.getMessage());
+					System.exit(0);
+				}
 				tempMap = new Map(width, height, new IElement[width][height]);
 
 				MapDAO.placePawnsOnMap(result, tempMap, width);
@@ -66,6 +73,11 @@ public abstract class MapDAO extends AbstractDAO {
 			result.close();
 		}
 		return tempMap;
+	}
+	
+	private static void testCorrectLevel(final int width, final int height, final String mapString) throws Exception {
+		if(width * height + height != mapString.length())
+			throw new Exception("Level is not good >:( x:" + width + " y: " + height + " size: " + mapString.length());
 	}
 
 	private static void placePawnsOnMap(final ResultSet result, final Map tempMap, int width) throws SQLException, IOException {
