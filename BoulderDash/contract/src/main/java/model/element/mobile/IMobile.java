@@ -104,5 +104,11 @@ public interface IMobile extends IPawn, IElement {
      * @param userOrder The direction.
      */
     public void setLastWallTouched(final UserOrder userOrder);
+    
+    /** 
+     * 
+     * @return Whether this object is falling / has speed.
+     */
+    public boolean isFalling();
 
 }

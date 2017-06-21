@@ -181,11 +181,9 @@ abstract class Mobile extends Element implements IMobile {
 	@Override
 	public Boolean isCrushed() {
 		for (IMobile pawn : this.getMap().getPawns()) {
-
-			if (pawn.getSprite().getConsoleImage() == 'O') {
-				Boulder boulder = (Boulder) pawn;
-				if (boulder.getPosition().x == this.getPosition().x
-						&& boulder.getPosition().y == this.getPosition().y - 1 && boulder.getFallSpeed()) {
+			if (pawn.getSprite().getConsoleImage() == 'O' || pawn.getSprite().getConsoleImage() == 'V') {
+				if (pawn.getPosition().x == this.getPosition().x
+						&& pawn.getPosition().y == this.getPosition().y - 1 && pawn.isFalling()) {
 					return true;
 				}
 			}
@@ -298,7 +296,8 @@ abstract class Mobile extends Element implements IMobile {
 		return this.board;
 	}
 
-	public boolean getFallSpeed() {
+	@Override
+	public boolean isFalling() {
 		return fallSpeed;
 	}
 
