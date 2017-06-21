@@ -8,7 +8,8 @@ import model.element.motionlesselement.Wall;
 /**
  * Motionless element factory. 
  * @author paul
- *
+ * 
+ * @version 1.0
  */
 public abstract class ElementFactory {
 	  /** The Constant wall. */
@@ -31,7 +32,7 @@ public abstract class ElementFactory {
      };
 
     /**
-     * Creates a new MotionlessElements object.
+     * Create a new MotionlessElements object.
      *
      * @return the motionless element
      */
@@ -40,7 +41,7 @@ public abstract class ElementFactory {
     }
 
     /**
-     * Creates a new MotionlessElements object.
+     * Create a new MotionlessElements object.
      *
      * @return the motionless element
      */
@@ -49,7 +50,7 @@ public abstract class ElementFactory {
     }
 
     /**
-     * Creates a new MotionlessElements object.
+     * Create a new MotionlessElements object.
      *
      * @return the motionless element
      */

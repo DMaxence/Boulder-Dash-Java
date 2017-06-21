@@ -14,13 +14,13 @@ public abstract class GenericView {
 	/** The Constant squareSize. */
 	protected static final int squareSize = 50;
 
-	/** The map */
+	/** The map. */
 	protected IMap map = null;
 
-	/** The player's character */
+	/** The player's character. */
 	protected IMobile myCharacter = null;
 
-	/** The list of pawns */
+	/** The list of pawns. */
 	protected ArrayList<IMobile> pawns = null;
 
 	/** The close view on the player */
