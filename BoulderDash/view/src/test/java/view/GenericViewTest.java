@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import controller.UserOrder;
+
 public class GenericViewTest {
 
 	Rectangle closeView;
@@ -35,4 +37,12 @@ public class GenericViewTest {
 		assertTrue(this.closeView.getX() > 0 && this.closeView.getY() > 0);
 	}
 
+	@Test
+	public void testKeyCodeToUserOrder(){
+	  UserOrder expected = UserOrder.RIGHT;
+	  
+	  UserOrder result = GenericView.keyCodeToUserOrder(39);
+	  
+	  assertEquals(expected, result);
+	}
 }
