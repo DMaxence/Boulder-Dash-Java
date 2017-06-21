@@ -1,4 +1,4 @@
-package ElementFactory;
+package element.elementfactory;
 
 import element.Element;
 import model.element.motionlesselement.DugDirt;

@@ -6,10 +6,10 @@ import java.io.IOException;
 import controller.UserOrder;
 import model.IMap;
 import element.Element;
+import element.elementfactory.ElementFactory;
 import fr.exia.showboard.IBoard;
 import model.element.Permeability;
 import model.element.Sprite;
-import ElementFactory.ElementFactory;
 
 /**
  * <h1>The Mobile Class.</h1>

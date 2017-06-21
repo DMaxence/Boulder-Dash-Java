@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import ElementFactory.ElementFactory;
+
+import element.elementfactory.ElementFactory;
 import model.IElement;
 import model.Map;
 import model.element.mobile.Boulder;
