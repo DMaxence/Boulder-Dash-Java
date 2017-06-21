@@ -22,5 +22,8 @@ public interface IView {
      */
     void followMyCharacter();
     
+    /**
+     * Refreshes and redraws elements on the board
+     */
     void updateBoardFrame();
 }
