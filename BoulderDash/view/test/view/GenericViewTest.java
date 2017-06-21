@@ -13,7 +13,8 @@ import org.junit.Test;
 import controller.UserOrder;
 
 public class GenericViewTest {
-
+  
+ 
 	Rectangle closeView;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -25,6 +26,7 @@ public class GenericViewTest {
 
 	@Before
 	public void setUp() throws Exception {
+	  closeView = new Rectangle(1, 2, 3, 4);
 	}
 
 	@After
