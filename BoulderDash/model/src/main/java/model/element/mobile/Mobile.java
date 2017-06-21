@@ -19,7 +19,7 @@ import model.element.Sprite;
  */
 abstract class Mobile extends Element implements IMobile {
 
-	/** The x. */
+	/** The x and y. */
 	private Point position;
 
 	/** The alive. */
