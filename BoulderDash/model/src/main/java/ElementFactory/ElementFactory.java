@@ -10,7 +10,7 @@ import model.element.motionlesselement.Wall;
  * @author paul
  *
  */
-public class ElementFactory {
+public abstract class ElementFactory {
 	  /** The Constant wall. */
     private static final Wall        		 wall          		 = new Wall();
 
@@ -73,3 +73,4 @@ public class ElementFactory {
         return dugDirt;
     }
 }
+	
