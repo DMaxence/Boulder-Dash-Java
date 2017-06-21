@@ -100,7 +100,10 @@ public class Map extends Observable implements IMap {
 
   @Override
   public IElement getOnTheMapXY(final int x, final int y) {
-    return this.map[x][y];
+    if(x >= 0 && x < this.getWidth() && y >= 0 && y < this.getHeight())
+    	return this.map[x][y];
+    else
+    	return this.map[0][0];
   }
 
   @Override
