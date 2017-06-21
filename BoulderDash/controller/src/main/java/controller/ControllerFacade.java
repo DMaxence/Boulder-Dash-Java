@@ -1,7 +1,5 @@
 package controller;
-
 import java.io.IOException;
-
 import model.IModel;
 import view.IView;
 
@@ -38,7 +36,6 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
     super();
     this.view = view;
     this.model = model;
-
   }
 
   /**
