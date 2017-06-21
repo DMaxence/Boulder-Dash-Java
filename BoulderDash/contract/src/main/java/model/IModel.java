@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.SQLException;
 import model.IMap;
 import model.element.mobile.IMobile;
 
@@ -12,13 +11,7 @@ import model.element.mobile.IMobile;
 public interface IModel {
 
     /**
-     * Gets the map by id.
-     *
-     * @param id
-     *            the id
-     * @return the map by id
-     * @throws SQLException
-     *             the SQL exception
+     * Gets the map.
      */
     public IMap getMap();
     

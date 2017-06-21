@@ -41,8 +41,11 @@ public class Sprite {
      *
      * @param character
      *            the character
-     * @param imageName
-     *            the image name
+     * @param imageBuffer
+     *            the buffer
+     *      
+     * @param part
+     * 			  The part to crop from the buffer.
      */
     public Sprite(final char character, final BufferedImage imageBuffer, final Rectangle part) {
         this.setConsoleImage(character);

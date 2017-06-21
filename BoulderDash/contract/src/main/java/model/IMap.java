@@ -31,8 +31,8 @@ public interface IMap {
 	/**
 	 * Gets the x and y.
 	 * 
-	 * @param x
-	 * @param y
+	 * @param x The x.
+	 * @param y The y.
 	 * @return the x and y 
 	 */
 	public IElement getOnTheMapXY(int x, int y);
@@ -41,9 +41,9 @@ public interface IMap {
 	/**
      * Sets the x and y.
      *
-     * @param x
-     * @param y
-     *            the new x and y
+     * @param x The x.
+     * @param y The y.
+     * @param elem The element to place.
      */
 	public void setOnTheMapXY(int x, int y, IElement elem);
 	
@@ -53,7 +53,10 @@ public interface IMap {
 	/** @return The observable */
 	public Observable getObservable();
 	
-	/** Adds a pawn to the current map */
+	/**
+	 * Adds a pawn on the map.
+	 * @param pawn The pawn to add.
+	 */
 	public void addPawn(final IMobile pawn);
 	
 	/** @return The pawns on the current map */
@@ -75,9 +78,17 @@ public interface IMap {
 	/** @return The player's character */
 	public IMobile getMyCharacter();
 	
-	/** Sets the player's character */
+	/** Sets the player's character 
+	 * 
+	 * @param character The player's character.
+	 */
 	public void setMyCharacter(IMobile character);
 	
-	/** @return the permeability of the square at the given position */
+	/** 
+	 * @return 
+	 * the permeability of the square at the given position 
+	 * @param x The x.
+	 * @param y The y.
+	 */
 	public Permeability getSquareIsOccupiedXY(final int x, final int y);
 }

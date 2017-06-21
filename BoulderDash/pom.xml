@@ -49,6 +49,7 @@
         <version>2.10.4</version>
         <configuration>
           <aggregate>true</aggregate>
+          <excludePackageNames>fr.exia.showboard.*:java.*:javax.*:org.*</excludePackageNames>
         </configuration>
       </plugin>
      <plugin>

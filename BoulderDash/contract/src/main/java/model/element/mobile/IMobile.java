@@ -72,6 +72,7 @@ public interface IMobile extends IPawn, IElement {
     Boolean isCrushed();
     
     /** 
+     * @param direction The direction.
      * @return Whether this pawn can move to the given position 
      */
     Boolean canMoveTo(final UserOrder direction);
