@@ -1,0 +1,70 @@
+$ mvn jxr:jxr
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] boulderdash
+[INFO] boulderdash.contract
+[INFO] boulderdash.controller
+[INFO] boulderdash.model
+[INFO] boulderdash..view
+[INFO] boulderdash.main
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jxr-plugin/maven-metadata.xml
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jxr-plugin/maven-metadata.xml (486 B at 861 B/s)
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building boulderdash 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-jxr-plugin:2.5:jxr (default-cli) @ boulderdash ---
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building boulderdash.contract 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-jxr-plugin:2.5:jxr (default-cli) @ contract ---
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building boulderdash.controller 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-jxr-plugin:2.5:jxr (default-cli) @ controller ---
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building boulderdash.model 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-jxr-plugin:2.5:jxr (default-cli) @ model ---
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building boulderdash..view 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-jxr-plugin:2.5:jxr (default-cli) @ view ---
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building boulderdash.main 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-jxr-plugin:2.5:jxr (default-cli) @ main ---
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] boulderdash ........................................ SUCCESS [  1.030 s]
+[INFO] boulderdash.contract ............................... SUCCESS [  0.140 s]
+[INFO] boulderdash.controller ............................. SUCCESS [  0.016 s]
+[INFO] boulderdash.model .................................. SUCCESS [  0.067 s]
+[INFO] boulderdash..view .................................. SUCCESS [  0.016 s]
+[INFO] boulderdash.main ................................... SUCCESS [  0.137 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.572 s
+[INFO] Finished at: 2017-06-22T16:14:02+02:00
+[INFO] Final Memory: 19M/201M
+[INFO] ------------------------------------------------------------------------
