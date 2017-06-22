@@ -60,9 +60,11 @@ public class ModelFacade implements IModel {
 	 */
 	public void movePawns() {
 		ArrayList<IMobile> copyPawns = new ArrayList<>(this.getMap().getPawns());
+		
 		for (IMobile pawn : copyPawns) {
 			pawn.followMyStrategy();
 		}
+
 		if (this.getMyCharacter().isCrushed())
 			this.getMyCharacter().die();
 	}

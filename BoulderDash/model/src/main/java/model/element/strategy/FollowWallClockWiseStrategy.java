@@ -14,7 +14,7 @@ public class FollowWallClockWiseStrategy extends MonsterStrategy {
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
 		super.followStrategy(currentPawn, map);
-		if(currentPawn.isCrushed())
+		if(currentPawn.getPosition().y < 0)
 		{
 			return;
 		}

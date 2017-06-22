@@ -15,7 +15,6 @@ public class RandomMonsterStrategy extends MonsterStrategy {
 
 	@Override
 	public void followStrategy(IMobile currentPawn, IMap map) {
-
 		super.followStrategy(currentPawn, map);
 		if (currentPawn.getPosition().y < 0) {
 			return;
@@ -23,10 +22,14 @@ public class RandomMonsterStrategy extends MonsterStrategy {
 
 		UserOrder orderToFollow = UserOrder.RIGHT;
 		int tries = 0;
-		while (!currentPawn.canMoveTo(orderToFollow) || tries < 4) {
+		while (!currentPawn.canMoveTo(orderToFollow) && tries < 4) {
 			orderToFollow = UserOrder.randomOrder();
 			tries++;
 		}
+		
+		if(tries == 4)
+			return;
+		
 		this.moveToOrder(orderToFollow, currentPawn);
 	}
 
