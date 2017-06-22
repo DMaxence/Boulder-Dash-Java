@@ -24,7 +24,11 @@ public class ElementTest {
   @AfterClass
   public static void tearDownAfterClass() throws Exception {
   }
-
+  
+  /**
+   * We create a non-null size new sprite.
+   * @throws Exception
+   */
   @Before
   public void setUp() throws Exception {
     sprite = new Sprite('T', Sprite.characterTileSet, new Rectangle(1,93,27,92));
