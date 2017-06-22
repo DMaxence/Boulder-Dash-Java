@@ -17,10 +17,10 @@ import model.element.mobile.MyCharacter;
  */
 public class ModelFacade implements IModel {
 
-	/** The map */
+	/** The map. */
 	private IMap map;
 
-	/** The player's character */
+	/** The player's character. */
 	private MyCharacter myCharacter;
 
 	/**

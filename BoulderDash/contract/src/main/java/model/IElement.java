@@ -29,7 +29,6 @@ public interface IElement extends ISquare {
 
     /*
      * (non-Javadoc)
-     * @see fr.exia.showboard.ISquare#getImage()
      */
     @Override
     Image getImage();
