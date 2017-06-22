@@ -85,7 +85,7 @@ public class ViewFacade extends GenericView implements IView, Runnable, KeyListe
 		boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
-
+		
 		for (int x = 0; x < this.getMap().getWidth(); x++) {
 			for (int y = 0; y < this.getMap().getHeight(); y++) {
 				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);

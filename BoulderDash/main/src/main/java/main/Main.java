@@ -28,11 +28,12 @@ public abstract class Main {
      */
     public static void main(final String[] args) throws SQLException, IOException {
     	
-    	String idToAsk= JOptionPane.showInputDialog("Hello ! Please input id of the map : ");
+    	String idToAsk= JOptionPane.showInputDialog("Hello ! Please input id of the map : ", 1);
         int idAsked = Integer.parseInt(idToAsk);
         
     	final IModel model = new ModelFacade(idAsked);
     	final ViewFacade view = new ViewFacade(model.getMap(), model.getMyCharacter(), model.getMap().getPawns());
+        System.out.println("");
         final IBoulderDashController controller = new ControllerFacade(view, model);
         view.setOrderPerformer(controller.getOrderPeformer());
 
