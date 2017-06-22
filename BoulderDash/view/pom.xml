@@ -15,17 +15,4 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
-				<configuration>
-					<aggregate>true</aggregate>
-					<excludePackageNames>fr.exia.showboard.*:java.*:javax.*:org.*</excludePackageNames>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
 </project>
