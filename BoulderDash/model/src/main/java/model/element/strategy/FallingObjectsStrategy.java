@@ -1,5 +1,7 @@
-package controller;
+package model.element.strategy;
 
+import controller.IStrategy;
+import controller.UserOrder;
 import model.IMap;
 import model.element.Permeability;
 import model.element.mobile.IMobile;

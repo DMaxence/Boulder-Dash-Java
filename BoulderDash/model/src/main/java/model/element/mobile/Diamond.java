@@ -30,8 +30,8 @@ public class Diamond extends Mobile {
 	 *            the x
 	 * @param y
 	 *            the y
-	 * @param road
-	 *            the road
+	 * @param map
+	 *            the map
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
