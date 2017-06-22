@@ -13,7 +13,6 @@ import org.junit.Test;
 public class MapTest {
 
   private Map map;
-  
 
   @BeforeClass
   public static void setUpBeforeClass() throws Exception {
@@ -36,7 +35,10 @@ public class MapTest {
   public void tearDown() throws Exception {
   }
 
-
+  /**
+   * This test verifie that a piece has been properly initialized and are equals.
+   * 
+   */
   @Test
   public void testDecreaseDiamondCount() {
    int expected = 2;
@@ -44,13 +46,22 @@ public class MapTest {
    assertEquals(expected, this.map.getDiamondCount());
   }
 
+  /**
+   * This test verifie that a piece has been properly initialized and are equals.
+   * 
+   */
   @Test
   public void testAddDiamondCount() {
     int expected = 4;
     this.map.addDiamondCount();
     assertEquals(expected, this.map.getDiamondCount());;
   }
-
+  
+  /**
+   * This test verifie that a piece has been properly initialized and are equals,
+   * and the method does not return a null result.
+   * 
+   */
   @Test
   public void testGetDiamondCount() {
     int expected = 3;
@@ -58,17 +69,26 @@ public class MapTest {
     assertEquals(expected, this.map.getDiamondCount());
   }
 
- 
+  /**
+   * This test verifie that a piece has been properly initialized and don't return a null result,
+   * and is greater then 0.
+   * 
+   */
   @Test
   public void testGetWidth() {
-    assertNotNull(this.map.getWidth());
+    assertNotNull(this.map);
     assertTrue(this.map.getWidth() > 0);
     
   }
 
+  /**
+   * This test verifie that a piece has been properly initialized and don't return a null result,
+   * and is greater then 0.
+   * 
+   */
   @Test
   public void testGetHeight() {
-    assertNotNull(this.map.getHeight());
+    assertNotNull(this.map);
     assertTrue(this.map.getHeight() > 0);
   }
 
