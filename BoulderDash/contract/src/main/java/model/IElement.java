@@ -8,7 +8,7 @@ import model.element.Sprite;
 
 /**
  * The interface that represents elements on the board.
- * @author paul
+ * @author Paul Combaldieu 
  *
  */
 public interface IElement extends ISquare {
