@@ -34,14 +34,18 @@ public class ElementTest {
   public void tearDown() throws Exception {
   }
 
-
+  /**
+   * This test verifie that method testGetsprite does not return a null result.
+   */
   @Test
   public void testGetSprite() {
     assertNotNull(this.sprite);
     assertNotNull(this.sprite.getConsoleImage());
     
   }
-
+  /**
+   * This test verifie that method testGetPermeability does not return a null result.
+   */
   @Test
   public void testGetPermeability() {
     assertNotNull(this.permeability);

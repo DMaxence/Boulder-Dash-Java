@@ -29,7 +29,9 @@ public class ControllerFacadeTest {
   public void tearDown() throws Exception {
   }
 
-
+  /**
+   * This test verifie that method does not return a null result.
+   */
   @Test
   public void testGetOrderPeformer() {
     assertNotNull(this);

@@ -8,7 +8,7 @@ import model.element.Sprite;
 
 /**
  * An element is an object that can be used on an IBoard
- * @author paul
+ * @author Paul Combaldieu
  *
  */
 public abstract class Element implements IElement {
@@ -34,6 +34,7 @@ public abstract class Element implements IElement {
 
 	/**
 	 * Getter for the sprite.
+	 * @see sprite
 	 */
 	@Override
 	public final Sprite getSprite() {
