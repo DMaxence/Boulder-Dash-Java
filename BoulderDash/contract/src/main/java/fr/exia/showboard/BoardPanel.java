@@ -391,7 +391,7 @@ class BoardPanel extends JPanel implements Observer {
      * @return the corner min X
      */
     private int getCornerMinX() {
-        return this.getDisplayFrame().x;
+        return this.getDisplayFrame() == null ? 0: this.getDisplayFrame().x;
     }
 
     /**
