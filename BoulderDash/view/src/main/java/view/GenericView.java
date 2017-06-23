@@ -37,7 +37,7 @@ public abstract class GenericView {
 	protected IOrderPerformer orderPerformer = null;
 
 	/** The BoardFrame. */
-	protected final BoardFrame boardFrame = new BoardFrame("Boulder Hendeck");
+	protected final BoardFrame boardFrame = new BoardFrame("BoulderDash");
 
 	/**
 	 * Key code to user order.
