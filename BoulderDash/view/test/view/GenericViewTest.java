@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import controller.UserOrder;
+import contract.controller.UserOrder;
 
 public class GenericViewTest {
 

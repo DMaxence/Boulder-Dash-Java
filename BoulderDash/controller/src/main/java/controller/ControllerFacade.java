@@ -94,7 +94,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
    *
    * @return the view
    */
-  public IView getView() {
+  private IView getView() {
     return this.view;
   }
 
@@ -103,7 +103,7 @@ public class ControllerFacade implements IOrderPerformer, IBoulderDashController
    *
    * @return the model
    */
-  public IModel getModel() {
+  private IModel getModel() {
     return this.model;
   }
 
