@@ -8,7 +8,10 @@ import contract.model.element.mobile.IMobile;
 
 /**
  * The base strategy for a falling object.
- * @author paul, Maxence Duhoux
+ * 
+ * @author paul Combaldieu, Maxence Duhoux
+ * @version 1.0
+ * 
  *
  */
 public abstract class FallingObjectsStrategy implements IStrategy {

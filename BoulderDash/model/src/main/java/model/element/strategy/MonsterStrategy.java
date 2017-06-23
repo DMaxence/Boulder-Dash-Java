@@ -7,7 +7,10 @@ import model.element.mobile.Monster;
 
 /**
  * The base strategy for monsters. If crushed, removed from board, and strategy set to noStrategy.
- * @author paul
+ * 
+ * @author Paul Combaldieu
+ * @version 1.0
+ * 
  *
  */
 public abstract class MonsterStrategy implements IStrategy{

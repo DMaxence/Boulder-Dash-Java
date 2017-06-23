@@ -1,15 +1,22 @@
 package view;
 
+
 import java.awt.Rectangle;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import contract.controller.IOrderPerformer;
 import contract.controller.UserOrder;
 import contract.model.IMap;
 import contract.model.element.mobile.IMobile;
 import fr.exia.showboard.BoardFrame;
 
+/**
+ * The Class GenericView.</h1>
+ * 
+ * @author Tejesh Tailor
+ * @version 1.0
+ */
 public abstract class GenericView {
 	/** The Constant squareSize. */
 	protected static final int squareSize = 50;
