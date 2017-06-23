@@ -22,37 +22,29 @@ public class FollowWallAntiClockWiseStrategy extends MonsterStrategy {
 		if (currentPawn.getLastWallTouched() == UserOrder.NOP) {
 
 			if (currentPawn.canMoveTo(UserOrder.RIGHT)) {
-				System.out.println("r");
 
 				currentPawn.moveRight();
-				System.out.println("r");
 				if (!currentPawn.canMoveTo(UserOrder.RIGHT)) {
 					currentPawn.setLastWallTouched(UserOrder.RIGHT);
 				}
 
 			} else if (currentPawn.canMoveTo(UserOrder.UP)) {
-				System.out.println("u");
 
 				currentPawn.moveUp();
-				System.out.println("u");
 				if (!currentPawn.canMoveTo(UserOrder.UP)) {
 					currentPawn.setLastWallTouched(UserOrder.UP);
 				}
 
 			} else if (currentPawn.canMoveTo(UserOrder.LEFT)) {
-				System.out.println("l");
 
 				currentPawn.moveLeft();
-				System.out.println("l");
 				if (!currentPawn.canMoveTo(UserOrder.LEFT)) {
 					currentPawn.setLastWallTouched(UserOrder.LEFT);
 				}
 
 			} else if (currentPawn.canMoveTo(UserOrder.DOWN)) {
-				System.out.println("d");
 
 				currentPawn.moveDown();
-				System.out.println("d");
 				if (!currentPawn.canMoveTo(UserOrder.DOWN)) {
 					currentPawn.setLastWallTouched(UserOrder.DOWN);
 				}
