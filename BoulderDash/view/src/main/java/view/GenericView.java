@@ -2,7 +2,7 @@ package view;
 
 
 import java.awt.Rectangle;
-
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import contract.controller.IOrderPerformer;
@@ -19,7 +19,7 @@ import fr.exia.showboard.BoardFrame;
  */
 public abstract class GenericView {
 	/** The Constant squareSize. */
-	protected static final int squareSize = 50;
+	protected static final int squareSize = Toolkit.getDefaultToolkit().getScreenSize().width / 20;
 
 	/** The map. */
 	protected IMap map = null;
