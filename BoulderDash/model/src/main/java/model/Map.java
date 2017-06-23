@@ -151,6 +151,10 @@ public class Map extends Observable implements IMap {
       if (pawn.getPosition().equals(point))
         return pawn.getPermeability();
     }
+    
+    if(this.getMyCharacter().getPosition().equals(point))
+    	return this.getMyCharacter().getPermeability();
+    
     return this.getOnTheMapXY(x, y).getPermeability();
   }
 }
