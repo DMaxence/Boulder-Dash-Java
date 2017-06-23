@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import contract.controller.IBoulderDashController;
+import contract.model.IModel;
 import controller.ControllerFacade;
-import controller.IBoulderDashController;
-import model.IModel;
 import model.ModelFacade;
 import view.ViewFacade;
 

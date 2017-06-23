@@ -1,7 +1,7 @@
 package model.element.strategy;
 
-import model.IMap;
-import model.element.mobile.IMobile;
+import contract.model.IMap;
+import contract.model.element.mobile.IMobile;
 
 /**
  * A strategy that does nothing. Used when monsters are taken out of the board.

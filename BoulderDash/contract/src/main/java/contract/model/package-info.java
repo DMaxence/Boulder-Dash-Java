@@ -3,4 +3,4 @@
  * 
  * @author Tejesh Tailor
  */
-package model;
+package contract.model;

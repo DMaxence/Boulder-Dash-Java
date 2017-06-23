@@ -1,4 +1,4 @@
-package controller;
+package contract.controller;
 
 /**
  * <h1>The Interface IIinsaneVehiclesController.</h1>

@@ -1,4 +1,4 @@
-package model.element;
+package contract.model.element;
 
 /**
  * <h1>The Permeability Enum.</h1>

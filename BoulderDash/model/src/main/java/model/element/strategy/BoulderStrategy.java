@@ -1,7 +1,7 @@
 package model.element.strategy;
 
-import model.IMap;
-import model.element.mobile.IMobile;
+import contract.model.IMap;
+import contract.model.element.mobile.IMobile;
 
 /**
  * The strategy followed by boulders. Basically the FallingObject strategy.

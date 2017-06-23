@@ -5,8 +5,8 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import contract.model.IElement;
 import element.elementfactory.ElementFactory;
-import model.IElement;
 import model.Map;
 import model.element.mobile.Boulder;
 import model.element.mobile.Diamond;

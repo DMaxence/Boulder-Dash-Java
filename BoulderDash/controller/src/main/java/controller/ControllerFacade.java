@@ -1,7 +1,11 @@
 package controller;
 import java.io.IOException;
-import model.IModel;
-import view.IView;
+
+import contract.controller.IBoulderDashController;
+import contract.controller.IOrderPerformer;
+import contract.controller.UserOrder;
+import contract.model.IModel;
+import contract.view.IView;
 
 /**
  * <h1>The Class ControllerFacade provides the code of the Controller

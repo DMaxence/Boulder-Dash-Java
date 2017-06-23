@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import model.element.Permeability;
-import model.element.Sprite;
+import contract.model.element.Permeability;
+import contract.model.element.Sprite;
 
 public class ElementTest {
   private Sprite sprite;

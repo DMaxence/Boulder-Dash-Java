@@ -5,4 +5,4 @@
  * @author Tejesh Tailor
  * @version 1.0
  */
-package view;
+package contract.view;

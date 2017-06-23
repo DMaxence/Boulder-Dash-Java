@@ -4,11 +4,11 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import controller.IOrderPerformer;
-import controller.UserOrder;
+import contract.controller.IOrderPerformer;
+import contract.controller.UserOrder;
+import contract.model.IMap;
+import contract.model.element.mobile.IMobile;
 import fr.exia.showboard.BoardFrame;
-import model.IMap;
-import model.element.mobile.IMobile;
 
 public abstract class GenericView {
 	/** The Constant squareSize. */

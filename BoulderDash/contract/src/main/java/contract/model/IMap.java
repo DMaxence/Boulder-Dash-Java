@@ -1,10 +1,10 @@
-package model;
+package contract.model;
 
 import java.util.ArrayList;
 import java.util.Observable;
 
-import model.element.Permeability;
-import model.element.mobile.IMobile;
+import contract.model.element.Permeability;
+import contract.model.element.mobile.IMobile;
 
 /**
  * The map interface.

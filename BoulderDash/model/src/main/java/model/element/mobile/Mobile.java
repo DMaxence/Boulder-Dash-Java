@@ -3,13 +3,14 @@ package model.element.mobile;
 import java.awt.Point;
 import java.io.IOException;
 
-import controller.UserOrder;
-import model.IMap;
+import contract.controller.UserOrder;
+import contract.model.IMap;
+import contract.model.element.Permeability;
+import contract.model.element.Sprite;
+import contract.model.element.mobile.IMobile;
 import element.Element;
 import element.elementfactory.ElementFactory;
 import fr.exia.showboard.IBoard;
-import model.element.Permeability;
-import model.element.Sprite;
 
 /**
  * <h1>The Mobile Class.</h1>

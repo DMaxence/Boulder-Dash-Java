@@ -1,8 +1,8 @@
 package model.element.strategy;
 
-import controller.IStrategy;
-import model.IMap;
-import model.element.mobile.IMobile;
+import contract.controller.IStrategy;
+import contract.model.IMap;
+import contract.model.element.mobile.IMobile;
 import model.element.mobile.Monster;
 
 /**

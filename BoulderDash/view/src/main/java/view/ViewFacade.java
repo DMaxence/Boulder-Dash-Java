@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import model.IMap;
-import model.element.mobile.IMobile;
+import contract.model.IMap;
+import contract.model.element.mobile.IMobile;
+import contract.view.IView;
 
 /**
  * <h1>The Class ViewFacade provides a facade of the View component.</h1>
@@ -39,7 +40,7 @@ public class ViewFacade extends GenericView implements IView, Runnable, KeyListe
 	/**
 	 * Displays the message in dialog box.
 	 * 
-	 * @see view.IView#displayMessage(java.lang.String)
+	 * @see contract.view.IView#displayMessage(java.lang.String)
 	 */
 	@Override
 	public final void displayMessage(final String message) {

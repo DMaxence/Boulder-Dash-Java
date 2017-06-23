@@ -3,4 +3,4 @@
  * @author paul
  *
  */
-package model.element;
+package contract.model.element;

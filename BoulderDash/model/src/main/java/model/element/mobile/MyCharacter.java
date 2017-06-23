@@ -4,10 +4,11 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.io.IOException;
 
-import controller.UserOrder;
-import model.IMap;
-import model.element.Permeability;
-import model.element.Sprite;
+import contract.controller.UserOrder;
+import contract.model.IMap;
+import contract.model.element.Permeability;
+import contract.model.element.Sprite;
+import contract.model.element.mobile.IMobile;
 
 /**
  * <h1>The MyCharacter Class.</h1>

@@ -3,11 +3,11 @@ package model.element.mobile;
 import java.awt.Rectangle;
 import java.io.IOException;
 
-import controller.IStrategy;
-import controller.UserOrder;
-import model.IMap;
-import model.element.Permeability;
-import model.element.Sprite;
+import contract.controller.IStrategy;
+import contract.controller.UserOrder;
+import contract.model.IMap;
+import contract.model.element.Permeability;
+import contract.model.element.Sprite;
 import model.element.strategy.FollowWallAntiClockWiseStrategy;
 import model.element.strategy.FollowWallClockWiseStrategy;
 import model.element.strategy.NoStrategy;

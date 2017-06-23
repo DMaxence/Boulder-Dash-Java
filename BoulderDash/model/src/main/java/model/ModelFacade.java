@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import contract.model.IMap;
+import contract.model.IModel;
+import contract.model.element.Sprite;
+import contract.model.element.mobile.IMobile;
 import model.dao.MapDAO;
-import model.element.Sprite;
-import model.element.mobile.IMobile;
 import model.element.mobile.MyCharacter;
 
 /**

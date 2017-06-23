@@ -1,4 +1,4 @@
-package controller;
+package contract.controller;
 
 import java.util.Random;
 

@@ -1,7 +1,7 @@
-package controller;
+package contract.controller;
 
-import model.IMap;
-import model.element.mobile.IMobile;
+import contract.model.IMap;
+import contract.model.element.mobile.IMobile;
 
 /**
  * The IStrategy interface.

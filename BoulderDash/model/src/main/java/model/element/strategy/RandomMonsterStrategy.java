@@ -1,8 +1,8 @@
 package model.element.strategy;
 
-import controller.UserOrder;
-import model.IMap;
-import model.element.mobile.IMobile;
+import contract.controller.UserOrder;
+import contract.model.IMap;
+import contract.model.element.mobile.IMobile;
 
 /**
  * One of the strategy that can be used by monsters. Moves in random directions,

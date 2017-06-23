@@ -1,4 +1,4 @@
-package model.element;
+package contract.model.element;
 
 import java.awt.Image;
 import java.awt.Rectangle;

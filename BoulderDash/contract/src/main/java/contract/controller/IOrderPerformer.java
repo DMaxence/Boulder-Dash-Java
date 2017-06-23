@@ -1,8 +1,8 @@
-package controller;
+package contract.controller;
 
 import java.io.IOException;
 
-import controller.UserOrder;
+import contract.controller.UserOrder;
 
 /**
  * <h1>The Interface IController.</h1>

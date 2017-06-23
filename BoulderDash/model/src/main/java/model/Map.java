@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import model.element.Permeability;
-import model.element.mobile.IMobile;
+import contract.model.IElement;
+import contract.model.IMap;
+import contract.model.element.Permeability;
+import contract.model.element.mobile.IMobile;
 
 /**
  * <h1>The Class Map provides a facade of the Model component.</h1>

@@ -1,10 +1,10 @@
-package model;
+package contract.model;
 
 import java.awt.Image;
 
+import contract.model.element.Permeability;
+import contract.model.element.Sprite;
 import fr.exia.showboard.ISquare;
-import model.element.Permeability;
-import model.element.Sprite;
 
 /**
  * The interface that represents elements on the board.

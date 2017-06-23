@@ -2,9 +2,9 @@ package element;
 
 import java.awt.Image;
 
-import model.IElement;
-import model.element.Permeability;
-import model.element.Sprite;
+import contract.model.IElement;
+import contract.model.element.Permeability;
+import contract.model.element.Sprite;
 
 /**
  * An element is an object that can be used on an IBoard

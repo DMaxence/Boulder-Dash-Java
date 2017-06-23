@@ -1,9 +1,9 @@
-package model.element.mobile;
+package contract.model.element.mobile;
 
 import java.awt.Point;
 
-import controller.UserOrder;
-import model.IElement;
+import contract.controller.UserOrder;
+import contract.model.IElement;
 import fr.exia.showboard.IPawn;
 
 /**
